@@ -1,0 +1,31 @@
+ESG:
+  Players:
+    TheEnderCrafter9:
+      Rabbit:
+      Archer:
+      Snow:
+      Assassin:
+      Witch:
+      Horse:
+      Armor:
+      Ninja:
+      Lava:
+      Farmer:
+      Wolf:
+  Kits:
+      - Rabbit
+      - Archer
+      - Snow
+      - Assassin
+      - Witch
+      - Horse
+      - Armor
+      - Ninja
+      - Lava
+      - Farmer
+      - Wolf
+  Shop:
+    Rabbit:
+      Free: true
+      Cost: null
+      

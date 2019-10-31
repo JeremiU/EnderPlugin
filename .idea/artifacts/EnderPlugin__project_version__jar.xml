@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="EnderPlugin-{project.version}:jar">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="EnderPlugin.jar">
+      <element id="file-copy" path="$PROJECT_DIR$/pom.xml" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/config.yml" />
+      <element id="module-output" name="EnderPlugin" />
+    </root>
+  </artifact>
+</component>

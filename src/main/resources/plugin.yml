@@ -1,0 +1,334 @@
+name: EnderPlugin
+main: io.github.rookietec9.enderplugin.EnderPlugin
+version: Greek
+commands:
+  bday:
+    aliases: [enderbday, getbday]
+    description: Check the birthday of the server.
+    usage: /command
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  countDown:
+    aliases: [endercount]
+    description: Set up a countdown.
+    usage: /<command> {seconds}
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  hologram:
+    aliases: [holotext, summonholo, enderhologram]
+    description: Summon a Hologram.
+    usage: /<command> {mode} {text}
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  suicide:
+    aliases: [kys, enderKYS]
+    description: Commit suicide with bleach.
+    usage: /command
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  plugins:
+    aliases: [EnderPlugins]
+    description: A list of plugins.
+    usage: /command
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  sign:
+    aliases: [enderSign]
+    description: Edit a sign.
+    usage: /command <mode>
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  stalk:
+    aliases: [EnderStalk]
+    description: Gather information on a player.
+    usage: /<command> {player} {page}
+    permission: EP.exec.
+    permission-message: You don't have <permission>
+  warp:
+    aliases: [enderWarp]
+    description: Warp to a place.
+    usage: /command [warp]
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  clear:
+    aliases: [enderClear]
+    description: Clear inventory.
+    usage: /<command> [players]
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  hat:
+    aliases: [enderHat]
+    description: Sets the item in a player's hand to the helmet slot.
+    usage: /command
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  hideFlags:
+    aliases: [enderFlag]
+    description: Hide Flags of an item.
+    usage: /command {flag}
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  paint:
+    aliases: [enderPaint]
+    description: Paint an item.
+    usage: /command <r> <g> <b>
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  rename:
+    aliases: [enderRename]
+    description: Rename an Item
+    usage: /<command> [Name]
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  repair:
+    aliases: [enderRepair]
+    description: Repairs an item.
+    usage: /command <item>
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  unbreakable:
+    aliases: [EnderUnbreakable]
+    description: Summon a Hologram
+    usage: /command <mode>
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  anvil:
+    aliases: [enderAnvil]
+    description: Open an anvil window.
+    usage: /command
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  brew:
+    aliases: [enderBrew]
+    description: Opens a player's brewery menu.
+    usage: /command
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  craft:
+    aliases: [enderCraft]
+    description: Open up a crafting menu.
+    usage: /<command>
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  enchant:
+    aliases: [enderEnchant]
+    description: Opens enchantment table
+    usage: /<command>
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  ec:
+    aliases: [enderec, enderchest]
+    description: Open your enderchest
+    usage: /command
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  ext:
+    aliases: [enderExtinguish]
+    descriptiont: Extinguish yourself.
+    usage: /command [player]
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  finish:
+    aliases: [EnderFinish]
+    description: Finish someone off.
+    usage: /<command> [player]
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  fly:
+    aliases: [EnderFly]
+    description: Fly up and away
+    usage: /<command> [player]
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  getChest:
+    aliases: [enderGetChest]
+    description: Get items from a chest.
+    usage: /command {x} {y} {z} {mode}
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  gamemode:
+    description: Sets a gamemode.
+    aliases: [enderGm, gm]
+    usage: /<command> [player] {GM}
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  god:
+    aliases: [enderGod]
+    description: Prevent yourself from taking any damage.
+    usage: /command {mode}
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  heal:
+    aliases: [EnderHeal]
+    description: Heal someone the ender way.
+    usage: /command [player]
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  jump:
+    aliases: [enderJump]
+    description: Jump to a the place that you are looking at.
+    usage: /command
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  kick:
+    aliases: [enderKick]
+    description: Kick a player.
+    usage: /command {player} [message]
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  kill:
+    aliases: [enderKill]
+    description: Kill someone the ender way.
+    usage: /<command> [player]
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  loc:
+    aliases: [enderLoc, getLoc, loc]
+    description: Get the location of a person.
+    usage: /command
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  details:
+    aliases: [EnderDetails]
+    description: Get the server ip and port.
+    usage: /command
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  effectslist:
+    aliases: [EffectsList, enderEffectsList]
+    description: Get the target player's status effects.
+    usage: /command {Player}
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  getcolor:
+    aliases: [enderColor]
+    description: View colors.
+    usage: /<command> [COLORS]
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  list:
+    aliases: [enderList]
+    description: List all online players.
+    usage: /command
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  uuid:
+    aliases: [EnderUUID]
+    description: Use the Config.
+    usage: /command
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  mute:
+    aliases: [enderMute]
+    description: Prevents a player from speaking.
+    usage: /command {player} [reason]
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  nick:
+    aliases: [endernick, enderDick]
+    description: Make a custom nickname / prefix.
+    usage: /<command> {NICK}
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  anoncast:
+    aliases: [enderAnomCast]
+    description: Cast a message anomly.
+    usage: /command
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  action:
+    aliases: [enderanonaction, anonaction]
+    description: Send an action bar message.
+    usage: /command {player} {text}
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  anon:
+    aliases: [enderAnon]
+    description: Message A player.
+    usage: /<command> {player} {message}
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  chatclear:
+    aliases: [enderChatClear]
+    description: Clear the chat.
+    usage: /<command> [player]
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  colormap:
+    aliases: [endercolors]
+    description: Get the color of an item or Potion Effect.
+    usage: /command <PotionEffect>
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  fake:
+    aliases: [enderFake]
+    description: Messages....
+    usage: /<command> [MESSAGE]
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  help:
+    aliases: [EnderHelp]
+    description: Get the help.
+    usage: /command [Plugin] [Page]
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  hug:
+    alises: [enderHug]
+    description: Hug someone the ender way.
+    usage: /<command> {player}
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  sendtitle:
+    aliases: [enderSendTitle, title]
+    description: Send a title.
+    usage: /command {player} {title} ,[], [subtitle]
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  version:
+    aliases: [enderVersion, ver]
+    description: Version of the plugin.
+    usage: /<command>
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  yt:
+    aliases: [enderYT]
+    description: View our YouTube channel.
+    usage: /<command>
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  esgchest:
+    aliases: [enderesgchest]
+    description: Sets the chests.
+    usage: /command <test | load>
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  esg:
+    aliases: [EnderESG]
+    description: Open ESG Menu
+    usage: /<command>
+    permission: ESG.exec
+    permission-message: You don't have <permission>
+  esgkit:
+    aliases: [esggetkit]
+    description: Get an esg kit.
+    usage: /command <kit> <level> <mode>
+    permission: ESG.exec
+    permission-message: You don't have <permission>
+  booty:
+    aliases: [enderbooty]
+    description: booty
+    usage: /command
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  hub:
+    aliases: [enderHub, lobby]
+    description: Teleport to the hub or set it in your location.
+    usage: /command [set]
+    permission: EP.exec
+    permission-message: You don't have <permission>
+  selectblade:
+    aliases: [enderselectblade]
+    description: Get a wizard blade.
+    usage: /command {blade}
+    permission: EP.exec
+    permission-message: You don't have <permission>
