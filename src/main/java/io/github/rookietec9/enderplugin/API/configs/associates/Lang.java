@@ -3,6 +3,7 @@ package io.github.rookietec9.enderplugin.API.configs.associates;
 import io.github.rookietec9.enderplugin.API.configs.Config;
 import io.github.rookietec9.enderplugin.API.configs.Langs;
 import io.github.rookietec9.enderplugin.EnderPlugin;
+import javafx.util.Pair;
 import org.bukkit.ChatColor;
 
 /**
@@ -10,79 +11,71 @@ import org.bukkit.ChatColor;
  * @version 16.2.6
  * @since ?.?.?
  */
-public class Lang {
-    private final Config langConfig;
-    private final String plugPath = "Main.plugMsg";
-    private final String errorPath = "Main.error";
-    private final String onlyUserPath = "Main.onlyUser";
-    private final String syntaxPath = "Main.syntax";
-    private final String offlinePath = "Main.offline";
-    private final String lightPath = "Main.color.light";
-    private final String darkPath = "Main.color.dark";
-    private final String txtPath = "Main.color.text";
-    private final String numPath = "Main.numberFormatException";
-    private final String cmdExPath = "Main.color.cmd";
-    private final String blockNoPath = "Main.blockNotAllowed";
-    private final String consoleNoPath = "Main.consoleNotAllowed";
+public class Lang extends Associate {
+    private final Pair<String, String> plug = new Pair<>("Main.plugMsg", "&7[&3&lE&b&lC&f]&7 ");
+    private final Pair<String, String> error = new Pair<>("Main.error", "&4Error: &c ");
+    private final Pair<String, String> onlyUser = new Pair<>("Main.onlyUser", "Only users can run this command.");
+    private final Pair<String, String> syntax = new Pair<>("Main.syntax", "&3SYNTAX: &B");
+    private final Pair<String, String> offline = new Pair<>("Main.offline", "The request player is offline.");
+    private final Pair<String, String> light = new Pair<>("Main.color.light", "AQUA");
+    private final Pair<String, String> dark = new Pair<>("Main.color.dark", "DARK_AQUA");
+    private final Pair<String, String> txt = new Pair<>("Main.color.text", "GRAY");
+    private final Pair<String, String> cmd = new Pair<>("Main.color.cmd", "WHITE");
+    private final Pair<String, String> num = new Pair<>("Main.numberFormatException", "That's not a number!");
+    private final Pair<String, String> noBlock = new Pair<>("Main.blockNotAllowed", "Command blocks cannot use this command.");
+    private final Pair<String, String> noConsole = new Pair<>("Main.blockNotAllowed", "Consoles cannot use this command.");
+
+    Pair<String, String>[] pairs = new Pair[]{plug, error, onlyUser, syntax, offline, light, dark, txt, cmd, num, noBlock, noConsole};
 
     public Lang(Langs l) {
-        langConfig = new Config(false, "Texts", l.toString() + ".yml", EnderPlugin.getInstance());
-        langConfig.modifyYaml();
-        String[] allPaths = {plugPath, errorPath, onlyUserPath, syntaxPath, offlinePath, lightPath, darkPath, txtPath, numPath, cmdExPath, blockNoPath, consoleNoPath};
-        for (int i = 0; i < allPaths.length; i++) {
-            if (langConfig.getYaml().get(allPaths[i]) == null) {
-                langConfig.getYaml().createSection(allPaths[i]);
-                String[] name = {"&7[&3&lE&b&lC&f]&7 ", "&4Error: &c ", "Only users can run this command.", "&3SYNTAX: &B", "The request player is offline.", "AQUA", "DARK_AQUA", "GRAY", "That's not a number!"
-                        , "WHITE", "Command blocks cannot use this command", "Consoles cannot use this command."
-                };
-                langConfig.getYaml().set(allPaths[i], name[i]);
+        super(new Config(false, "Texts", l.toString() + ".yml", EnderPlugin.getInstance()));
+
+        for (Pair<String, String> pair : pairs) {
+            if (config.getYaml().get(pair.getKey()) == null) {
+                config.getYaml().createSection(pair.getKey());
+                config.getYaml().set(pair.getKey(), pair.getValue());
             }
         }
-        langConfig.modifyYaml();
+        config.modifyYaml();
     }
 
     public ChatColor getDarkColor() {
-        return ChatColor.valueOf(langConfig.getYaml().getString(darkPath));
+        return (ChatColor.valueOf((String) getPath(dark.getKey(), dark.getValue())));
     }
 
     public ChatColor getLightColor() {
-        return (ChatColor) get(ChatColor.valueOf(langConfig.getYaml().getString(lightPath)));
+        return (ChatColor.valueOf((String) getPath(light.getKey(), light.getValue())));
     }
 
     public ChatColor getTxtColor() {
-        return (ChatColor) get(ChatColor.valueOf(langConfig.getYaml().getString(txtPath)));
+        return (ChatColor.valueOf((String) getPath(txt.getKey(), txt.getValue())));
     }
 
     public ChatColor getCmdExColor() {
-        return (ChatColor) get(ChatColor.valueOf(langConfig.getYaml().getString(cmdExPath)));
+        return (ChatColor.valueOf((String) getPath(cmd.getKey(), cmd.getValue())));
     }
 
     public String getPlugMsg() {
-        return (String) get(ChatColor.translateAlternateColorCodes('&', langConfig.getYaml().getString(plugPath) + getTxtColor()) + getTxtColor());
+        return getPathColored(plug.getKey(), plug.getValue()) + getTxtColor();
     }
 
     public String getErrorMsg() {
-        return (String) get(ChatColor.translateAlternateColorCodes('&', langConfig.getYaml().getString(errorPath)));
+        return getPathColored(error.getKey(), error.getValue());
     }
 
     public String getNumFormatMsg() {
-        return (String) get(getErrorMsg() + ChatColor.translateAlternateColorCodes('&', langConfig.getYaml().getString(numPath)));
+        return getErrorMsg() + getPathColored(num.getKey(), num.getValue());
     }
 
     public String getOnlyUserMsg() {
-        return (String) get(getErrorMsg() + ChatColor.translateAlternateColorCodes('&', langConfig.getYaml().getString(onlyUserPath)));
+        return getErrorMsg() + getPathColored(onlyUser.getKey(), onlyUser.getKey());
     }
 
     public String getOfflineMsg() {
-        return (String) get(getErrorMsg() + ChatColor.translateAlternateColorCodes('&', langConfig.getYaml().getString(offlinePath)));
+        return getErrorMsg() + getPathColored(offline.getKey(), offline.getValue());
     }
 
     public String getSyntaxMsg() {
-        return (String) get(getPlugMsg() + ChatColor.translateAlternateColorCodes('&', langConfig.getYaml().getString(syntaxPath)));
-    }
-
-    private Object get(Object object) {
-        langConfig.modifyYaml();
-        return object;
+        return getPlugMsg() + getPathColored(syntax.getKey(), syntax.getKey());
     }
 }

@@ -3,7 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.rookietec9</groupId>
     <artifactId>EnderPlugin</artifactId>
-    <version>Lambda16.4.9</version>
+    <version>Lambda16.8.7</version>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
     <build>
         <defaultGoal>clean install</defaultGoal>
         <finalName>${project.name}-${project.version}</finalName>
@@ -47,18 +50,6 @@
             <artifactId>craftbukkit</artifactId>
             <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>

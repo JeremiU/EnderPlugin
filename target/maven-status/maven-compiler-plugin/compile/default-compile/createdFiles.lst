@@ -26,6 +26,7 @@ io\github\rookietec9\enderplugin\API\configs\associates\Warp.class
 io\github\rookietec9\enderplugin\commands\advFuncs\KYSCommand.class
 io\github\rookietec9\enderplugin\xboards\ParkourBoard.class
 io\github\rookietec9\enderplugin\API\configs\associates\Games$SpleefInfo.class
+io\github\rookietec9\enderplugin\API\Utils$Reference$Prefixs.class
 io\github\rookietec9\enderplugin\API\configs\associates\Games$WizardsInfo.class
 io\github\rookietec9\enderplugin\commands\advFuncs\HologramCommand.class
 io\github\rookietec9\enderplugin\commands\games\PlayCommand$Games.class
@@ -46,6 +47,7 @@ io\github\rookietec9\enderplugin\events\games\ctf\CTFTeamClick.class
 io\github\rookietec9\enderplugin\commands\basicFuncs\playerFuncs\GodCommand.class
 io\github\rookietec9\enderplugin\API\ActionBar.class
 io\github\rookietec9\enderplugin\events\games\esg\ESGTargetEvent.class
+io\github\rookietec9\enderplugin\events\games\murder\JoinEvent.class
 io\github\rookietec9\enderplugin\commands\basicFuncs\playerFuncs\ExtinguishCommand.class
 io\github\rookietec9\enderplugin\commands\games\ESG\GetKitCommand.class
 io\github\rookietec9\enderplugin\events\games\spleef\WinEvent.class
@@ -64,6 +66,7 @@ io\github\rookietec9\enderplugin\API\SkullMaker.class
 io\github\rookietec9\enderplugin\API\Utils$Reference.class
 io\github\rookietec9\enderplugin\events\games\esg\ESGEggEvent.class
 io\github\rookietec9\enderplugin\events\games\booty\BootyDeath.class
+io\github\rookietec9\enderplugin\events\games\murder\DeathEvent.class
 io\github\rookietec9\enderplugin\commands\basicFuncs\playerFuncs\LocCommand.class
 io\github\rookietec9\enderplugin\commands\basicFuncs\invFuncs\CraftCommand.class
 io\github\rookietec9\enderplugin\events\main\MainDeath.class
@@ -97,6 +100,7 @@ io\github\rookietec9\enderplugin\events\games\hunger\BroadcastSpawnEvent.class
 io\github\rookietec9\enderplugin\commands\basicFuncs\txtFuncs\ColorsCommand.class
 io\github\rookietec9\enderplugin\API\configs\Config.class
 io\github\rookietec9\enderplugin\events\main\MainRenameEvent.class
+io\github\rookietec9\enderplugin\events\main\MainSwitchWorldEvent.class
 io\github\rookietec9\enderplugin\API\ConeEffect.class
 io\github\rookietec9\enderplugin\commands\basicFuncs\txtFuncs\VersionCommand.class
 io\github\rookietec9\enderplugin\EnderPlugin.class
@@ -135,8 +139,8 @@ io\github\rookietec9\enderplugin\commands\basicFuncs\txtFuncs\FakeCommand.class
 io\github\rookietec9\enderplugin\commands\basicFuncs\txtFuncs\TitleCommand.class
 io\github\rookietec9\enderplugin\events\games\spleef\MineEvent.class
 io\github\rookietec9\enderplugin\events\games\tnt\TNTEffectEvent.class
-io\github\rookietec9\enderplugin\events\games\MurderDeathEvent.class
 io\github\rookietec9\enderplugin\commands\games\ESG\ESGChestCommand.class
+io\github\rookietec9\enderplugin\events\games\murder\EscapeEvent.class
 io\github\rookietec9\enderplugin\commands\basicFuncs\invFuncs\editFuncs\UnbreakableCommand.class
 io\github\rookietec9\enderplugin\xboards\HideBoard.class
 io\github\rookietec9\enderplugin\commands\basicFuncs\invFuncs\editFuncs\RenameCommand.class

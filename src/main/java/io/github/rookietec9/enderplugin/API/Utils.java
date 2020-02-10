@@ -11,7 +11,7 @@ import java.util.Set;
 
 /**
  * @author Jeremi
- * @version 14.3.2
+ * @version 16.4.9
  * @since 3.1.2
  */
 public class Utils {
@@ -276,7 +276,7 @@ public class Utils {
             public static final String ESG_FIGHT = "SurvivalGames";
             public static final String SWAG_DUCK = "duck";
             public static final String OLD_WIZARDS = "wizards";
-            public static final String MURDERER = "White_Mansion";
+            public static final String MURDER = "White_Mansion";
             public static final String OLD_OBSTACLE = "parkour";
             public static final String OLD_RAIL_PVP = "railpvp";
             public static final String BOOTY = "booty";
@@ -296,6 +296,12 @@ public class Utils {
             public static final String SUMO = "SumoKB";
             public static final String ESG_HUB = "esg_hub_2";
             public static final String SPLEEF = "Spleef";
+        }
+
+        public static class Prefixs {
+            public static final String HUB = "";
+            public static final String MURDER = "§f§lM§4§lM§f§lG §7> ";
+            public static final String HIDENNSEEK = "§F§LH§6§lN§f§lS §7> ";
         }
     }
 }

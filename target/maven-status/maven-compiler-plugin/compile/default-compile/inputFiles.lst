@@ -1,4 +1,3 @@
-C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\events\games\MurderDeathEvent.java
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\commands\basicFuncs\playerFuncs\GetChestCommand.java
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\commands\games\ESG\ESGChestCommand.java
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\commands\basicFuncs\invFuncs\editFuncs\UnbreakableCommand.java
@@ -35,6 +34,7 @@ C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\ende
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\commands\basicFuncs\txtFuncs\dataFuncs\DetailsCommand.java
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\API\ActionBar.java
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\commands\basicFuncs\txtFuncs\ChatClearCommand.java
+C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\events\main\MainSwitchWorldEvent.java
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\commands\basicFuncs\txtFuncs\AnonActionCommand.java
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\events\games\hunger\BroadcastSpawnEvent.java
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\EnderPlugin.java
@@ -49,6 +49,7 @@ C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\ende
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\events\games\hunger\BroadcastLavaEvent.java
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\commands\basicFuncs\invFuncs\AnvilCommand.java
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\commands\basicFuncs\txtFuncs\setFuncs\NickCommand.java
+C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\events\games\murder\EscapeEvent.java
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\commands\basicFuncs\invFuncs\editFuncs\ClearCommand.java
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\events\games\Run\Bows.java
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\API\ConeEffect.java
@@ -105,9 +106,11 @@ C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\ende
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\commands\basicFuncs\txtFuncs\dataFuncs\ListCommand.java
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\xboards\SpleefBoard.java
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\events\games\esg\ESGStartChooseEvent.java
+C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\events\games\murder\JoinEvent.java
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\commands\basicFuncs\playerFuncs\HealCommand.java
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\commands\basicFuncs\invFuncs\editFuncs\RenameCommand.java
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\API\configs\associates\Lang.java
+C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\events\games\murder\DeathEvent.java
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\commands\basicFuncs\playerFuncs\FinishCommand.java
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\commands\basicFuncs\txtFuncs\FakeCommand.java
 C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\enderplugin\xboards\ParkourBoard.java

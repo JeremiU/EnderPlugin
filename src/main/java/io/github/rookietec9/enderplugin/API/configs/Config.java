@@ -33,27 +33,20 @@ public class Config {
     public Config(boolean isMain, String folderName, String fileName, JavaPlugin plugin) {
         String folderPath;
 
-        if (plugin == null)
-            throw new IllegalArgumentException("Plugin cannot be null");
+        if (plugin == null) throw new IllegalArgumentException("Plugin cannot be null");
         this.plugin = plugin;
-        if (fileName == null || fileName.isEmpty())
-            throw new IllegalArgumentException("Name cannot be null");
-        if (!plugin.getDataFolder().exists()) {
-            plugin.getDataFolder().mkdir();
-        }
-
+        if (fileName == null || fileName.isEmpty()) throw new IllegalArgumentException("Name cannot be null");
+        if (!plugin.getDataFolder().exists()) plugin.getDataFolder().mkdir();
         if (isMain || folderName.length() == 0) folderPath = plugin.getDataFolder().getPath();
         else folderPath = plugin.getDataFolder().getPath() + "\\" + folderName;
 
         File dataFolder = new File(folderPath);
         this.configFile = new File(dataFolder, fileName);
-        if (!dataFolder.exists()) {
-            dataFolder.mkdir();
-        }
+        if (!dataFolder.exists()) dataFolder.mkdir();
         saveDefaultYaml();
     }
 
-    public void reloadYaml() {
+    private void reloadYaml() {
         fileConfiguration = YamlConfiguration.loadConfiguration(configFile);
 
         final InputStream defConfigStream = plugin.getResource(configFile.getPath());
@@ -92,7 +85,7 @@ public class Config {
         return fileConfiguration;
     }
 
-    public void saveYaml() {
+    private void saveYaml() {
         if (!(fileConfiguration == null || configFile == null)) {
             try {
                 getYaml().save(configFile);

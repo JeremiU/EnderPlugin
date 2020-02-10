@@ -4,7 +4,6 @@ import io.github.rookietec9.enderplugin.API.Utils;
 import io.github.rookietec9.enderplugin.API.configs.associates.Games;
 import io.github.rookietec9.enderplugin.API.configs.associates.User;
 import io.github.rookietec9.enderplugin.EnderPlugin;
-import io.github.rookietec9.enderplugin.xboards.Board;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
@@ -14,11 +13,10 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
 import java.lang.management.ManagementFactory;
-import java.security.CodeSource;
 
 /**
  * @author Jeremi
- * @version 13.6.4
+ * @version 16.5.5
  * @since 12.8.3
  */
 public class HubBoard extends Board {
@@ -36,10 +34,12 @@ public class HubBoard extends Board {
             scoreBoard = player.getScoreboard();
             objective = scoreBoard.getObjective("hub");
         } else {
-            CodeSource source = EnderPlugin.getInstance().getClass().getProtectionDomain().getCodeSource();
-            String name = source.getLocation().toString().substring(source.getLocation().toString().lastIndexOf("/") + 1);
+            String name = getClass().getProtectionDomain().getCodeSource().getLocation().toString().substring(getClass().getProtectionDomain().getCodeSource().getLocation().toString().lastIndexOf("/") + 1);
             String verCycle = name.substring(name.lastIndexOf("-") + 1).replace(EnderPlugin.getInstance().getName(), "").replace(".jar", "");
-            for (int i = 0; i < 11; i++) verCycle = verCycle.replace(String.valueOf(i), "");
+
+            for (int i = 0; i <= 10; i++) {
+                verCycle = verCycle.replace(String.valueOf(i), "");
+            }
             verCycle = verCycle.replace(".", "");
             String verNum = name.replace(verCycle, "").substring(name.indexOf("-") + 1).replace(".jar", "");
 
@@ -67,7 +67,8 @@ public class HubBoard extends Board {
             objective.getScore("§b").setScore(8);
             objective.getScore(ChatColor.LIGHT_PURPLE + "Rank: " + ChatColor.WHITE + ChatColor.stripColor((new User(player)).getTabName().replace(player.getName(), "").
                     replace("[", "").replace("]", "").replace(" ", ""))).setScore(7);
-            objective.getScore(ChatColor.LIGHT_PURPLE + "Version Number§f: §d" + ChatColor.WHITE + verNum.replace(".", "§f.§d")).setScore(6);
+
+            objective.getScore(ChatColor.LIGHT_PURPLE + "Version No.§f: §d" + ChatColor.WHITE + verNum.replace(".", "§f.§d")).setScore(6);
             objective.getScore("§c").setScore(5);
             objective.getScore(ChatColor.LIGHT_PURPLE + "Uptime: §d~" + ChatColor.WHITE + hours + ChatColor.LIGHT_PURPLE + ":" + ChatColor.WHITE + minutes + ChatColor.LIGHT_PURPLE + ":" +
                     ChatColor.WHITE + seconds).setScore(4);

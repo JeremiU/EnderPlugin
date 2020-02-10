@@ -12,13 +12,11 @@ import org.bukkit.scoreboard.Scoreboard;
 
 import static io.github.rookietec9.enderplugin.API.Utils.Reference.Teams;
 import static io.github.rookietec9.enderplugin.API.Utils.Reference.Worlds;
-import static io.github.rookietec9.enderplugin.EnderPlugin.Hashmaps.hoodGame;
-import static io.github.rookietec9.enderplugin.EnderPlugin.Hashmaps.hoodHideTicks;
-import static io.github.rookietec9.enderplugin.EnderPlugin.Hashmaps.hoodHiding;
+import static io.github.rookietec9.enderplugin.EnderPlugin.Hashmaps.*;
 
 /**
  * @author Jeremi
- * @version 14.8.6
+ * @version 14.8.7
  * @since 13.4.4
  */
 
@@ -63,11 +61,12 @@ public class HideBoard extends Board {
             objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 
             objective.getScore("§a").setScore(8);
-            objective.getScore(ChatColor.GOLD + "Seeker: " + ChatColor.WHITE + seekerName).setScore(7);
+            objective.getScore(ChatColor.GOLD + "Seeker: " + ChatColor.WHITE + ((seekerName == null) ? "none" : seekerName)).setScore(7);
             objective.getScore("§b").setScore(6);
 
-            if (hoodGame) objective.getScore(ChatColor.GOLD + "Phase: " + ChatColor.WHITE + ((hoodHiding) ? "HIDING" : "FINDING")).setScore(5); else
-                objective.getScore(ChatColor.GOLD + "Phase: " + ChatColor.WHITE + "Game ended").setScore(5);
+            if (hoodGame)
+                objective.getScore(ChatColor.GOLD + "Phase: " + ChatColor.WHITE + ((hoodHiding) ? "HIDING" : "FINDING")).setScore(5);
+            else objective.getScore(ChatColor.GOLD + "Phase: " + ChatColor.WHITE + "Game ended").setScore(5);
 
             objective.getScore(ChatColor.GOLD + "Time Left: " + ChatColor.WHITE + minute + ChatColor.GOLD + ":" + ChatColor.WHITE + second).setScore(5);
             objective.getScore(ChatColor.GOLD + "People Left: " + ChatColor.WHITE + left).setScore(4);
@@ -111,7 +110,9 @@ public class HideBoard extends Board {
         hoodGame = gameGoing;
 
         for (String s : scoreBoard.getEntries()) if (s.contains("Phase: ")) scoreBoard.resetScores(s);
-        if (hoodGame) objective.getScore(ChatColor.GOLD + "Phase: " + ChatColor.WHITE + ((hoodHiding) ? "HIDING" : "FINDING")).setScore(5); else
+        if (hoodGame)
+            objective.getScore(ChatColor.GOLD + "Phase: " + ChatColor.WHITE + ((hoodHiding) ? "HIDING" : "FINDING")).setScore(5);
+        else
             objective.getScore(ChatColor.GOLD + "Phase: " + ChatColor.WHITE + "Game ended").setScore(5);
     }
 

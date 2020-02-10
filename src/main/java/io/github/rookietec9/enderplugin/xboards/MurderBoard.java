@@ -5,14 +5,17 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.*;
 
 import static io.github.rookietec9.enderplugin.API.Utils.Reference.Teams;
 import static io.github.rookietec9.enderplugin.API.Utils.Reference.Worlds;
 import static io.github.rookietec9.enderplugin.EnderPlugin.Hashmaps.prisonTicks;
 
+/***
+ * @author Jeremi
+ * @version 16.8.5
+ * @since ?.?.?
+ */
 public class MurderBoard extends Board {
 
     private Scoreboard scoreBoard;
@@ -21,7 +24,7 @@ public class MurderBoard extends Board {
     private Player player;
 
     public MurderBoard(Player player) {
-        world = Bukkit.getWorld(Worlds.MURDERER);
+        world = Bukkit.getWorld(Worlds.MURDER);
         this.player = player;
 
         Games g = new Games();
@@ -45,6 +48,7 @@ public class MurderBoard extends Board {
 
             scoreBoard = Bukkit.getScoreboardManager().getNewScoreboard();
             objective = scoreBoard.registerNewObjective("prison", "dummy");
+
             objective.setDisplayName(ChatColor.WHITE + "§lMUR" + ChatColor.DARK_RED + "§lDE" + ChatColor.WHITE + "§lRER");
             objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 
@@ -70,14 +74,24 @@ public class MurderBoard extends Board {
             second = "00";
         }
 
-        objective.getScore(ChatColor.DARK_RED + "Doors Open In: " + ChatColor.WHITE + minute + ChatColor.DARK_RED + ":" + ChatColor.WHITE + second).setScore(9);
+        objective.getScore(ChatColor.DARK_RED + "Doors Open In: " + ChatColor.WHITE + minute + ChatColor.DARK_RED + ":" + ChatColor.WHITE + second).setScore(5);
         player.setScoreboard(scoreBoard);
     }
 
     public void updatePeople(int people) {
         for (String s : scoreBoard.getEntries()) if (s.contains("People Left: ")) scoreBoard.resetScores(s);
-        objective.getScore(ChatColor.DARK_RED + "People Left: " + ChatColor.WHITE + people).setScore(9);
+        objective.getScore(ChatColor.DARK_RED + "People Left: " + ChatColor.WHITE + people).setScore(4);
         player.setScoreboard(scoreBoard);
+    }
+
+    public void updateVisibility() {
+        Team team;
+
+        if (scoreBoard.getTeam("all") != null) scoreBoard.getTeam("all").unregister();
+        team = scoreBoard.registerNewTeam("all");
+
+        for (Player p : Bukkit.getWorld(Worlds.MURDER).getPlayers()) team.addEntry(p.getName());
+        team.setNameTagVisibility(NameTagVisibility.NEVER);
     }
 
     @Override

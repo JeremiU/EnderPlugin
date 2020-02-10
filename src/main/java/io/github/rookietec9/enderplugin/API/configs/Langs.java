@@ -15,7 +15,7 @@ public enum Langs {
     ENGLISH_US("EN_US"),
     PIRATE_SPEAK("PR_US");
 
-    final String friendly;
+    String friendly;
 
     Langs(String friendly) {
         this.friendly = friendly;

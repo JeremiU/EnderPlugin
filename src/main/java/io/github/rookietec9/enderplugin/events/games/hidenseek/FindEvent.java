@@ -1,7 +1,6 @@
 package io.github.rookietec9.enderplugin.events.games.hidenseek;
 
 import io.github.rookietec9.enderplugin.API.ActionBar;
-import io.github.rookietec9.enderplugin.API.Utils;
 import io.github.rookietec9.enderplugin.xboards.HideBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
@@ -14,6 +13,9 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scoreboard.Scoreboard;
 
+import static io.github.rookietec9.enderplugin.API.Utils.Reference.Teams;
+import static io.github.rookietec9.enderplugin.API.Utils.Reference.Worlds;
+
 /**
  * @author Jeremi
  * @version 16.4.9
@@ -25,8 +27,8 @@ public class FindEvent implements Listener {
     public void run(PlayerMoveEvent event) {
         Player player = event.getPlayer();
 
-        if (!player.getWorld().getName().equalsIgnoreCase(Utils.Reference.Worlds.HIDENSEEK)) return;
-        if (!Bukkit.getScoreboardManager().getMainScoreboard().getTeam(Utils.Reference.Teams.badTeam).hasEntry(player.getName()))
+        if (!player.getWorld().getName().equalsIgnoreCase(Worlds.HIDENSEEK)) return;
+        if (!Bukkit.getScoreboardManager().getMainScoreboard().getTeam(Teams.badTeam).hasEntry(player.getName()))
             return;
 
         for (Entity entity : event.getPlayer().getNearbyEntities(50, 25, 50)) {
@@ -44,8 +46,8 @@ public class FindEvent implements Listener {
         HideBoard seekerBoard = new HideBoard(player);
 
         Scoreboard board = Bukkit.getScoreboardManager().getMainScoreboard();
-        if (!player.getWorld().getName().equalsIgnoreCase(Utils.Reference.Worlds.HIDENSEEK)) return;
-        if (!board.getTeam(Utils.Reference.Teams.badTeam).hasEntry(player.getName()))
+        if (!player.getWorld().getName().equalsIgnoreCase(Worlds.HIDENSEEK)) return;
+        if (!board.getTeam(Teams.badTeam).hasEntry(player.getName()))
             return;
 
         if (event.getRightClicked() instanceof Player) {
@@ -54,13 +56,13 @@ public class FindEvent implements Listener {
 
             HideBoard[] hideBoards = new HideBoard[]{seekerBoard, hidingBoard};
 
-            if (board.getTeam(Utils.Reference.Teams.goodTeam).hasEntry(hiding.getName())) {
-                if (board.getTeam(Utils.Reference.Teams.goodTeam).getEntries().size() != 1) {
-                    for (String s : board.getTeam(Utils.Reference.Teams.goodTeam).getEntries()) {
+            if (board.getTeam(Teams.goodTeam).hasEntry(hiding.getName())) {
+                if (board.getTeam(Teams.goodTeam).getEntries().size() != 1) {
+                    for (String s : board.getTeam(Teams.goodTeam).getEntries()) {
                         Bukkit.getPlayer(s).sendMessage("§F§LH§6§lN§f§lS §7> " + hiding.getName() + " has the found!");
                     }
                     player.sendMessage("§F§LH§6§lN§f§lS §7> found " + hiding.getName() + "!");
-                } else for (Player player1 : Bukkit.getWorld(Utils.Reference.Worlds.HIDENSEEK).getPlayers()) {
+                } else for (Player player1 : Bukkit.getWorld(Worlds.HIDENSEEK).getPlayers()) {
                     player1.sendMessage("§F§LH§6§lN§f§lS §7> " + hiding.getName() + " was the last person found!");
                     for (HideBoard b : hideBoards) {
                         b.updateMode(true, false);
@@ -68,10 +70,10 @@ public class FindEvent implements Listener {
                         b.updateTicks(0);
                     }
                 }
-                board.getTeam(Utils.Reference.Teams.goodTeam).removeEntry(hiding.getName());
+                board.getTeam(Teams.goodTeam).removeEntry(hiding.getName());
                 //hiding.teleport(new Location(Bukkit.getWorld(Utils.Reference.Worlds.HIDENSEEK), 0, 0, 0));
 
-                for (HideBoard b : hideBoards) b.updatePeople(board.getTeam(Utils.Reference.Teams.goodTeam).getSize());
+                for (HideBoard b : hideBoards) b.updatePeople(board.getTeam(Teams.goodTeam).getSize());
             }
         }
     }
