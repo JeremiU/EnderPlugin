@@ -77,35 +77,23 @@ public class Item {
 
     }
 
+    public Item(String name, Material material, byte dataByte) {
+        this(name, material);
+        this.setByte(dataByte);
+    }
+
     public Item(String name, Material material) {
         this.material = material;
-        this.lore = null;
         this.name = name;
-        this.amount = 1;
-        ItemStack item = new ItemStack(material, 1, (short) 0, dataByte);
-        this.item = item;
-
+        ItemStack item = new ItemStack(material);
         item.setAmount(1);
         ItemMeta itemMeta = item.getItemMeta();
         itemMeta.setDisplayName(name);
         item.setItemMeta(itemMeta);
-    }
 
-    public Item(String name, Material material, byte dataByte) {
-        this.material = material;
-        this.lore = null;
-        this.name = name;
-        this.dataByte = dataByte;
-        this.amount = 1;
-
-        ItemStack item = new ItemStack(material, 1, (short) 0, dataByte);
         this.item = item;
-        ItemMeta m = item.getItemMeta();
-        m.setDisplayName(name);
-        item.setItemMeta(m);
-        item.setAmount(1);
     }
-
+    
     public Material getMaterial() {
         return material;
     }
@@ -132,8 +120,8 @@ public class Item {
         return dataByte;
     }
 
-    public void setByte(byte Databyte) {
-        this.dataByte = Databyte;
+    public void setByte(byte databyte) {
+        this.dataByte = databyte;
         this.item = new ItemStack(material, 1, (short) 0, dataByte);
     }
 
