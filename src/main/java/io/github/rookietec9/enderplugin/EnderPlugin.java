@@ -142,7 +142,7 @@ public class EnderPlugin extends JavaPlugin {
                 gameHideListeners, gameMurderListeners, gameOtherListeners, mainListeners, hubListeners
         };
 
-        for (int i = 0; i < listeners.length; ++i) {
+        for (int i = 0; i < listeners.length; i++) {
             final StringBuilder stringBuilder = new StringBuilder();
             for (int j = 0; j < listeners[i].length; ++j) {
                 stringBuilder.append(listeners[i][j].getClass().getName().substring(listeners[i][j].getClass().getName().lastIndexOf(".") + 1));
