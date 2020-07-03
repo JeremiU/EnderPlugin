@@ -1,0 +1,20 @@
+#EnderPlugin Configuration File v1.0
+#Edit things such as variables here.
+#For color codes, use & as the color marker. 
+#The hash tag marks a comment. Use it for your own purposes. Not selfies.
+
+#Message When request player is offline:
+Offline Message: 'The requested player is offline. Try again later.'
+
+#Message when sending player has insufficient permissions
+Permission Message: 'You do not have the valid permission. '
+
+#Prefix for the Plugin, put a space at the end
+#Remember to put &r At the end to prevent color conflict
+Plug Message: '&r[&6EnderPlugin v1.0&r] '
+
+#Welcoming Title 
+Welcome Title: '&4Welcome To EndCraft&r'
+
+#Welcoming Subtitle
+Welcome Subtitle: '&cWe hope your internet is not crap.&r'

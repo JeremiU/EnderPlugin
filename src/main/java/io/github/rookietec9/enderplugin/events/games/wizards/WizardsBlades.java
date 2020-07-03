@@ -1,205 +1,111 @@
 package io.github.rookietec9.enderplugin.events.games.wizards;
 
-import io.github.rookietec9.enderplugin.API.Utils;
-import io.github.rookietec9.enderplugin.API.configs.associates.User;
+import com.google.common.collect.HashBiMap;
 import io.github.rookietec9.enderplugin.EnderPlugin;
-import org.bukkit.*;
+import io.github.rookietec9.enderplugin.configs.associates.Blades;
+import io.github.rookietec9.enderplugin.utils.datamanagers.DataPlayer;
+import io.github.rookietec9.enderplugin.utils.methods.Java;
+import io.github.rookietec9.enderplugin.utils.methods.Minecraft;
+import io.github.rookietec9.enderplugin.utils.reference.Worlds;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.LivingEntity;
+import org.bukkit.block.BlockFace;
+import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Sheep;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.material.Directional;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Used for wizards to create potion-tipped blades.
  *
  * @author Jeremi
- * @version 16.3.7
+ * @version 22.4.3
  * @since 6.6.1
  */
 public class WizardsBlades implements Listener {
 
+    public static HashBiMap<Player, Player> effectedMap = HashBiMap.create();
+
     @EventHandler
     public void run(EntityDamageByEntityEvent e) {
-        if (e.getDamager() == null || e.getDamage() == 0 || e.getEntity() == null)
-            return;
-
-        if (e.getDamager().getWorld().getName().equalsIgnoreCase(Utils.Reference.Worlds.WIZARDS) && e.getEntity().getWorld().getName().equalsIgnoreCase(Utils.Reference.Worlds.WIZARDS)) {
-            if (!(e.getDamager() instanceof LivingEntity)) return;
-
-            LivingEntity hitter = (LivingEntity) e.getDamager();
-            LivingEntity getter = (LivingEntity) e.getEntity();
-
-            if (getter instanceof Player && new User((Player) getter).getGod()) return;
-
+        if (e.getDamager() == null || e.getDamage() == 0 || e.getEntity() == null || !(e.getDamager() instanceof Player) || !(e.getEntity() instanceof Player) || DataPlayer.getUser((Player) e.getEntity()).getGod()) return;
+        if (e.getDamager().getWorld().getName().equalsIgnoreCase(Worlds.WIZARDS) && e.getEntity().getWorld().getName().equalsIgnoreCase(Worlds.WIZARDS)) {
+            Player hitter = (Player) e.getDamager();
+            Player getter = (Player) e.getEntity();
             ItemStack dmgItem = hitter.getEquipment().getItemInHand();
 
-            if (dmgItem == null || dmgItem.getItemMeta() == null || dmgItem.getItemMeta().getDisplayName() == null || dmgItem.getItemMeta().getDisplayName().length() == 0)
-                return;
-            if (getter instanceof Player && new User((Player) getter).getGod())
-                return;
+            if (dmgItem == null || dmgItem.getItemMeta() == null || dmgItem.getItemMeta().getDisplayName() == null || dmgItem.getItemMeta().getDisplayName().length() == 0) return;
 
-            registerBlade("Nausea", new PotionEffect(PotionEffectType.CONFUSION, 200, 9, false, true), hitter, getter, DyeColor.PURPLE, ChatColor.DARK_PURPLE, false);
-            registerBlade("Poison", new PotionEffect(PotionEffectType.POISON, 60, 1, false, true), hitter, getter, DyeColor.GREEN, ChatColor.DARK_GREEN, false);
-            registerBlade("Tank", new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 60, 1, false, true), hitter, getter, DyeColor.GRAY, ChatColor.DARK_GRAY, true);
-            registerBlade("Slow", new PotionEffect(PotionEffectType.SLOW, 100, 0, false, true), hitter, getter, DyeColor.GRAY, ChatColor.GRAY, false);
-            registerBlade("Gapple", new PotionEffect(PotionEffectType.ABSORPTION, 120, 0, false, true), hitter, getter, DyeColor.YELLOW, ChatColor.YELLOW, true);
-            registerBlade("Speedy", new PotionEffect(PotionEffectType.SPEED, 60, 1, false, true), hitter, getter, DyeColor.LIGHT_BLUE, ChatColor.AQUA, true);
-            registerBlade("Jump", new PotionEffect(PotionEffectType.JUMP, 60, 1, false, true), hitter, getter, DyeColor.LIME, ChatColor.GREEN, true);
-            registerBlade("Health", new PotionEffect(PotionEffectType.REGENERATION, 60, 1, false, true), hitter, getter, DyeColor.PINK, ChatColor.LIGHT_PURPLE, true);
-
-            int good = Utils.getRandom(1, 2);
-
-            if (Utils.getRandom(1, 4) == 1) registerBlade("Weak", new PotionEffect(PotionEffectType.WEAKNESS, 60, 0, false, true), hitter, getter, DyeColor.GRAY, ChatColor.DARK_GRAY, true);
-            if (Utils.getRandom(1, 5) == 1) registerBlade("Power", new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 60, 0, false, true), hitter, getter, DyeColor.RED, ChatColor.DARK_RED, true);
-            if (Utils.getRandom(1, 2) == 1) registerBlade("Uncertain", boilPot(good == 1), hitter, getter, DyeColor.GRAY, ChatColor.DARK_GRAY, (good == 1));
-
-            if (dmgItem.getItemMeta().getDisplayName().contains("Puncher")) {
-                if (Utils.getRandom(1, 4) == 1) {
-                    Location location = getter.getLocation().clone();
-                    location.setY(location.getY() + 6);
-                    getter.teleport(location);
-                    if (getter instanceof Sheep) {
-                        getter.teleport(location);
-                        ((Sheep) getter).setColor(DyeColor.RED);
-                        if (getter.setPassenger(hitter)) hitter.sendMessage("§fEnjoy your new §cFriend§f!");
-                    }
-                }
-            }
-            if (dmgItem.getItemMeta().getDisplayName().contains("Anvil")) {
-                int random = Utils.getRandom(1, 4);
-                if (random == 1 || random == 2 || random == 3) {
-                    Location location = getter.getLocation().clone();
-                    location.setY(location.getY() + Utils.getRandom(4, 8));
-                    location.getBlock().setType(Material.ANVIL, true);
-                    Block block = getter.getLocation().getBlock();
-                    Material material = block.getType();
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(EnderPlugin.getInstance(), () -> {
-                        if (material != Material.ANVIL) block.setType(material);
-                        else block.setType(Material.AIR);
-                    }, 3 * 20);
-                    if (getter instanceof Sheep) {
-                        ((Sheep) getter).setColor(DyeColor.GRAY);
-                        if (getter.setPassenger(hitter)) hitter.sendMessage("§fEnjoy your new §8Friend§f!");
+            for (Blades blade : Blades.blades) {
+                if (dmgItem.getItemMeta().getDisplayName().toLowerCase().contains(blade.getName().toLowerCase()) && blade.getQuad() != null) {
+                    for (Blades.Quad<PotionEffectType, Integer, Integer, Integer> ench : blade.getQuad()) {
+                        if (Java.getRandom(1, 100) <= ench.chance) {
+                            Player target = (Minecraft.BAD_EFFECTS().contains(ench.potionEffect)) ? getter : hitter;
+                            target.addPotionEffect(new PotionEffect(ench.potionEffect, ench.duration * 20, ench.strength - 1, false, true));
+                            if (ench.potionEffect == PotionEffectType.BLINDNESS) target.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, ench.duration * 20, ench.strength - 1, false, true));
+                            if (Minecraft.BAD_EFFECTS().contains(ench.potionEffect)) effectedMap.put(getter, hitter);
+                        }
                     }
                 }
             }
 
-            if (dmgItem.getItemMeta().getDisplayName().toLowerCase().contains("ghost")) {
-                if (hitter instanceof Player) {
-                    Player hitMan = (Player) hitter;
-                    int blade = hitMan.getInventory().getHeldItemSlot(), boots = 32, leggings = 33, chestPlate = 34, helmet = 35;
-                    if (Utils.getRandom(1, 4) == 1) {
-                        hitMan.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, (5 * 20), 0, false, false), true);
-                        if (hitMan.getInventory().getHelmet() != null) {
-                            hitMan.getInventory().setItem(helmet, hitMan.getInventory().getHelmet());
-                            hitMan.getInventory().setHelmet(new ItemStack(Material.AIR));
-                        }
+            registerBlade("anvil", Java.getRandom(1, 4) > 1, 4, Material.ANVIL, hitter, getter);
+            registerBlade("spider", Java.getRandom(1, 4) == 1, 0, Material.WEB, hitter, getter);
+            registerBlade("aqua", Java.getRandom(1, 4) == 1, 0, Material.WATER, hitter, getter);
 
-                        if (hitMan.getInventory().getItem(0) != null) {
-                            hitMan.getInventory().setItem(blade, hitMan.getInventory().getItem(0));
-                            hitMan.getInventory().setItem(0, new ItemStack(Material.AIR));
-                        }
+            if (dmgItem.getItemMeta().getDisplayName().contains("Ghost") && Java.getRandom(1, 4) == 1) DataPlayer.getUser(hitter).ghost();
+            if (dmgItem.getItemMeta().getDisplayName().contains("Fire") && Java.getRandom(1, 2) == 1) getter.setFireTicks(100);
 
-                        if (hitMan.getInventory().getChestplate() != null) {
-                            hitMan.getInventory().setItem(chestPlate, hitMan.getInventory().getChestplate());
-                            hitMan.getInventory().setChestplate(new ItemStack(Material.AIR));
-                        }
-                        if (hitMan.getInventory().getLeggings() != null) {
-                            hitMan.getInventory().setItem(leggings, hitMan.getInventory().getLeggings());
-                            hitMan.getInventory().setLeggings(new ItemStack(Material.AIR));
-                        }
-                        if (hitMan.getInventory().getBoots() != null) {
-                            hitMan.getInventory().setItem(boots, hitMan.getInventory().getBoots());
-                            hitMan.getInventory().setBoots(new ItemStack(Material.AIR));
-                        }
-                        if (getter instanceof Sheep) {
-                            ((Sheep) getter).setColor(DyeColor.GRAY);
-                            if (getter.setPassenger(hitter)) hitter.sendMessage("§fEnjoy your new §8Friend§f!");
-                        }
-                        Bukkit.getScheduler().scheduleSyncDelayedTask(EnderPlugin.getInstance(), () -> {
-                            if (hitMan.getInventory().getItem(blade) != null) {
-                                hitMan.getInventory().setItem(0, hitMan.getInventory().getItem(blade));
-                                hitMan.getInventory().setHeldItemSlot(0);
-                                hitMan.getInventory().setItem(blade, new ItemStack(Material.AIR));
-                            }
+            if (dmgItem.getItemMeta().getDisplayName().contains("Puncher") && Java.getRandom(1, 4) == 1) {
+                Location location = getter.getLocation().clone();
+                location.setY(location.getY() + 6);
+                getter.teleport(location, PlayerTeleportEvent.TeleportCause.PLUGIN);
+            }
 
-                            if (hitMan.getInventory().getItem(helmet) != null) {
-                                hitMan.getInventory().setHelmet(hitMan.getInventory().getItem(helmet));
-                                hitMan.getInventory().setItem(helmet, new ItemStack(Material.AIR));
-                            }
-                            if (hitMan.getInventory().getItem(chestPlate) != null) {
-                                hitMan.getInventory().setChestplate(hitMan.getInventory().getItem(chestPlate));
-                                hitMan.getInventory().setItem(chestPlate, new ItemStack(Material.AIR));
-                            }
-                            if (hitMan.getInventory().getItem(leggings) != null) {
-                                hitMan.getInventory().setLeggings(hitMan.getInventory().getItem(leggings));
-                                hitMan.getInventory().setItem(leggings, new ItemStack(Material.AIR));
-                            }
-                            if (hitMan.getInventory().getItem(boots) != null) {
-                                hitMan.getInventory().setBoots(hitMan.getInventory().getItem(boots));
-                                hitMan.getInventory().setItem(boots, new ItemStack(Material.AIR));
-                            }
+            int good = Java.getRandom(1, 2);
+            if (Java.getRandom(1, 2) == 1) registerBlade("Uncertain", boilPot(good == 1), hitter, getter, (good == 1));
+        }
+    }
 
-                        }, 5 * 20);
+    private void registerBlade(String name, boolean work, int yModifier, Material type, Player damager, Player damagee) {
+        if (!work) return;
+        effectedMap.forcePut(damagee, damager);
+        if (damager.getEquipment().getItemInHand().getItemMeta().getDisplayName().toLowerCase().contains(name)) {
+            Location location = damagee.getLocation().clone();
+            location.setY(location.getY() + yModifier);
+            Block oldBlock = location.getBlock();
+
+            if (oldBlock.getType() == type) return;
+
+            Material m = oldBlock.getType();
+            byte b = oldBlock.getData();
+            BlockFace bf = (oldBlock instanceof Directional) ? ((Directional) oldBlock).getFacing() : null;
+
+            oldBlock.setType(type != Material.ANVIL ? type : Material.AIR);
+
+            FallingBlock block = type == Material.ANVIL ? Bukkit.getWorld(Worlds.WIZARDS).spawnFallingBlock(location, type, (byte) 0) : null;
+            if (block != null) block.setHurtEntities(true);
+
+            String id = "WIZARD_BLADE_" + name.toUpperCase() + "X" + oldBlock.getLocation().getBlockX() + "Y" + oldBlock.getLocation().getBlockY() + "Z" + oldBlock.getLocation().getZ();
+
+            if (!EnderPlugin.scheduler().isRunning(id))
+                EnderPlugin.scheduler().runSingleTask(() -> {
+                    if (block != null && block.getLocation() != oldBlock.getLocation()) {
+                        block.getLocation().getBlock().setType(Material.AIR);
+                    } else {
+                        oldBlock.setType(m);
+                        oldBlock.setData(b);
+                        if (oldBlock instanceof Directional) ((Directional) oldBlock).setFacingDirection(bf);
                     }
-                }
-            }
-
-            if (dmgItem.getItemMeta().getDisplayName().contains("Fire")) {
-                if (Utils.getRandom(1, 4) == 1) {
-                    getter.setFireTicks(100);
-                    if (getter instanceof Sheep) {
-                        ((Sheep) getter).setColor(DyeColor.ORANGE);
-                        if (getter.setPassenger(hitter)) hitter.sendMessage("§fEnjoy your new §6Friend§f!");
-                    }
-                }
-            }
-
-            if (dmgItem.getItemMeta().getDisplayName().contains("Web")) {
-                if (Utils.getRandom(1, 4) == 1) {
-                    Block block = getter.getLocation().getBlock();
-                    Material matToRecover = block.getType();
-                    byte byteToRecover = block.getData();
-                    block.setType(Material.WEB);
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(EnderPlugin.getInstance(), () -> {
-                        block.setType(matToRecover);
-                        block.setData(byteToRecover);
-                    }, 5 * 20);
-
-                    if (getter instanceof Sheep) {
-                        ((Sheep) getter).setColor(DyeColor.GRAY);
-                        if (getter.setPassenger(hitter)) hitter.sendMessage("§fEnjoy your new §7Friend§f!");
-                    }
-                }
-            }
-
-            if (dmgItem.getItemMeta().getDisplayName().contains("Aqua")) {
-                if (Utils.getRandom(1, 4) == 1) {
-                    Block block = getter.getLocation().getBlock();
-                    Material matToRecover = block.getType();
-                    byte byteToRecover = block.getData();
-                    block.setType(Material.WATER);
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(EnderPlugin.getInstance(), () -> {
-                        block.setType(matToRecover);
-                        block.setData(byteToRecover);
-                    }, 3 * 20);
-                }
-                if (getter instanceof Sheep) {
-                    ((Sheep) getter).setColor(DyeColor.CYAN);
-                    if (getter.setPassenger(hitter)) hitter.sendMessage("§fEnjoy your new §3Friend§f!");
-                }
-            }
+                }, id, 3);
         }
     }
 
@@ -209,24 +115,17 @@ public class WizardsBlades implements Listener {
 
         PotionEffectType[] badType = {PotionEffectType.POISON, PotionEffectType.CONFUSION, PotionEffectType.WITHER, PotionEffectType.BLINDNESS, PotionEffectType.SLOW,
                 PotionEffectType.SLOW_DIGGING, PotionEffectType.WEAKNESS};
-        if (good)
-            return new PotionEffect(goodType[(Utils.getRandom(0, goodType.length - 1))], (Utils.getRandom(2, 5) * 20), (Utils.getRandom(0, 2)));
-        else
-            return new PotionEffect(badType[(Utils.getRandom(0, badType.length - 1))], (Utils.getRandom(2, 5) * 20), (Utils.getRandom(0, 1)));
+
+        return new PotionEffect(good ? goodType[(Java.getRandom(0, goodType.length - 1))] : badType[(Java.getRandom(0, badType.length - 1))], (Java.getRandom(2, 5) * 20), (Java.getRandom(0, 1)));
     }
 
-    private void registerBlade(String name, PotionEffect potionEffect, LivingEntity killerEntity, LivingEntity victimEntity, DyeColor sheepColor, ChatColor talkColor, boolean positive) {
+    private void registerBlade(String name, PotionEffect potionEffect, Player killerEntity, Player victimEntity, boolean positive) {
         ItemStack dmgItem = killerEntity.getEquipment().getItemInHand();
+        if (dmgItem == null || dmgItem.getType() == Material.AIR || !dmgItem.getItemMeta().hasDisplayName()) return;
 
         if (dmgItem.getItemMeta().getDisplayName().toLowerCase().contains(name.toLowerCase())) {
             if (positive) killerEntity.addPotionEffect(potionEffect);
             else victimEntity.addPotionEffect(potionEffect);
-
-            if (victimEntity instanceof Sheep) {
-                ((Sheep) victimEntity).setColor(sheepColor);
-                if ((victimEntity).setPassenger(killerEntity))
-                    killerEntity.sendMessage("§fEnjoy your new " + talkColor + "Friend§f!");
-            }
         }
     }
 }

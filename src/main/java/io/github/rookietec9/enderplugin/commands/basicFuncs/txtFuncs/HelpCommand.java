@@ -1,17 +1,17 @@
 package io.github.rookietec9.enderplugin.commands.basicFuncs.txtFuncs;
 
 import com.google.common.collect.ImmutableList;
-import io.github.rookietec9.enderplugin.API.EndExecutor;
-import io.github.rookietec9.enderplugin.API.Utils;
-import io.github.rookietec9.enderplugin.API.configs.Langs;
-import io.github.rookietec9.enderplugin.API.configs.associates.Lang;
+import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
+import io.github.rookietec9.enderplugin.utils.methods.Java;
+import io.github.rookietec9.enderplugin.utils.methods.Minecraft;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.math.NumberUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.command.*;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.help.HelpMap;
 import org.bukkit.help.HelpTopic;
 import org.bukkit.help.HelpTopicComparator;
@@ -24,17 +24,18 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
+
 /**
  * Average help command.
  *
  * @author Jeremi
- * @version 11.6.0
- * @since 1.9.6.
+ * @version 22.8.0
+ * @since 1.9.6
  */
 public class HelpCommand implements EndExecutor {
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        Lang l = new Lang(Langs.fromSender(sender));
         int pageNumber;
         String command;
         if (args.length == 0) {
@@ -47,8 +48,7 @@ public class HelpCommand implements EndExecutor {
             } catch (NumberFormatException localNumberFormatException) {
                 pageNumber = 1;
             }
-            if (pageNumber <= 0)
-                pageNumber = 1;
+            if (pageNumber <= 0) pageNumber = 1;
         } else {
             command = StringUtils.join(args, " ");
             pageNumber = 1;
@@ -65,22 +65,16 @@ public class HelpCommand implements EndExecutor {
 
         HelpMap helpMap = Bukkit.getServer().getHelpMap();
         HelpTopic topic = helpMap.getHelpTopic(command);
-        if (topic == null) {
-            topic = helpMap.getHelpTopic("/" + command);
-        }
-        if (topic == null) {
-            topic = findPossibleMatches(command);
-        }
 
-        if ((topic == null) || (!topic.canSee(sender))) {
-            sender.sendMessage(l.getErrorMsg() + "No help for " + command);
-            return true;
-        }
+        if (topic == null) topic = helpMap.getHelpTopic("/" + command);
+        if (topic == null) topic = findPossibleMatches(command);
+        if ((topic == null) || (!topic.canSee(sender))) return msg(sender, serverLang().getErrorMsg() + "No help found for " + command);
+
 
         ChatPaginator.ChatPage page = ChatPaginator.paginate(topic.getFullText(sender), pageNumber, pageWidth, pageHeight);
 
         StringBuilder header = new StringBuilder();
-        header.append(l.getDarkColor());
+        header.append(serverLang().getDarkColor());
         header.append("--------- ");
         header.append(ChatColor.WHITE);
         header.append("Help: ");
@@ -93,27 +87,17 @@ public class HelpCommand implements EndExecutor {
             header.append(page.getTotalPages());
             header.append("] ");
         }
-        header.append(l.getDarkColor());
-        for (int i = header.length(); i < 55; i++) {
-            header.append("-");
-        }
+        header.append(serverLang().getDarkColor());
+        header.append("-".repeat(Math.max(0, 55 - header.length())));
         sender.sendMessage(header.toString());
         String toSend = "";
         for (String s : page.getLines()) {
             char[] charArray = s.toCharArray();
             for (int i = 0; i < charArray.length; i++) {
-                if (charArray[i] == ':') {
-                    toSend = l.getDarkColor() + ChatColor.stripColor(s.substring(0, i)) + l.getLightColor()
-                            + ChatColor.stripColor(s.substring(i + 1, s.length()));
-                }
-                for (Plugin p : Bukkit.getPluginManager().getPlugins()) {
-                    if ((s.split(" ")[0].equalsIgnoreCase(p.getName()) || s.split(" ")[0].equalsIgnoreCase("bukkit")
-                            || s.split(" ")[0].equalsIgnoreCase("aliases") ||
-                            s.split(" ")[0].equalsIgnoreCase("bukkit")) && (charArray[i] == ':')) {
-                        toSend = l.getDarkColor() + "§l" + ChatColor.stripColor(s.substring(0, i)) + l.getLightColor()
-                                + ChatColor.stripColor(s.substring(i + 1, s.length()));
-                    }
-                }
+                if (charArray[i] == ':') toSend = serverLang().getDarkColor() + ChatColor.stripColor(s.substring(0, i)) + serverLang().getLightColor() + ChatColor.stripColor(s.substring(i + 1));
+                for (Plugin p : Bukkit.getPluginManager().getPlugins())
+                    if (Java.argWorks(s.split(" ")[0], p.getName(), "bukkit", "aliases") && (charArray[i] == ':'))
+                        toSend = serverLang().getDarkColor() + "§l" + ChatColor.stripColor(s.substring(0, i)) + serverLang().getLightColor() + ChatColor.stripColor(s.substring(i + 1));
             }
             sender.sendMessage(toSend);
         }
@@ -129,16 +113,11 @@ public class HelpCommand implements EndExecutor {
         }
         for (HelpTopic topic : Bukkit.getServer().getHelpMap().getHelpTopics()) {
             String trimmedTopic = topic.getName().startsWith("/") ? topic.getName().substring(1) : topic.getName();
-            if ((trimmedTopic.length() >= searchString.length())
-                    && (Character.toLowerCase(trimmedTopic.charAt(0)) == Character.toLowerCase(searchString.charAt(0)))
-                    && (Utils.getLeven(searchString, trimmedTopic.substring(0, searchString.length())) < maxDistance)) {
+            if ((trimmedTopic.length() >= searchString.length()) && (Character.toLowerCase(trimmedTopic.charAt(0)) == Character.toLowerCase(searchString.charAt(0))) && (Java.getLeven(searchString, trimmedTopic.substring(0, searchString.length())) < maxDistance))
                 possibleMatches.add(topic);
-            }
         }
 
-        if (possibleMatches.size() > 0) {
-            return new IndexHelpTopic("Search", null, null, possibleMatches, "Search for: " + searchString);
-        }
+        if (possibleMatches.size() > 0) return new IndexHelpTopic("Search", null, null, possibleMatches, "Search for: " + searchString);
         return null;
     }
 
@@ -148,20 +127,18 @@ public class HelpCommand implements EndExecutor {
             String searchString = args[0];
             for (HelpTopic topic : Bukkit.getServer().getHelpMap().getHelpTopics()) {
                 String trimmedTopic = topic.getName().startsWith("/") ? topic.getName().substring(1) : topic.getName();
-                if (trimmedTopic.startsWith(searchString)) {
-                    matchedTopics.add(trimmedTopic);
-                }
+                if (trimmedTopic.startsWith(searchString)) matchedTopics.add(trimmedTopic);
             }
             return matchedTopics;
         }
         return ImmutableList.of();
     }
 
-    public String[] getSyntax(Command command, Lang l) {
+    public String getSyntax(String label) {
         return null;
     }
 
-    public String commandName() {
-        return "help";
+    public List<String> commandNames() {
+        return List.of("help");
     }
 }

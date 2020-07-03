@@ -1,7 +1,9 @@
 package io.github.rookietec9.enderplugin.events.games.spleef;
 
-import io.github.rookietec9.enderplugin.API.configs.associates.Games;
-import io.github.rookietec9.enderplugin.xboards.SpleefBoard;
+import io.github.rookietec9.enderplugin.scoreboards.SpleefBoard;
+import io.github.rookietec9.enderplugin.utils.datamanagers.DataPlayer;
+import io.github.rookietec9.enderplugin.utils.reference.DataType;
+import io.github.rookietec9.enderplugin.utils.reference.Worlds;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -12,58 +14,45 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static io.github.rookietec9.enderplugin.API.Utils.Reference.Worlds;
-import static io.github.rookietec9.enderplugin.EnderPlugin.Hashmaps.tempSpleefBlocks;
-
 /**
  * @author Jeremi
- * @version 15.6.5
+ * @version 21.3.4
  * @since 14.8.6
  */
 public class MineEvent implements Listener {
 
     public static boolean run = true;
-    public static HashMap<Player, Integer> hashMap = new HashMap<>();
-    public static Map<Block, Boolean> blockMap = new ConcurrentHashMap<>();
+    public static final HashMap<Player, Integer> hashMap = new HashMap<>();
+    public static final Map<Block, Boolean> blockMap = new ConcurrentHashMap<>();
+
 
     public static Runnable runnable() {
         return () -> {
             for (Player player : Bukkit.getWorld(Worlds.SPLEEF).getPlayers()) {
-                Games.SpleefInfo spleefInfo = new Games().new SpleefInfo();
-                spleefInfo.setBlocks(player, spleefInfo.blocksBroken(player) + hashMap.get(player));
+                DataPlayer.get(player).incrementBy(DataType.SPLEEFBLOCKS, hashMap.get(player));
 
-                SpleefBoard spleefBoard = new SpleefBoard(player);
-                spleefBoard.init();
+                int i = hashMap.get(player);
 
-                int i = hashMap.get(player) * 2;
+                if (i > 0 && i <= 64) {
+                    player.getInventory().addItem(new ItemStack(Material.SNOW_BALL, i));
+                } else if (i > 64) do {
+                    player.getInventory().addItem(new ItemStack(Material.SNOW_BALL, Math.min(i, 64)));
+                    i -= 64;
+                } while (i > 0);
+                player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 60*20, 4, true, true));
 
-                if (i != 0) {
-                    if (player.getInventory().first(Material.SNOW_BALL) != -1 && player.getInventory().getItem(player.getInventory().first(Material.SNOW_BALL)).getAmount() < 64) {
-                        if (i + player.getInventory().getItem(player.getInventory().first(Material.SNOW_BALL)).getAmount() >= 64) {
-                            player.getInventory().getItem(player.getInventory().first(Material.SNOW_BALL)).setAmount(64);
-                        } else {
-                            player.getInventory().getItem(player.getInventory().first(Material.SNOW_BALL)).setAmount(player.getInventory().getItem(player.getInventory().first(Material.SNOW_BALL)).getAmount() + i);
-                        }
-                    } else if (player.getInventory().all(Material.SNOW_BALL).size() > 1) {
-                        for (ItemStack itemStack : player.getInventory().all(Material.SNOW_BALL).values()) {
-                            if (itemStack.getAmount() < 64) {
-                                if (i + itemStack.getAmount() >= 64) itemStack.setAmount(64);
-                                else itemStack.setAmount(itemStack.getAmount() + i);
-                                return;
-                            }
-                        }
-                    } else player.getInventory().addItem(new ItemStack(Material.SNOW_BALL, i));
-                }
-
-                tempSpleefBlocks.put(player, tempSpleefBlocks.get(player) + hashMap.get(player));
+                int newVal = DataPlayer.get(player).tempSpleefBlocks + hashMap.get(player);
                 hashMap.put(player, 0);
-                spleefBoard.updateTempBlocks(tempSpleefBlocks.get(player));
-                spleefBoard.reloadStats();
+
+                DataPlayer.get(player).getBoard(SpleefBoard.class).updateTempBlocks(newVal);
+                DataPlayer.get(player).getBoard(SpleefBoard.class).reloadStats();
             }
         };
     }
@@ -88,13 +77,6 @@ public class MineEvent implements Listener {
 
     @EventHandler
     public void run(BlockPlaceEvent event) {
-        Player player = event.getPlayer();
-
-        if (!player.getWorld().getName().equalsIgnoreCase(Worlds.SPLEEF)) return;
-        if (player.getGameMode() != GameMode.SURVIVAL) return;
-
-        if (event.getBlock().getType() == Material.SNOW_BLOCK) {
-            blockMap.putIfAbsent(event.getBlock(), false);
-        }
+        if (event.getPlayer().getWorld().getName().equalsIgnoreCase(Worlds.SPLEEF) && event.getPlayer().getGameMode() == GameMode.SURVIVAL && event.getBlock().getType() == Material.SNOW_BLOCK) blockMap.putIfAbsent(event.getBlock(), false);
     }
 }

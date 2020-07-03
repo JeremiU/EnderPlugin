@@ -1,90 +1,67 @@
 package io.github.rookietec9.enderplugin.commands.basicFuncs.playerFuncs;
 
-import io.github.rookietec9.enderplugin.API.EndExecutor;
-import io.github.rookietec9.enderplugin.API.Utils;
-import io.github.rookietec9.enderplugin.API.configs.Langs;
-import io.github.rookietec9.enderplugin.API.configs.associates.Lang;
-import io.github.rookietec9.enderplugin.API.configs.associates.User;
+import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
+import io.github.rookietec9.enderplugin.utils.datamanagers.DataPlayer;
+import io.github.rookietec9.enderplugin.utils.methods.Java;
+import io.github.rookietec9.enderplugin.utils.methods.Minecraft;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
+import static io.github.rookietec9.enderplugin.utils.reference.Syntax.MODE;
 
 /**
  * Gets the items from a chest.
  *
  * @author Jeremi
- * @version 13.4.4
+ * @version 22.8.0
  * @since 10.3.7
  */
 public class GetChestCommand implements EndExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Lang l = new Lang(Langs.fromSender(sender));
-        if (!(sender instanceof Player)) {
-            sender.sendMessage(l.getOnlyUserMsg());
-            return true;
-        }
+        if (!(sender instanceof Player)) return msg(sender, serverLang().getOnlyUserMsg());
+        if (!Java.isInRange(args.length, 3, 4)) return msg(sender, getSyntax(label));
+
         Player player = (Player) sender;
-        if (args.length != 4) {
-            sender.sendMessage(getSyntax(command, l));
-            return true;
-        }
-        int x, y, z = 0;
-        boolean message = false;
+
+        int x, y, z;
         try {
-            x = Integer.valueOf(args[0]);
-            y = Integer.valueOf(args[1]);
-            z = Integer.valueOf(args[2]);
+            x = Integer.parseInt(args[0]);
+            y = Integer.parseInt(args[1]);
+            z = Integer.parseInt(args[2]);
         } catch (NumberFormatException e) {
-            sender.sendMessage(l.getNumFormatMsg());
-            return true;
-        }
-        if (!args[3].equalsIgnoreCase("on") && args[3].equalsIgnoreCase("off")) {
-            sender.sendMessage(getSyntax(command, l));
-            return true;
+            return msg(sender, serverLang().getNumFormatMsg());
         }
 
-        if (args[3].equalsIgnoreCase("on")) message = true;
-        new User(player).fromChest(player.getWorld(), x, y, z);
+        boolean log = !(args.length > 3 && Java.argWorks(args[3], "off", "false"));
 
-        if (message)
-            sender.sendMessage(l.getTxtColor() + "Gave you chest from " + l.getDarkColor() + x + " " + y + " " + z);
-        return true;
+        if (args.length > 3 && !Java.argWorks(args[3], "on", "off", "log", "no-log")) return msg(sender, getSyntax(label));
+        if (!DataPlayer.getUser(player).fromChest(player.getWorld(), x, y, z)) return true;
+
+        return (!log) || msg(sender, serverLang().getTxtColor() + "Gave you chest from " + serverLang().getDarkColor() + x + " " + y + " " + z);
     }
 
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        List<String> list = new ArrayList<>();
-        if (args.length == 1) list.add(0, "x");
-        if (args.length == 2) list.add(0, "y");
-        if (args.length == 3) list.add(0, "z");
-
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            if (args.length == 1) list.add(0, "" + player.getEyeLocation().getBlockX());
-            if (args.length == 2) list.add(0, "" + player.getEyeLocation().getBlockY());
-            if (args.length == 3) list.add(0, "" + player.getEyeLocation().getBlockZ());
+
+            if (args.length == 1) return tabOption(args[0], "" + player.getEyeLocation().getBlockX());
+            if (args.length == 2) return tabOption(args[1], "" + player.getEyeLocation().getBlockY());
+            if (args.length == 3) return tabOption(args[2],"" + player.getEyeLocation().getBlockZ());
         }
-        if (args.length == 4) {
-            list.add(0, "on");
-            list.add(1, "off");
-        }
-        return list;
+        if (args.length == 4) return tabOption(args[3],"log","no-log");
+        return null;
     }
 
-    public String[] getSyntax(Command command, Lang l) {
-        return new String[]{
-                l.getSyntaxMsg() + l.getCmdExColor() + "/" + l.getLightColor() + command.getName().toLowerCase() + " " + l.getCmdExColor() +
-                        Utils.Reference.OPEN_MANDATORY_CHAR + l.getLightColor() + "x" + l.getCmdExColor() + Utils.Reference.CLOSE_MANDATORY_CHAR + " " +
-                        Utils.Reference.OPEN_MANDATORY_CHAR + l.getLightColor() + "y" + l.getCmdExColor() + Utils.Reference.CLOSE_MANDATORY_CHAR + " " +
-                        Utils.Reference.OPEN_MANDATORY_CHAR + l.getLightColor() + "z" + l.getCmdExColor() + Utils.Reference.CLOSE_MANDATORY_CHAR + " " +
-                        Utils.Reference.OPEN_MANDATORY_CHAR + l.getLightColor() + Utils.Reference.MODE + l.getCmdExColor() + Utils.Reference.CLOSE_MANDATORY_CHAR
-        };
+    public String getSyntax(String label) {
+        return helpLabel(label) + helpBr("x", true) + " " + helpBr("y", true) + " " + helpBr("z", true) + " " + helpBr(MODE,false);
     }
 
-    public String commandName() {
-        return "getChest";
+    public List<String> commandNames() {
+        return List.of("getChest");
     }
 }

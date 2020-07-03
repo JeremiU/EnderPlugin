@@ -8,16 +8,6 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/org/bukkit/craftbukkit/1.8.8-R0.1-SNAPSHOT/craftbukkit-1.8.8-R0.1-SNAPSHOT-sources.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../Old/Buildata/Spigot/Bukkit/src/main/java" />
-      <root url="file://$PROJECT_DIR$/../../Old/Buildata/Spigot/Bukkit/src/main/javadoc" />
-      <root url="file://$PROJECT_DIR$/../../Old/Buildata/Spigot/Bukkit/src/test/java" />
-      <root url="file://$PROJECT_DIR$/../../Old/Buildata/Spigot/CraftBukkit/src/main/java" />
-      <root url="file://$PROJECT_DIR$/../../Old/Buildata/Spigot/CraftBukkit/src/test/java" />
-      <root url="file://$PROJECT_DIR$/../../Old/Buildata/Spigot/Spigot-API/src/main/java" />
-      <root url="file://$PROJECT_DIR$/../../Old/Buildata/Spigot/Spigot-API/src/main/javadoc" />
-      <root url="file://$PROJECT_DIR$/../../Old/Buildata/Spigot/Spigot-API/src/test/java" />
-      <root url="file://$PROJECT_DIR$/../../Old/Buildata/Spigot/Spigot-Server/src/main/java" />
-      <root url="file://$PROJECT_DIR$/../../Old/Buildata/Spigot/Spigot-Server/src/test/java" />
     </SOURCES>
   </library>
 </component>

@@ -1,10 +1,9 @@
 package io.github.rookietec9.enderplugin.commands.basicFuncs.txtFuncs;
 
-import io.github.rookietec9.enderplugin.API.EndExecutor;
-import io.github.rookietec9.enderplugin.API.Utils;
-import io.github.rookietec9.enderplugin.API.configs.Langs;
-import io.github.rookietec9.enderplugin.API.configs.associates.Lang;
-import io.github.rookietec9.enderplugin.API.configs.associates.User;
+import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
+import io.github.rookietec9.enderplugin.utils.datamanagers.DataPlayer;
+import io.github.rookietec9.enderplugin.utils.methods.Minecraft;
+import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -12,51 +11,43 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
+import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
+import static io.github.rookietec9.enderplugin.utils.reference.Syntax.USER;
+
 /**
  * Clear the chat by sending every player a ton of empty messages.
  *
  * @author Jeremi
- * @version 13.4.4
+ * @version 22.8.0
  * @since 1.1.3
+ *
  */
 public class ChatClearCommand implements EndExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Lang l = new Lang(Langs.fromSender(sender));
-        String[] toClr = new String[125];
-        for (int i = 0; i < toClr.length; i++)
-            toClr[i] = " ";
+
         if (args.length == 0) {
-            for (Player target : Bukkit.getOnlinePlayers())
-                target.sendMessage(toClr);
-            Bukkit.broadcastMessage(l.getPlugMsg() + "Cleared chat.");
-            return true;
+            for (Player target : Bukkit.getOnlinePlayers()) target.sendMessage(StringUtils.repeat(" \n", 100));
+            return msg(sender, serverLang().getPlugMsg() + "Cleared chat.");
         }
         if (args.length == 1) {
             Player player = Bukkit.getServer().getPlayer(args[0]);
-            if (player == null) {
-                sender.sendMessage(l.getOfflineMsg());
-                return true;
-            }
-            player.sendMessage(toClr);
-            sender.sendMessage("Cleared " + new User(player).getTabName() + "'s chat");
-            return true;
+            if (player == null) return msg(sender, serverLang().getOfflineMsg());
+            player.sendMessage(StringUtils.repeat(" \n", 100));
+            return msg(sender, "Cleared " + DataPlayer.getUser(player).getTabName() + "'s chat");
         }
-        return true;
+        return msg(sender, getSyntax(label));
     }
 
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         return null;
     }
 
-    public String[] getSyntax(Command command, Lang l) {
-        return new String[]{
-                l.getSyntaxMsg() + l.getCmdExColor() + "/" + l.getLightColor() + command.getName().toLowerCase() + " " + l.getCmdExColor() + Utils.Reference.OPEN_OPTIONAL_CHAR
-                        + l.getLightColor() + Utils.Reference.USER + l.getCmdExColor() + Utils.Reference.CLOSE_OPTIONAL_CHAR
-        };
+    public String getSyntax(String label) {
+        return helpLabel(label) + helpBr(USER, false);
     }
 
-    public String commandName() {
-        return "chatclear";
+    public List<String> commandNames() {
+        return List.of("chatclear");
     }
 }

@@ -1,9 +1,7 @@
 package io.github.rookietec9.enderplugin.commands.advFuncs;
 
-import io.github.rookietec9.enderplugin.API.EndExecutor;
-import io.github.rookietec9.enderplugin.API.Utils;
-import io.github.rookietec9.enderplugin.API.configs.Langs;
-import io.github.rookietec9.enderplugin.API.configs.associates.Lang;
+import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
+import io.github.rookietec9.enderplugin.utils.methods.Minecraft;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -13,66 +11,49 @@ import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
+import static io.github.rookietec9.enderplugin.utils.reference.Syntax.MODE;
+import static io.github.rookietec9.enderplugin.utils.reference.Syntax.MSG;
 
 /**
  * @author Jeremi
- * @version 13.4.4
+ * @version 22.8.0
  * @since 9.3.6
  */
 public class HologramCommand implements EndExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Lang lang = new Lang(Langs.fromSender(sender));
-        if (args.length <= 1) {
-            sender.sendMessage(getSyntax(command, lang));
-            return true;
-        }
-        if (!(sender instanceof Player)) {
-            sender.sendMessage(lang.getOnlyUserMsg());
-            return true;
-        }
+        if (args.length <= 1) return msg(sender, getSyntax(label));
+        if (!(sender instanceof Player)) return msg(sender, serverLang().getOnlyUserMsg());
+        if (!args[0].equalsIgnoreCase("floor") && !args[0].equalsIgnoreCase("eyelevel")) return msg(sender, getSyntax(label));
 
-        if (!args[0].equalsIgnoreCase("baby") && !args[0].equalsIgnoreCase("man")) {
-            sender.sendMessage(getSyntax(command, lang));
-            return true;
-        }
-
-        boolean baby = false;
-        if (args[0].equalsIgnoreCase("baby")) baby = true;
-
+        boolean baby = args[0].equalsIgnoreCase("floor");
         Player player = (Player) sender;
-        Location toSpawn = player.getEyeLocation();
+        Location toSpawn = player.getLocation();
+        if (!baby) toSpawn.setY(toSpawn.getY() + 1);
+
         ArmorStand armorStand = (ArmorStand) player.getWorld().spawnEntity(toSpawn, EntityType.ARMOR_STAND);
         armorStand.setGravity(false);
         armorStand.setSmall(baby);
         armorStand.setMarker(true);
         armorStand.setVisible(false);
-        armorStand.setCustomName(ChatColor.translateAlternateColorCodes('&', StringUtils.join(args, " ", 1, args.length)));
+        armorStand.setCustomName(Minecraft.tacc(StringUtils.join(args, " ", 1, args.length)));
         armorStand.setCustomNameVisible(true);
         return true;
     }
 
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
-        List<String> tabList = new ArrayList<>();
-        if (args.length == 1) {
-            tabList.add("baby");
-            tabList.add("man");
-            return tabList;
-        }
+        if (args.length == 1) return tabOption(args[0], "floor", "eyelevel");
         return null;
     }
 
-    public String[] getSyntax(Command command, Lang l) {
-        return new String[]{
-                l.getSyntaxMsg() + l.getCmdExColor() + "/" + l.getLightColor() + command.getName().toLowerCase() + " " + l.getCmdExColor() + Utils.Reference.OPEN_MANDATORY_CHAR + l.getLightColor() +
-                        Utils.Reference.MODE + l.getCmdExColor() + Utils.Reference.CLOSE_MANDATORY_CHAR + " " + Utils.Reference.OPEN_MANDATORY_CHAR + Utils.Reference.MESSAGE +
-                        Utils.Reference.CLOSE_MANDATORY_CHAR
-        };
+    public String getSyntax(String label) {
+        return helpLabel(label) + helpBr(MODE, true) + helpBr(MSG, true);
     }
 
-    public String commandName() {
-        return "hologram";
+    public List<String> commandNames() {
+        return List.of("hologram");
     }
 }

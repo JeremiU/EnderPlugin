@@ -1,13 +1,25 @@
 package io.github.rookietec9.enderplugin.events.games.esg;
 
-import io.github.rookietec9.enderplugin.API.Utils;
-import org.bukkit.ChatColor;
+import io.github.rookietec9.enderplugin.entities.ESGBlaze;
+import io.github.rookietec9.enderplugin.entities.ESGHorse;
+import io.github.rookietec9.enderplugin.entities.ESGSnowMan;
+import io.github.rookietec9.enderplugin.entities.ESGWolf;
+import io.github.rookietec9.enderplugin.utils.datamanagers.DataPlayer;
+import io.github.rookietec9.enderplugin.utils.datamanagers.TargetMapper;
+import io.github.rookietec9.enderplugin.utils.methods.Java;
+import io.github.rookietec9.enderplugin.utils.methods.Minecraft;
+import io.github.rookietec9.enderplugin.utils.reference.Teams;
+import io.github.rookietec9.enderplugin.utils.reference.Worlds;
 import org.bukkit.DyeColor;
-import org.bukkit.Location;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Horse;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Wolf;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
@@ -15,91 +27,63 @@ import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+
 /**
  * @author Jeremi
- * @version 11.6.0
+ * @version 22.8.0
  * @since 5.0.4
  */
 public class ESGEggEvent implements Listener {
 
     @EventHandler
-    public void onClick(PlayerInteractEvent e) {
-        Player p = e.getPlayer();
-        if (e.getItem() == null) return;
-        if (!e.getPlayer().getWorld().getName().equalsIgnoreCase(Utils.Reference.Worlds.ESG_FIGHT) && !e.getPlayer().getWorld().getName().equalsIgnoreCase(Utils.Reference.Worlds.HUNGER)) {
-            return;
-        }
-        if (!e.getItem().getItemMeta().hasDisplayName()) return;
+    public void onClick(PlayerInteractEvent event) {
+        Player p = event.getPlayer();
 
-        if (e.getItem().getType() == Material.BONE && e.getItem().getItemMeta().getDisplayName().contains("Compressed Wolf")) {
-            e.setCancelled(true);
-            Wolf wolf = (Wolf) p.getWorld().spawnEntity(new Location(p.getWorld(), e.getClickedBlock().getX(), e.getClickedBlock().getY() + 2, e.getClickedBlock().getZ()), EntityType.WOLF);
-            wolf.setCustomName(p.getUniqueId().toString());
-            wolf.setCustomNameVisible(false);
-            wolf.setOwner(p);
-            wolf.setAdult();
-            wolf.setRemoveWhenFarAway(false);
-            wolf.setAngry(true);
-            clearItem(e.getPlayer(), Material.BONE, "Compressed Wolf");
+        if (event.getAction() != Action.RIGHT_CLICK_BLOCK && event.getAction() != Action.RIGHT_CLICK_AIR) return;
+        if (event.getPlayer().getWorld().getName().equalsIgnoreCase(Worlds.ESG_FIGHT) && event.getPlayer().getGameMode() == GameMode.ADVENTURE && event.getItem() != null) {
+            if (event.getItem().getType() == Material.BONE && DataPlayer.getUser(p).remove(Material.BONE, 1, "compressed wolf")) {
+                Wolf wolf = (Wolf) Minecraft.spawn(new ESGWolf(event.getPlayer().getWorld()), event.getPlayer().getLocation());
+                wolf.setOwner(event.getPlayer());
 
-            wolf.setCollarColor(DyeColor.values()[Utils.getRandom(0, (DyeColor.values().length - 1))]);
-        }
+                if (Teams.getTeam(event.getPlayer()) == null) return;
+                String toColor = Teams.getTeam(event.getPlayer()).getName();
+                toColor = toColor.replace("team-", "").replace("white", "yellow").toUpperCase();
 
-        if (e.getItem().getType() == Material.SADDLE && e.getItem().getItemMeta().getDisplayName().contains("Compressed Horse")) {
-            e.setCancelled(true);
-            Horse horse = (Horse) p.getWorld().spawnEntity(new Location(p.getWorld(), e.getClickedBlock().getX(), e.getClickedBlock().getY() + 2, e.getClickedBlock().getZ()), EntityType.HORSE);
-            horse.setCustomName(p.getUniqueId().toString());
-            horse.setCustomNameVisible(false);
+                wolf.setCollarColor(DyeColor.valueOf(toColor));
+            }
+            if (event.getItem().getType() == Material.SADDLE && DataPlayer.getUser(p).remove(Material.SADDLE, 1, "compressed horse")) {
+                Horse horse = (Horse) Minecraft.spawn(new ESGHorse(event.getPlayer().getWorld()), event.getPlayer().getLocation());
+                horse.setJumpStrength(Math.random() * 2);
+                if (horse.getJumpStrength() < 1) horse.setJumpStrength(2 * horse.getJumpStrength());
+                horse.setOwner(p);
+                horse.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, (10000 * 20), 2));
+                horse.setOwner(event.getPlayer());
+                horse.setAdult();
+                horse.setTamed(true);
+                horse.getInventory().setSaddle(new ItemStack(Material.SADDLE));
+                TargetMapper.getTMP(horse).setOwners(event.getPlayer());
+            }
+            if (event.getItem().getType() == Material.MAGMA_CREAM && DataPlayer.getUser(p).remove(Material.MAGMA_CREAM, 1, "compressed cube")) {
 
-            horse.setMaxHealth(20.0);
-            horse.setHealth(horse.getMaxHealth());
-            horse.setJumpStrength(horse.getJumpStrength() * 2);
-            horse.setOwner(p);
-            horse.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, (1000000 * 20), 2));
-            horse.setCarryingChest(false);
-            horse.setOwner(e.getPlayer());
-            horse.setAdult();
-            horse.setTamed(true);
-            horse.getInventory().setSaddle(new ItemStack(Material.SADDLE));
-            horse.setVariant(Horse.Variant.HORSE);
-            clearItem(e.getPlayer(), Material.SADDLE, "Compressed Horse");
+            }
+            if (event.getItem().getType() == Material.PUMPKIN && DataPlayer.getUser(p).remove(Material.PUMPKIN, 1, "compressed baller")) {
+                LivingEntity snowDude = Minecraft.spawn(new ESGSnowMan(event.getPlayer().getWorld()), event.getPlayer().getLocation());
 
-            horse.setColor(Horse.Color.values()[Utils.getRandom(0, Horse.Color.values().length - 1)]);
-            horse.setStyle(Horse.Style.values()[Utils.getRandom(0, Horse.Style.values().length - 1)]);
-        }
+                TargetMapper tmp = TargetMapper.getTMP(snowDude);
+                tmp.setOwners(event.getPlayer()).setTarget(tmp.closestTarget());
+            }
+            if (event.getItem().getType() == Material.BLAZE_ROD && DataPlayer.getUser(p).remove(Material.BLAZE_ROD, 1, "compressed fire")) {
+                LivingEntity blazeDude = Minecraft.spawn(new ESGBlaze(event.getPlayer().getWorld()), event.getPlayer().getLocation());
 
-        if (e.getItem().getType() == Material.MAGMA_CREAM
-                && e.getItem().getItemMeta().getDisplayName().contains("Compressed Cube")) {
-            e.setCancelled(true);
-            MagmaCube slime = (MagmaCube) p.getWorld().spawnEntity(new Location(p.getWorld(), (double) e.getClickedBlock().getX(),
-                    (double) e.getClickedBlock().getY() + 2, (double) e.getClickedBlock().getZ()), EntityType.MAGMA_CUBE);
-            slime.setCustomName(e.getPlayer().getUniqueId().toString());
-            slime.setCustomNameVisible(false);
-            slime.setSize(3);
-            slime.setHealth(slime.getMaxHealth() - 2);
-            clearItem(e.getPlayer(), Material.MAGMA_CREAM, "Compressed Cube");
-        }
-
-        if (e.getItem().getType() == Material.RECORD_12 && ChatColor.stripColor(e.getItem().getItemMeta().getDisplayName()).contains("Random Positive Potion")) {
-            e.setCancelled(true);
-            clearItem(e.getPlayer(), Material.RECORD_12, "§fRandom §bPositive§f Potion (§bDrink§f)");
-            boilPot(p, true);
-        } //BLUE POTION
-        if (e.getItem().getType() == Material.RECORD_3 && ChatColor.stripColor(e.getItem().getItemMeta().getDisplayName()).contains("Random Negative Potion")) {
-            e.setCancelled(true);
-            clearItem(e.getPlayer(), Material.RECORD_3, "§fRandom §cNegative§f Potion (§cSplash§f)");
-            boilPot(p, false);
-        } //RED POTION
-
-        if (e.getItem().getType() == Material.PUMPKIN && e.getItem().getItemMeta().getDisplayName().contains("Compressed Baller")) {
-            e.setCancelled(true);
-            Snowman baller = (Snowman) p.getWorld().spawnEntity(new Location(p.getWorld(), e.getClickedBlock().getX(), e.getClickedBlock().getY() + 2, e.getClickedBlock().getZ()), EntityType.SNOWMAN);
-            baller.setCustomName(p.getUniqueId().toString());
-            baller.setMaxHealth(20.0);
-            baller.setHealth(20.0);
-            baller.setRemoveWhenFarAway(false);
-            baller.setCustomNameVisible(false);
-            clearItem(e.getPlayer(), Material.PUMPKIN, "Compressed Baller");
+                TargetMapper tmp = TargetMapper.getTMP(blazeDude);
+                tmp.setOwners(event.getPlayer()).setTarget(tmp.closestTarget());
+            }
+/*
+            if (Java.argWorks(event.getItem().getType().toString(), Material.RECORD_12.toString(), Material.RECORD_3.toString(), Material.PUMPKIN.toString(), Material.MAGMA_CREAM.toString(), Material.SADDLE.toString(), Material.BONE.toString())) {
+                event.setCancelled(true);
+                if (event.getItem().getAmount() > 1) event.getItem().setAmount(event.getItem().getAmount() - 1);
+                else event.getPlayer().getInventory().remove(event.getItem());
+            }   */
         }
     }
 
@@ -118,10 +102,8 @@ public class ESGEggEvent implements Listener {
         if (good) potMeta.setDisplayName("§b+§f Potion (§bDrink§f)");
         if (!good) potMeta.setDisplayName("§c-§f Potion (§cNegative§f)");
 
-        if (good)
-            potMeta.addCustomEffect(new PotionEffect(goodType[(Utils.getRandom(0, goodType.length - 1))], (Utils.getRandom(5, 20) * 20), (Utils.getRandom(0, 3))), true);
-        if (!good)
-            potMeta.addCustomEffect(new PotionEffect(badType[(Utils.getRandom(0, badType.length - 1))], (Utils.getRandom(5, 20) * 20), (Utils.getRandom(0, 2))), true);
+        if (good) potMeta.addCustomEffect(new PotionEffect(goodType[(Java.getRandom(0, goodType.length - 1))], (Java.getRandom(5, 20) * 20), (Java.getRandom(0, 3))), true);
+        if (!good) potMeta.addCustomEffect(new PotionEffect(badType[(Java.getRandom(0, badType.length - 1))], (Java.getRandom(5, 20) * 20), (Java.getRandom(0, 2))), true);
 
         pot.setItemMeta(potMeta);
         Potion potion = Potion.fromItemStack(pot);
@@ -130,23 +112,5 @@ public class ESGEggEvent implements Listener {
         potion.apply(pot);
 
         p.getInventory().setItem(p.getInventory().getHeldItemSlot(), pot);
-    }
-
-    private void clearItem(Player p, Material toRemove, String nameToRemove) {
-        for (int i = 0; i < p.getInventory().getContents().length; i++) {
-            if (p.getInventory().getContents()[i] == null
-                    || p.getInventory().getContents()[i].getType() != toRemove)
-                continue;
-            if (p.getInventory().getContents()[i].getType() == toRemove) {
-                if (p.getInventory().getContents()[i].getAmount() != 0) {
-                    if (p.getInventory().getContents()[i].getItemMeta().hasDisplayName() && p.getInventory().getContents()[i].getItemMeta().getDisplayName().contains(nameToRemove)) {
-                        ItemStack toDel = p.getInventory().getContents()[i];
-                        toDel.setAmount(p.getInventory().getContents()[i].getAmount() - 1);
-                        p.getInventory().remove(p.getInventory().getContents()[i]);
-                        p.getInventory().addItem(toDel);
-                    }
-                }
-            }
-        }
     }
 }

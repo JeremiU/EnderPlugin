@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="EnderPlugin" target="1.8" />
+      <module name="EnderPlugin" target="14" />
     </bytecodeTargetLevel>
   </component>
 </project>

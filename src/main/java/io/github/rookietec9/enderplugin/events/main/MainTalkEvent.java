@@ -1,8 +1,7 @@
 package io.github.rookietec9.enderplugin.events.main;
 
-import io.github.rookietec9.enderplugin.API.configs.Langs;
-import io.github.rookietec9.enderplugin.API.configs.associates.Lang;
-import io.github.rookietec9.enderplugin.API.configs.associates.User;
+import io.github.rookietec9.enderplugin.utils.datamanagers.DataPlayer;
+import io.github.rookietec9.enderplugin.utils.methods.Minecraft;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -10,28 +9,44 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
+
 /**
  * @author Jeremi
- * @version 11.6.0
- * @since 0.0.4
+ * @version 22.8.0
  */
 public class MainTalkEvent implements Listener {
     @EventHandler
     public void run(AsyncPlayerChatEvent e) {
-        User user = new User(e.getPlayer());
-        if (user.isMuted()) {
-            user.getBase().sendMessage(new Lang(Langs.fromSender(e.getPlayer())).getErrorMsg() + "You are muted!");
-            e.setCancelled(true);
+        e.setCancelled(true);
+
+        if (DataPlayer.getUser(e.getPlayer()).isMuted()) {
+            e.getPlayer().sendMessage(serverLang().getErrorMsg() + "You are muted!");
             return;
         }
-        e.setCancelled(true);
-        if (e.getMessage().contains("Snoop Dogg")) {
-            Bukkit.broadcastMessage("§f[§2§lO§A§lG§f] Snoop Dogg | §7"
-                    + ChatColor.translateAlternateColorCodes('&', e.getMessage().replace("Snoop Dogg ", "")));
-        } else {
-            for (Player player : Bukkit.getOnlinePlayers())
-                player.sendMessage(user.getTabName() + " | " + ChatColor.GRAY + ChatColor.translateAlternateColorCodes('&', e.getMessage().replace("&r","&7")
-                        .replace("&R","&7")).replace(player.getName(), ChatColor.AQUA + player.getName() + "§7"));
+        if (!DataPlayer.get(e.getPlayer()).chatEnabled) {
+            e.getPlayer().sendMessage(serverLang().getErrorMsg() + "You have chat disabled!");
+            return;
         }
+        chat(e.getPlayer(), e.getMessage());
+    }
+
+    public static void chat(Player sender, String message) {
+        message = message.replace("*n","\n");
+
+        if (message.contains("Snoop Dogg")) {
+            String msg = "§f[§2§lO§A§lG§f] Snoop Dogg > §7" + Minecraft.tacc(message.replace("Snoop Dogg ", ""));
+            for (Player p : Bukkit.getOnlinePlayers()) if (DataPlayer.get(p).chatEnabled) p.sendMessage(msg);
+            System.out.println("[OG] Snoop Dogg > " + ChatColor.stripColor(message));
+            return;
+        }
+
+        boolean flipColors = !message.startsWith("`");
+        String prefix = DataPlayer.getUser(sender).getTabName() + ChatColor.GRAY + " > ";
+        String msg = (flipColors ?  Minecraft.tacc(message) : message);
+
+        for (Player player : Bukkit.getOnlinePlayers()) if (DataPlayer.get(player).chatEnabled) player.sendMessage(prefix + msg.replace(player.getName(), ChatColor.DARK_GRAY + "§l" + player.getName() + "§7"));
+        for (Player player : Bukkit.getOnlinePlayers()) if (DataPlayer.get(player).chatEnabled) player.sendMessage(prefix + msg.replace(DataPlayer.getUser(player).getNickName(), ChatColor.DARK_GRAY + "§l" + DataPlayer.getUser(player).getNickName() + "§7"));
+        System.out.print(ChatColor.stripColor(prefix + message));
     }
 }

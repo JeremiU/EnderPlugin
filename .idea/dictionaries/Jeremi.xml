@@ -2,57 +2,170 @@
   <dictionary name="Jeremi">
     <words>
       <w>acion</w>
+      <w>acle</w>
       <w>actionbar</w>
+      <w>alanu</w>
       <w>anom</w>
+      <w>anonaction</w>
       <w>anoncast</w>
       <w>armorstand</w>
+      <w>authlib</w>
+      <w>balla</w>
       <w>baller</w>
       <w>bday</w>
+      <w>berserker</w>
+      <w>blads</w>
+      <w>blockloc</w>
       <w>blueteam</w>
+      <w>blus</w>
+      <w>bootydeaths</w>
+      <w>bootykills</w>
+      <w>bootytype</w>
+      <w>breakability</w>
+      <w>bruv</w>
       <w>bukkit</w>
       <w>cactusman</w>
       <w>cellies</w>
+      <w>chainmail</w>
       <w>chatclear</w>
       <w>chestplate</w>
+      <w>chome</w>
+      <w>chostage</w>
       <w>coalblock</w>
       <w>colormap</w>
+      <w>coowner</w>
+      <w>crafter</w>
+      <w>damagee</w>
+      <w>damager</w>
+      <w>deathmatch</w>
       <w>diamondblock</w>
+      <w>dogg</w>
       <w>dyable</w>
+      <w>ebarrier</w>
       <w>effectslist</w>
+      <w>ench</w>
+      <w>enchs</w>
+      <w>enchtable</w>
       <w>endcraft</w>
       <w>ender</w>
       <w>enderanomcast</w>
       <w>enderanon</w>
       <w>enderanonaction</w>
+      <w>enderbday</w>
+      <w>enderchest</w>
+      <w>enderd</w>
+      <w>enderdick</w>
+      <w>enderec</w>
+      <w>endereffectslist</w>
+      <w>enderextinguish</w>
+      <w>enderfinish</w>
+      <w>enderhang</w>
+      <w>enderheal</w>
+      <w>enderhologram</w>
+      <w>enderhug</w>
+      <w>enderinvsee</w>
+      <w>enderkill</w>
+      <w>enderloc</w>
       <w>enderman</w>
+      <w>endern</w>
+      <w>endernick</w>
+      <w>enderplugin</w>
+      <w>esgchest</w>
       <w>esgkit</w>
+      <w>eyelevel</w>
       <w>febuary</w>
+      <w>funcs</w>
       <w>gamemode</w>
       <w>gamestart</w>
+      <w>gapple</w>
+      <w>getbday</w>
       <w>getcolor</w>
+      <w>getloc</w>
       <w>gooooo</w>
       <w>hashmaps</w>
+      <w>hideflags</w>
+      <w>hidennseek</w>
+      <w>hidenseek</w>
+      <w>holotext</w>
+      <w>indev</w>
+      <w>infdev</w>
+      <w>intimidator</w>
+      <w>ints</w>
+      <w>invsee</w>
       <w>ironblock</w>
+      <w>itemdb</w>
+      <w>itemval</w>
+      <w>jarname</w>
+      <w>jeremi</w>
+      <w>kitpvp</w>
+      <w>langs</w>
       <w>lapis</w>
+      <w>lctf</w>
+      <w>leven</w>
+      <w>lkits</w>
+      <w>ll §r</w>
+      <w>locs</w>
+      <w>mainboard</w>
+      <w>minecraft</w>
+      <w>minigames</w>
+      <w>mojang</w>
       <w>mycelium</w>
+      <w>negromancer</w>
       <w>nolog</w>
+      <w>obst</w>
       <w>parkour</w>
+      <w>parkourblockloc</w>
+      <w>parkourreturnloc</w>
+      <w>partiers</w>
+      <w>playa</w>
       <w>playername</w>
+      <w>plugver</w>
+      <w>prefixs</w>
       <w>prismarine</w>
       <w>punisher</w>
+      <w>railpvp</w>
       <w>redteam</w>
       <w>respawn</w>
+      <w>sched</w>
+      <w>seecret</w>
       <w>selectblade</w>
       <w>sendtitle</w>
+      <w>setblock</w>
+      <w>setcolor</w>
+      <w>setcount</w>
+      <w>setline</w>
       <w>setunbreakable</w>
       <w>similiar</w>
+      <w>skulllink</w>
+      <w>skyvars</w>
+      <w>skywars</w>
       <w>slimeblock</w>
       <w>spleef</w>
+      <w>spleefblocks</w>
+      <w>spleeflosses</w>
+      <w>spleefwins</w>
+      <w>sucess</w>
+      <w>summonholo</w>
+      <w>survtest</w>
+      <w>targeter</w>
       <w>teleport</w>
+      <w>teleported</w>
+      <w>teleporter</w>
       <w>teleports</w>
       <w>tellraw</w>
       <w>tntrun</w>
+      <w>toggler</w>
+      <w>towerdefense</w>
+      <w>tpall</w>
+      <w>tphere</w>
+      <w>unlooted</w>
       <w>uptime</w>
+      <w>urse</w>
+      <w>valids</w>
+      <w>warmup</w>
+      <w>wizarddeaths</w>
+      <w>wizardkills</w>
+      <w>xtra</w>
       <w>yrday</w>
       <w>yyyy</w>
     </words>

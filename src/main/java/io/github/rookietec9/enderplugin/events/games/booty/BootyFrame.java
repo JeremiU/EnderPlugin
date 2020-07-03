@@ -1,26 +1,26 @@
 package io.github.rookietec9.enderplugin.events.games.booty;
 
-import io.github.rookietec9.enderplugin.API.Utils;
 import io.github.rookietec9.enderplugin.EnderPlugin;
+import io.github.rookietec9.enderplugin.utils.datamanagers.Pair;
+import io.github.rookietec9.enderplugin.utils.reference.Worlds;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ItemFrame;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
+
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author Jeremi
- * @version 14.7.7
+ * @version 21.9.6
  * @since 12.4.9
  */
 public class BootyFrame implements Listener {
@@ -29,127 +29,55 @@ public class BootyFrame implements Listener {
 
     @EventHandler
     public void run(PlayerChangedWorldEvent event) {
-        if (event.getFrom().getName().equalsIgnoreCase(Utils.Reference.Worlds.BOOTY) && Bukkit.getWorld(Utils.Reference.Worlds.BOOTY).getPlayers().isEmpty()) {
-            run = false;
-        }
-
-        if (event.getPlayer().getWorld().getName().equalsIgnoreCase(Utils.Reference.Worlds.BOOTY)) {
-            LivingEntity entity = null;
-
-            for (LivingEntity entity1 : event.getPlayer().getWorld().getLivingEntities()) {
-                if (entity1.getType() == EntityType.GUARDIAN) entity = entity1;
-            }
-            if (entity == null)
-                entity = (LivingEntity) event.getPlayer().getWorld().spawnEntity(new Location(event.getPlayer().getWorld(), 22.5, 5, -29.7, 359.61F, 3.105F), EntityType.GUARDIAN);
-            entity.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100000000 * 20, 1));
-            run = true;
-        }
-        runFlip();
+        if (event.getFrom().getName().equalsIgnoreCase(Worlds.BOOTY) && Bukkit.getWorld(Worlds.BOOTY).getPlayers().isEmpty()) run = false;
+        if (event.getPlayer().getWorld().getName().equalsIgnoreCase(Worlds.BOOTY)) run = true;
+        if (!EnderPlugin.scheduler().isRunning("BOOTY_MAT_SWITCH") && run) runFlip();
     }
 
     private void runFlip() {
-        Location frameLoc = new Location(Bukkit.getWorld(Utils.Reference.Worlds.BOOTY), 23, 5, -19);
+        Location frameLoc = new Location(Bukkit.getWorld(Worlds.BOOTY), 23, 5, -19);
         ItemFrame frame = null;
 
-        for (Entity entity : frameLoc.getWorld().getEntities())
-            if (entity instanceof ItemFrame && entity.getLocation().getBlockX() == 23)
-                frame = (ItemFrame) entity;
+        for (Entity entity : frameLoc.getWorld().getEntities()) if (entity instanceof ItemFrame && entity.getLocation().getBlockX() == 23) frame = (ItemFrame) entity;
 
-        final ItemFrame itemFrame = frame;
+        ItemFrame itemFrame = frame;
 
-        if (Bukkit.getWorld(Utils.Reference.Worlds.BOOTY).getBlockAt(23, 4, -19) == null ||
-                !(Bukkit.getWorld(Utils.Reference.Worlds.BOOTY).getBlockAt(23, 4, -19).getState() instanceof Sign))
-            return;
+        if (Bukkit.getWorld(Worlds.BOOTY).getBlockAt(23, 4, -19) == null || !(Bukkit.getWorld(Worlds.BOOTY).getBlockAt(23, 4, -19).getState() instanceof Sign)) return;
         if (itemFrame == null) return;
+        if (!run) return;
 
-        Bukkit.getScheduler().scheduleSyncDelayedTask(EnderPlugin.getInstance(), () -> {
-            if (!run) return;
+        ArrayList<Pair<Material, String>> pairs = new ArrayList<>();
 
-            switch (itemFrame.getItem().getType()) {
-                case DIAMOND_BLOCK: {
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(EnderPlugin.getInstance(), () -> {
-                        itemFrame.setItem(new ItemStack(Material.IRON_BLOCK));
-                        updateSign("§f§lIRON", "§7§lJUMP II");
-                        runFlip();
-                    }, 60L);
-                    return;
-                }
-                case IRON_BLOCK: {
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(EnderPlugin.getInstance(), () -> {
-                        itemFrame.setItem(new ItemStack(Material.DIRT));
-                        updateSign("§e§lDIRT", "§6§lSTRENGTH II");
-                        runFlip();
-                    }, 60L);
-                    return;
-                }
-                case DIRT: {
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(EnderPlugin.getInstance(), () -> {
-                        itemFrame.setItem(new ItemStack(Material.MYCEL));
-                        updateSign("§6§lMYCELIUM", "§lINVISIBILITY");
-                        runFlip();
-                    }, 60L);
-                    return;
-                }
-                case MYCEL: {
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(EnderPlugin.getInstance(), () -> {
-                        itemFrame.setItem(new ItemStack(Material.SPONGE));
-                        updateSign("§e§lSPONGE", "§f§lCLEAR EFX");
-                        runFlip();
-                    }, 60L);
-                    return;
-                }
-                case SPONGE: {
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(EnderPlugin.getInstance(), () -> {
-                        itemFrame.setItem(new ItemStack(Material.WOOD));
-                        updateSign("§6§lWOOD", "§f§lDISAPPEARS");
-                        runFlip();
-                    }, 60L);
-                    return;
-                }
-                case WOOD: {
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(EnderPlugin.getInstance(), () -> {
-                        itemFrame.setItem(new ItemStack(Material.SLIME_BLOCK));
-                        updateSign("§a§lSLIME", "§f§lBOUNCE");
-                        runFlip();
-                    }, 60L);
-                    return;
-                }
-                case SLIME_BLOCK: {
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(EnderPlugin.getInstance(), () -> {
-                        itemFrame.setItem(new ItemStack(Material.COAL_BLOCK));
-                        updateSign("§0§lCOAL", "§f§lTP/HEAL");
-                        runFlip();
-                    }, 60L);
-                    return;
-                }
-                case COAL_BLOCK: {
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(EnderPlugin.getInstance(), () -> {
-                        itemFrame.setItem(new ItemStack(Material.STAINED_CLAY, 1, (short) 0, (byte) 6));
-                        updateSign("§4§lTERRACOTTA", "§c§lFATIGUE II");
-                        runFlip();
-                    }, 60L);
-                    return;
-                }
-                default:
-                case STAINED_CLAY: {
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(EnderPlugin.getInstance(), () -> {
-                        itemFrame.setItem(new ItemStack(Material.DIAMOND_BLOCK));
-                        updateSign("§3§lDIAMOND", "§b§lSPEED II");
-                        runFlip();
-                    }, 60L);
-                }
-            }
-        });
+        pairs.add(new Pair<>(Material.DIAMOND_BLOCK, "§3§lDIAMOND|§b§lSPEED II"));
+        pairs.add(new Pair<>(Material.IRON_BLOCK, "§f§lIRON|§7§lJUMP II"));
+        pairs.add(new Pair<>(Material.DIRT, "§e§lDIRT|§6§lSTRENGTH II"));
+        pairs.add(new Pair<>(Material.MYCEL, "§6§lMYCELIUM|§lINVISIBILITY"));
+        pairs.add(new Pair<>(Material.SPONGE, "§e§lSPONGE|§f§lCLEAR EFX"));
+        pairs.add(new Pair<>(Material.WOOD, "§6§lWOOD|§f§lDISAPPEARS"));
+        pairs.add(new Pair<>(Material.SLIME_BLOCK, "§a§lSLIME|§f§lBOUNCE"));
+        pairs.add(new Pair<>(Material.COAL_BLOCK, "§0§lCOAL|§f§lTP/HEAL"));
+        pairs.add(new Pair<>(Material.STAINED_CLAY, "§4§lTERRACOTTA|§c§lFATIGUE II"));
+
+        AtomicInteger i = new AtomicInteger(0);
+
+        EnderPlugin.scheduler().runRepeatingTask(() -> {
+            if (!run) EnderPlugin.scheduler().cancel("BOOTY_MAT_SWITCH");
+
+            ItemStack itemStack = pairs.get(i.get() % pairs.size()).getKey() == Material.STAINED_CLAY ? new ItemStack(Material.STAINED_CLAY, 1, (short) 0, (byte) 6) : new ItemStack(pairs.get(i.get() % pairs.size()).getKey());
+            String[] split = pairs.get(i.get() % pairs.size()).getValue().split("\\|");
+            updateSign(split[0], split[1]);
+            itemFrame.setItem(itemStack);
+            i.incrementAndGet();
+        }, "BOOTY_MAT_SWITCH", 0, 3);
     }
 
     private void updateSign(String line1, String line2) {
-        Block block = Bukkit.getWorld(Utils.Reference.Worlds.BOOTY).getBlockAt(23, 4, -19);
-        if (!(block.getState() instanceof Sign)) {
-            block.setType(Material.WALL_SIGN);
-        }
-        Sign sign = (Sign) Bukkit.getWorld(Utils.Reference.Worlds.BOOTY).getBlockAt(23, 4, -19).getState();
+        Block block = Bukkit.getWorld(Worlds.BOOTY).getBlockAt(23, 4, -19);
+        if (!(block.getState() instanceof Sign)) block.setType(Material.WALL_SIGN);
 
-        if (!sign.getLine(0).equalsIgnoreCase("§f-------------") && !sign.getLine(3).equalsIgnoreCase("§f-------------")) {
+        Sign sign = (Sign) Bukkit.getWorld(Worlds.BOOTY).getBlockAt(23, 4, -19).getState();
+
+        if (!sign.getLine(0).equalsIgnoreCase("§f-------------") || !sign.getLine(3).equalsIgnoreCase("§f-------------")) {
             sign.setLine(0, "§f-------------");
             sign.setLine(3, "§f-------------");
         }
@@ -157,11 +85,9 @@ public class BootyFrame implements Listener {
         sign.setLine(2, line2);
         sign.update(true);
 
-        block = Bukkit.getWorld(Utils.Reference.Worlds.BOOTY).getBlockAt(24, 4, -19);
-        if (!(block.getState() instanceof Sign)) {
-            block.setType(Material.WALL_SIGN);
-        }
-        sign = (Sign) Bukkit.getWorld(Utils.Reference.Worlds.BOOTY).getBlockAt(24, 4, -19).getState();
+        block = Bukkit.getWorld(Worlds.BOOTY).getBlockAt(24, 4, -19);
+        if (!(block.getState() instanceof Sign)) block.setType(Material.WALL_SIGN);
+        sign = (Sign) Bukkit.getWorld(Worlds.BOOTY).getBlockAt(24, 4, -19).getState();
         sign.setLine(0, "§f-------------");
         sign.setLine(3, "§f-------------");
         sign.setLine(1, "§8§lWATER WILL");

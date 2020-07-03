@@ -1,45 +1,319 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SPLITTER_PROPORTION" value="0.36328766" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="0615c4c5-882b-4a51-8d24-d0ef56b2f0a6" name="Default" comment="Whole lotta changes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/associates/Associate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/murder/EscapeEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/murder/JoinEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/main/MainSwitchWorldEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Jeremi.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Jeremi.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_annotations_17_0_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_annotations_18_0_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_bukkit_craftbukkit_1_8_8_R0_1_SNAPSHOT.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bukkit_craftbukkit_1_8_8_R0_1_SNAPSHOT.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_annotations_18_0_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_annotations_19_0_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_spigotmc_spigot_api_1_12_R0_1_SNAPSHOT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_spigotmc_spigot_api_1_8_8_R0_1_SNAPSHOT.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_spigotmc_spigot_api_1_8_8_R0_1_SNAPSHOT.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EnderPlugin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/EnderPlugin.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/Langs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/Langs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/associates/Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/associates/Games.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/associates/Lang.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/associates/Lang.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/ActionBar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/BoardMap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/ChestExt.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/ConeEffect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/EndExecutor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/Item.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/SkullMaker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/Utils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/Config.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/Langs.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/WizardsBlades.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/associates/Associate.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/associates/Games.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/associates/Lang.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/associates/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/associates/Warp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/esg/ESGKit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/esg/ESGPlayer.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/EnderPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/EnderPlugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/MurderDeathEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/murder/DeathEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/advFuncs/BirthdayCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/advFuncs/BirthdayCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/advFuncs/CountCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/advFuncs/CountCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/advFuncs/HologramCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/advFuncs/HologramCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/advFuncs/KYSCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/advFuncs/PluginsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/advFuncs/PluginsCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/advFuncs/SignCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/advFuncs/SignCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/advFuncs/StalkCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/advFuncs/StalkCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/advFuncs/WarpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/advFuncs/WarpCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/AnvilCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/BreweryCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/CraftCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/EnchantCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/EnderChestCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/editFuncs/ClearCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/editFuncs/HatCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/editFuncs/HideFlagsCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/editFuncs/PaintCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/editFuncs/RenameCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/editFuncs/RepairCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/editFuncs/UnbreakableCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/ExtinguishCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/FinishCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/FlyCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/GMCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/GetChestCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/GetChestCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/GodCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/HealCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/JumpCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/KickCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/KillCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/LocCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/LocCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/AnonActionCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/AnonCastCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/AnonCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/ChatClearCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/ChatClearCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/ColorsCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/FakeCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/HelpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/HelpCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/HugCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/TitleCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/VersionCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/YTCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/dataFuncs/DetailsCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/dataFuncs/EffectsListCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/dataFuncs/GetColorCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/dataFuncs/ListCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/dataFuncs/UUIDCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/setFuncs/MuteCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/setFuncs/NickCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/games/ESG/ESGChestCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/games/ESG/ESGChestCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/games/ESG/ESGCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/games/ESG/ESGCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/games/ESG/GetKitCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/games/ESG/GetKitCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/games/HubCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/games/PlayCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/games/SelectBladeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/games/SelectBladeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/KitKillEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/Run/Bows.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/Run/Bows.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/SumoFailEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/SumoFailEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/booty/BootyClick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/booty/BootyClick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/booty/BootyDeath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/booty/BootyDeath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/booty/BootyFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/booty/BootyFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/booty/BootyJump.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/booty/BootyJump.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/booty/BootyTeam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/booty/BootyTeam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/ctf/CTFChestCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/ctf/CTFChestCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/ctf/CTFTeamClick.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/esg/ESGBushEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/esg/ESGBushEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/esg/ESGEggEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/esg/ESGEggEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/esg/ESGShopEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/esg/ESGSnowNoEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/main/SnowmanImmunityEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/esg/ESGStartChooseEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/esg/ESGStartChooseEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/esg/ESGTargetEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/esg/ESGTargetHitEvent.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/hidenseek/FindEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/hidenseek/FindEvent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/hidenseek/JoinEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/hidenseek/JoinEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/HideBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/HideBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/HubBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/HubBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/MurderBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/MurderBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/Utils$Reference$Worlds.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/Utils$Reference$Worlds.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/Utils$Reference.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/Utils$Reference.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/EnderPlugin$Hashmaps.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/EnderPlugin$Hashmaps.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/hunger/BroadcastEnchEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/hunger/BroadcastKillEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/hunger/BroadcastLavaEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/hunger/BroadcastMineEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/hunger/BroadcastSpawnEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/hunger/FinishEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/murder/DeathEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/murder/DeathEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/murder/EscapeEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/murder/EscapeEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/murder/JoinEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/murder/JoinEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/parkour/Click.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/parkour/Click.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/parkour/Stomp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/spleef/JoinEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/spleef/JoinEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/spleef/MineEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/spleef/MineEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/spleef/WinEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/spleef/WinEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/tnt/TNTBreakEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/tnt/TNTEffectEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/wizards/WizardsBlades.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/wizards/WizardsBlades.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/hub/DoubleJump.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/hub/DoubleJump.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/hub/GoUp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/hub/HubShieldEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/hub/HubShieldEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/hub/NoDrop.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/hub/StopWeather.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/hub/Toggle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/main/ArrowShoot.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/main/MainDeath.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/main/MainHungerEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/main/MainHungerEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/main/MainJoinEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/main/MainJoinEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/main/MainLeaveEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/main/MainLeaveEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/main/MainRenameEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/main/MainSwitchWorldEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/main/MainTalkEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/main/MainTalkEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/protocolEvents/ArmorstandBoot.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/inventories/ESGInventory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/Board.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/BootyBoard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/CTFBoard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/HideBoard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/HubBoard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/Log.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/MurderBoard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/ParkourBoard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/SpleefBoard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/WizardsBoard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/EN_US.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/EN_US.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/EN_US.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/EN_US.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/ActionBar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/BoardMap.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/ChestExt.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/ConeEffect.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/EndExecutor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/Item.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/SkullMaker$Reflection.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/SkullMaker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/Utils$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/Utils$BukkitTools.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/Utils$Reference$Teams.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/Utils$Reference$Worlds.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/Utils$Reference.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/Utils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/configs/Config.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/configs/Langs.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/configs/WizardsBlades.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/configs/associates/Games$BootyInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/configs/associates/Games$ParkourInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/configs/associates/Games$SpleefInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/configs/associates/Games$WizardsInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/configs/associates/Games.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/configs/associates/Lang.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/configs/associates/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/configs/associates/Warp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/esg/ESGKit.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/API/esg/ESGPlayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/EnderPlugin$Hashmaps.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/EnderPlugin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/EnderPlugin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/MurderDeathEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/advFuncs/BirthdayCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/advFuncs/BirthdayCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/advFuncs/CountCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/advFuncs/CountCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/advFuncs/HologramCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/advFuncs/HologramCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/advFuncs/KYSCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/advFuncs/PluginsCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/advFuncs/PluginsCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/advFuncs/SignCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/advFuncs/SignCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/advFuncs/StalkCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/advFuncs/StalkCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/advFuncs/WarpCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/advFuncs/WarpCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/AnvilCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/BreweryCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/CraftCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/EnchantCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/EnderChestCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/editFuncs/ClearCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/editFuncs/HatCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/editFuncs/HideFlagsCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/editFuncs/PaintCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/editFuncs/RenameCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/editFuncs/RepairCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/invFuncs/editFuncs/UnbreakableCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/ExtinguishCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/FinishCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/FlyCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/GMCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/GetChestCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/GetChestCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/GodCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/HealCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/JumpCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/KickCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/KillCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/LocCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/playerFuncs/LocCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/AnonActionCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/AnonCastCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/AnonCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/ChatClearCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/ChatClearCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/ColorsCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/FakeCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/HelpCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/HelpCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/HugCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/TitleCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/VersionCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/YTCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/dataFuncs/DetailsCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/dataFuncs/EffectsListCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/dataFuncs/GetColorCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/dataFuncs/ListCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/dataFuncs/UUIDCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/setFuncs/MuteCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/setFuncs/NickCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/games/ESG/ESGChestCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/games/ESG/ESGChestCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/games/ESG/ESGCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/games/ESG/ESGCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/games/ESG/GetKitCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/games/ESG/GetKitCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/games/HubCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/games/PlayCommand$Games.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/games/PlayCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/games/SelectBladeCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/commands/games/SelectBladeCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/KitKillEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/Run/Bows.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/Run/Bows.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/SumoFailEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/SumoFailEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/booty/BootyClick.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/booty/BootyClick.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/booty/BootyDeath.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/booty/BootyDeath.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/booty/BootyFrame$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/booty/BootyFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/booty/BootyFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/booty/BootyJump.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/booty/BootyJump.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/booty/BootyTeam.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/booty/BootyTeam.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/ctf/CTFChestCheck.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/ctf/CTFChestCheck.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/ctf/CTFTeamClick.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/esg/ESGBushEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/esg/ESGBushEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/esg/ESGEggEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/esg/ESGEggEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/esg/ESGShopEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/esg/ESGSnowNoEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/esg/ESGStartChooseEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/esg/ESGStartChooseEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/esg/ESGTargetEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/esg/ESGTargetHitEvent.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/hidenseek/FindEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/hidenseek/FindEvent.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/hidenseek/JoinEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/hidenseek/JoinEvent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/xboards/HideBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/xboards/HideBoard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/xboards/HubBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/xboards/HubBoard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/xboards/MurderBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/xboards/MurderBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/hunger/BroadcastEnchEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/hunger/BroadcastKillEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/hunger/BroadcastLavaEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/hunger/BroadcastMineEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/hunger/BroadcastSpawnEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/hunger/FinishEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/parkour/Click.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/parkour/Click.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/parkour/Stomp$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/parkour/Stomp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/spleef/JoinEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/spleef/JoinEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/spleef/MineEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/spleef/MineEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/spleef/WinEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/spleef/WinEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/tnt/TNTBreakEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/tnt/TNTEffectEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/wizards/WizardsBlades.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/games/wizards/WizardsBlades.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/hub/DoubleJump.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/hub/DoubleJump.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/hub/GoUp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/hub/HubShieldEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/hub/HubShieldEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/hub/NoDrop.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/hub/StopWeather.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/hub/Toggle$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/hub/Toggle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/main/ArrowShoot.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/main/MainDeath$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/main/MainDeath.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/main/MainHungerEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/main/MainHungerEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/main/MainJoinEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/main/MainJoinEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/main/MainLeaveEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/main/MainLeaveEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/main/MainRenameEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/main/MainTalkEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/main/MainTalkEvent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/events/protocolEvents/ArmorstandBoot.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/inventories/ESGInventory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/xboards/Board.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/xboards/BootyBoard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/xboards/CTFBoard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/xboards/HideBoard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/xboards/HubBoard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/xboards/Log.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/xboards/MurderBoard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/xboards/ParkourBoard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/xboards/SpleefBoard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/rookietec9/enderplugin/xboards/WizardsBoard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/plugin.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/target/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -66,413 +340,76 @@
     <option name="testRunner" value="GRADLE" />
     <option name="delegatedBuild" value="true" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-382588244">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="27" />
-          <entry key="project.open.time.12" value="1" />
-          <entry key="project.open.time.13" value="1" />
-          <entry key="project.open.time.16" value="1" />
-          <entry key="project.open.time.20" value="1" />
-          <entry key="project.open.time.21" value="1" />
-          <entry key="project.open.time.22" value="2" />
-          <entry key="project.open.time.23" value="1" />
-          <entry key="project.open.time.25" value="1" />
-          <entry key="project.open.time.27" value="1" />
-          <entry key="project.open.time.28" value="4" />
-          <entry key="project.open.time.29" value="1" />
-          <entry key="project.open.time.3" value="3" />
-          <entry key="project.open.time.30" value="1" />
-          <entry key="project.open.time.31" value="1" />
-          <entry key="project.open.time.33" value="1" />
-          <entry key="project.open.time.34" value="1" />
-          <entry key="project.open.time.35" value="1" />
-          <entry key="project.open.time.36" value="2" />
-          <entry key="project.open.time.41" value="1" />
-          <entry key="project.open.time.45" value="2" />
-          <entry key="project.open.time.49" value="1" />
-          <entry key="project.open.time.54" value="1" />
-          <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="32" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="iml" value="1" />
-          <entry key="java" value="111" />
-          <entry key="xml" value="1" />
-          <entry key="yml" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="IDEA_MODULE" value="1" />
-          <entry key="JAVA" value="111" />
-          <entry key="XML" value="1" />
-          <entry key="YAML" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="dummy" value="28" />
-          <entry key="java" value="13065" />
-          <entry key="txt" value="22" />
-          <entry key="xml" value="81" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="JAVA" value="13065" />
-          <entry key="PLAIN_TEXT" value="50" />
-          <entry key="XML" value="81" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="EnderPlugin" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/HideBoard.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="52" column="107" selection-start-line="52" selection-start-column="107" selection-end-line="52" selection-end-column="107" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/Config.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="80" column="29" selection-start-line="80" selection-start-column="29" selection-end-line="80" selection-end-column="29" />
-              <folding>
-                <element signature="method#reloadYaml#0;class#Config#0" />
-                <element signature="method#saveYaml#0;class#Config#0" />
-                <element signature="method#saveDefaultYaml#0;class#Config#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/associates/Lang.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="38" selection-start-line="38" selection-end-line="38" />
-              <folding>
-                <element signature="e#3475#3476#0" expanded="true" />
-                <element signature="e#3557#3558#0" expanded="true" />
-                <element signature="e#2316#2317#0" expanded="true" />
-                <element signature="e#2402#2403#0" expanded="true" />
-                <element signature="e#2457#2458#0" expanded="true" />
-                <element signature="e#2551#2552#0" expanded="true" />
-                <element signature="e#2587#2588#0" expanded="true" />
-                <element signature="e#2681#2682#0" expanded="true" />
-                <element signature="e#2727#2728#0" expanded="true" />
-                <element signature="e#2812#2813#0" expanded="true" />
-                <element signature="e#2917#2918#0" expanded="true" />
-                <element signature="e#2946#2947#0" expanded="true" />
-                <element signature="e#3027#3028#0" expanded="true" />
-                <element signature="e#3085#3086#0" expanded="true" />
-                <element signature="e#3203#3204#0" expanded="true" />
-                <element signature="e#3233#3234#0" expanded="true" />
-                <element signature="e#3383#3384#0" expanded="true" />
-                <element signature="e#3431#3432#0" expanded="true" />
-                <element signature="e#3561#3562#0" expanded="true" />
-                <element signature="e#3615#3616#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/associates/Associate.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/associates/Games.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="13" column="35" lean-forward="true" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
-              <folding>
-                <element signature="e#437#438#0" expanded="true" />
-                <element signature="e#520#521#0" expanded="true" />
-                <element signature="e#671#672#0" expanded="true" />
-                <element signature="e#740#741#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>unbreak</find>
-      <find>anvil</find>
-      <find>fire</find>
-      <find>ghost</find>
-      <find>gapple</find>
-      <find>health</find>
-      <find>jump</find>
-      <find>nausea</find>
-      <find>poison</find>
-      <find>power</find>
-      <find>speed</find>
-      <find>swift</find>
-      <find>slow</find>
-      <find>boil</find>
-      <find>weak</find>
-      <find>web</find>
-      <find>tank</find>
-      <find>aqua</find>
-      <find>puncher</find>
-      <find>dark_</find>
-      <find>wizard</find>
-      <find>sele</find>
-      <find>chatcolor.</find>
-      <find>ctf</find>
-      <find>comparet</find>
-      <find>Utils.Reference.</find>
-      <find>chatColor</find>
-      <find>for (integ</find>
-      <find>fo</find>
-      <find>getPath</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>Bukkit.getScoreboardManager().getMainScoreboard()</replace>
-      <replace>l.getTxtColor()</replace>
-      <replace>a</replace>
-      <replace>dead.getWorld()</replace>
-      <replace>break</replace>
-      <replace>&quot;HoodMainBoard&quot;</replace>
-      <replace>ChatColor.RED</replace>
-      <replace>g.getMurdererTicks()</replace>
-      <replace>event.getFinalDamage()</replace>
-      <replace>otherCommand.put(</replace>
-      <replace>registerBlade(</replace>
-      <replace>hitMan.getInventory().getItem(</replace>
-      <replace>g().</replace>
-      <replace>§</replace>
-      <replace>scoreBoardObj</replace>
-      <replace>resetType</replace>
-      <replace>i &gt; 10 || i &lt; 0</replace>
-      <replace>debug(</replace>
-      <replace>Material.DIAMOND_SWORD</replace>
-      <replace>Material.DIAMOND_HELMET</replace>
-      <replace>Material.LEVER</replace>
-      <replace>Material.BONE</replace>
-      <replace>event.getPlayer().getLocation()</replace>
-      <replace>objective</replace>
-      <replace>l</replace>
-      <replace>scoreBoard</replace>
-      <replace>ChatColor.DARK_RED</replace>
-      <replace>prisonTicks</replace>
-      <replace>p</replace>
-      <replace>player</replace>
-    </replaceStrings>
-    <dirStrings>
-      <dir>C:\Users\Jeremi\Desktop\Jawa\EnderPlugin</dir>
-    </dirStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/spleef/JoinEvent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/WizardsBlades.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/hidenseek/Start.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/plugin.yml" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/hidenseek/GameStart.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/associates/User.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/advFuncs/CountCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/ConeEffect.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/advFuncs/BirthdayCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/hidenseek/FindEvent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/murder/StartEvent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/hidenseek/JoinEvent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/HubBoard.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/Utils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/murder/DipEvent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/EnderPlugin.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/murder/JoinEvent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/murder/EscapeEvent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/MurderBoard.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/murder/DeathEvent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/HideBoard.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/main/MainSwitchWorldEvent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/Langs.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/Config.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/associates/Games.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/associates/Lang.java" />
-        <option value="$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/associates/Associate.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-      </list>
-    </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="C:/Program Files/apache-maven-3.3.9" />
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
       </MavenGeneralSettings>
     </option>
     <option name="importingSettings">
       <MavenImportingSettings>
         <option name="dedicatedModuleDir" value="C:\Users\Jeremi\Desktop\Jawa\EnderPlugin" />
-        <option name="importAutomatically" value="true" />
+        <option name="jdkForImporter" value="14" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="MavenProjectNavigator">
-    <treeState>
-      <expand>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="EnderPlugin" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-        </path>
-      </expand>
-      <select />
-    </treeState>
-  </component>
   <component name="MavenRunner">
+    <option name="jreName" value="14" />
     <option name="runMavenInBackground" value="false" />
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="953" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
   </component>
   <component name="ProjectId" id="1QzhVogmYyQSDDhPipuvEvBmv8j" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="EnderPlugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EnderPlugin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="EnderPlugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EnderPlugin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="EnderPlugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EnderPlugin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="EnderPlugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EnderPlugin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="EnderPlugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EnderPlugin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="enderplugin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="EnderPlugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EnderPlugin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="enderplugin" type="462c0819:PsiDirectoryNode" />
-              <item name="API" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="EnderPlugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EnderPlugin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="enderplugin" type="462c0819:PsiDirectoryNode" />
-              <item name="API" type="462c0819:PsiDirectoryNode" />
-              <item name="configs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="EnderPlugin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EnderPlugin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="enderplugin" type="462c0819:PsiDirectoryNode" />
-              <item name="API" type="462c0819:PsiDirectoryNode" />
-              <item name="configs" type="462c0819:PsiDirectoryNode" />
-              <item name="associates" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-    </panes>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="OverrideImplement.combined" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="for (int i =&#9;null&#9;null&#10;.getTeam(&#9;null&#9;null&#10;.setHealthScale(20)&#9;null&#9;null&#10;.setHealthScale&#9;PSI&#9;JAVA://org.bukkit.entity.Player#setHealthScaled" />
+    <property name="SearchEverywhereHistoryKey" value="18.5.9&#9;null&#9;null&#10;for (int i =&#9;null&#9;null&#10;.getTeam(&#9;null&#9;null&#10;.setHealthScale(20)&#9;null&#9;null&#10;.setHealthScale&#9;PSI&#9;JAVA://org.bukkit.entity.Player#setHealthScaled" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="full.screen.before.presentation.mode" value="false" />
     <property name="js.buildTools.grunt.grunt-cli.package" value="" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CompSci" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../[BUKKIT] 1.8/server.jar!/" />
     <property name="nodejs.jest.jest_package" value="" />
     <property name="nodejs.protractor.protractor_package" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="project.structure.side.proportion" value="0.34165922" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
     <property name="settings.editor.splitter.proportion" value="0.23212537" />
   </component>
   <component name="RecentsManager">
@@ -490,21 +427,90 @@
       <recent name="io.github.rookietec9.enderplugin.API" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn install" />
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <module name="" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="io.github.rookietec9.enderplugin.Main" />
+      <module name="EnderPlugin" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.github.rookietec9.enderplugin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TeleporterClickEvent" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="io.github.rookietec9.enderplugin.events.inventoryclickers.TeleporterClickEvent" />
+      <module name="EnderPlugin" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.github.rookietec9.enderplugin.events.inventoryclickers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TodoCommand" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="io.github.rookietec9.enderplugin.commands.advFuncs.TodoCommand" />
+      <module name="EnderPlugin" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.github.rookietec9.enderplugin.commands.advFuncs.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -533,41 +539,8 @@
       </method>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <module name="" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -595,7 +568,8 @@
       </MavenSettings>
       <method v="2" />
     </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <properties />
       <listeners />
@@ -603,21 +577,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
       <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file id="idea.log" enabled="true" />
+      <predefined_log_file enabled="true" id="idea.log" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="js.build_tools.grunt" factoryName="Grunt.js">
+    <configuration default="true" type="js.build_tools.grunt">
       <node-interpreter value="project" />
       <envs />
       <method v="2" />
     </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+    <configuration default="true" type="js.build_tools.gulp">
       <node-interpreter>project</node-interpreter>
       <node-options />
       <gulpfile />
@@ -628,7 +602,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Cucumber java.All Features in: EnderPlugin" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.TodoCommand" />
+        <item itemvalue="Application.TeleporterClickEvent" />
       </list>
     </recent_temporary>
   </component>
@@ -817,92 +793,217 @@
       <workItem from="1577761092928" duration="6051000" />
       <workItem from="1577816586681" duration="1450000" />
       <workItem from="1578254956872" duration="13000" />
-      <workItem from="1581309749145" duration="2950000" />
+      <workItem from="1581309749145" duration="3548000" />
+      <workItem from="1584309709240" duration="2530000" />
+      <workItem from="1584388844311" duration="3708000" />
+      <workItem from="1584494096580" duration="2607000" />
+      <workItem from="1584505827765" duration="9987000" />
+      <workItem from="1584554291277" duration="5786000" />
+      <workItem from="1584567944132" duration="7621000" />
+      <workItem from="1584586711525" duration="2069000" />
+      <workItem from="1584588927743" duration="1445000" />
+      <workItem from="1584595891015" duration="292000" />
+      <workItem from="1584596506549" duration="5564000" />
+      <workItem from="1584605875877" duration="1717000" />
+      <workItem from="1584610581225" duration="784000" />
+      <workItem from="1584636310936" duration="1135000" />
+      <workItem from="1584637782986" duration="13339000" />
+      <workItem from="1584684562663" duration="1188000" />
+      <workItem from="1584720735063" duration="1517000" />
+      <workItem from="1584746086752" duration="2229000" />
+      <workItem from="1584751690230" duration="1057000" />
+      <workItem from="1584755386364" duration="5243000" />
+      <workItem from="1584812628061" duration="33826000" />
+      <workItem from="1584856662162" duration="3462000" />
+      <workItem from="1584893132127" duration="26196000" />
+      <workItem from="1584939412855" duration="2688000" />
+      <workItem from="1584942157649" duration="22869000" />
+      <workItem from="1585095462654" duration="601000" />
+      <workItem from="1585159501567" duration="11343000" />
+      <workItem from="1585187688142" duration="6336000" />
+      <workItem from="1585246444151" duration="1795000" />
+      <workItem from="1585248954600" duration="8742000" />
+      <workItem from="1585266690691" duration="6750000" />
+      <workItem from="1585275635853" duration="4152000" />
+      <workItem from="1585327643935" duration="14086000" />
+      <workItem from="1585419486596" duration="594000" />
+      <workItem from="1585508017662" duration="9112000" />
+      <workItem from="1585521400855" duration="162000" />
+      <workItem from="1585521601241" duration="677000" />
+      <workItem from="1585529790217" duration="917000" />
+      <workItem from="1585596559983" duration="2647000" />
+      <workItem from="1585618742298" duration="734000" />
+      <workItem from="1585679537794" duration="1274000" />
+      <workItem from="1585681509129" duration="3774000" />
+      <workItem from="1585766049159" duration="4673000" />
+      <workItem from="1585777678405" duration="647000" />
+      <workItem from="1585784318922" duration="14321000" />
+      <workItem from="1585832678584" duration="32210000" />
+      <workItem from="1585933824111" duration="4563000" />
+      <workItem from="1585943530653" duration="6939000" />
+      <workItem from="1585953903883" duration="2364000" />
+      <workItem from="1585958327402" duration="598000" />
+      <workItem from="1585970278770" duration="921000" />
+      <workItem from="1586049379911" duration="7674000" />
+      <workItem from="1586107134036" duration="5086000" />
+      <workItem from="1586187532799" duration="22107000" />
+      <workItem from="1586290888483" duration="4335000" />
+      <workItem from="1586310100119" duration="1123000" />
+      <workItem from="1586313397550" duration="624000" />
+      <workItem from="1586368765978" duration="12666000" />
+      <workItem from="1586440728439" duration="6432000" />
+      <workItem from="1586531730210" duration="1757000" />
+      <workItem from="1586800728348" duration="12120000" />
+      <workItem from="1586888803960" duration="752000" />
+      <workItem from="1586896834467" duration="4167000" />
+      <workItem from="1586916401378" duration="3750000" />
+      <workItem from="1586974003737" duration="1235000" />
+      <workItem from="1586983971167" duration="1376000" />
+      <workItem from="1586989494600" duration="939000" />
+      <workItem from="1587053556644" duration="2000" />
+      <workItem from="1587312852891" duration="10637000" />
+      <workItem from="1587324516449" duration="1081000" />
+      <workItem from="1587325903403" duration="9481000" />
+      <workItem from="1587342554446" duration="2631000" />
+      <workItem from="1587391079574" duration="3586000" />
+      <workItem from="1587401618489" duration="12000" />
+      <workItem from="1587495601566" duration="5751000" />
+      <workItem from="1587604438260" duration="1766000" />
+      <workItem from="1587670185139" duration="8409000" />
+      <workItem from="1587745341331" duration="9202000" />
+      <workItem from="1587769636793" duration="5362000" />
+      <workItem from="1587827571131" duration="2605000" />
+      <workItem from="1587924812650" duration="3823000" />
+      <workItem from="1587954956102" duration="14153000" />
+      <workItem from="1587994090560" duration="3104000" />
+      <workItem from="1588010261182" duration="27698000" />
+      <workItem from="1588084513034" duration="972000" />
+      <workItem from="1588085532649" duration="244000" />
+      <workItem from="1588088131609" duration="8069000" />
+      <workItem from="1588172833439" duration="3660000" />
+      <workItem from="1588199072797" duration="4312000" />
+      <workItem from="1588273613443" duration="954000" />
+      <workItem from="1588312190400" duration="6524000" />
+      <workItem from="1588378971712" duration="667000" />
+      <workItem from="1588391103322" duration="20000" />
+      <workItem from="1588441686037" duration="4501000" />
+      <workItem from="1588446557606" duration="14587000" />
+      <workItem from="1588525293138" duration="5117000" />
+      <workItem from="1588530659522" duration="1093000" />
+      <workItem from="1588571864544" duration="2892000" />
+      <workItem from="1588613355836" duration="2797000" />
+      <workItem from="1588649378226" duration="3060000" />
+      <workItem from="1588691322249" duration="1314000" />
+      <workItem from="1588704508113" duration="2434000" />
+      <workItem from="1588714305835" duration="5420000" />
+      <workItem from="1588736358012" duration="4611000" />
+      <workItem from="1588778821237" duration="598000" />
+      <workItem from="1588789066620" duration="1198000" />
+      <workItem from="1588805808903" duration="11050000" />
+      <workItem from="1588855417427" duration="3781000" />
+      <workItem from="1588887144351" duration="5139000" />
+      <workItem from="1588900116880" duration="13570000" />
+      <workItem from="1588949023218" duration="2308000" />
+      <workItem from="1588952957628" duration="612000" />
+      <workItem from="1588953621450" duration="12950000" />
+      <workItem from="1588991548383" duration="2664000" />
+      <workItem from="1589090652830" duration="2249000" />
+      <workItem from="1589129497262" duration="5982000" />
+      <workItem from="1589136167678" duration="5573000" />
+      <workItem from="1589142671793" duration="6705000" />
+      <workItem from="1589165143932" duration="11280000" />
+      <workItem from="1589203026077" duration="8351000" />
+      <workItem from="1589219348686" duration="1325000" />
+      <workItem from="1589227744105" duration="1498000" />
+      <workItem from="1589249770866" duration="9815000" />
+      <workItem from="1589303094090" duration="24840000" />
+      <workItem from="1589388260368" duration="11409000" />
+      <workItem from="1589418767591" duration="18830000" />
+      <workItem from="1589467194673" duration="6460000" />
+      <workItem from="1589474389388" duration="13417000" />
+      <workItem from="1589505742000" duration="1588000" />
+      <workItem from="1589557338088" duration="8787000" />
+      <workItem from="1589589571011" duration="14119000" />
+      <workItem from="1589648476142" duration="14861000" />
+      <workItem from="1589689532259" duration="6237000" />
+      <workItem from="1589727460041" duration="28520000" />
+      <workItem from="1589773482500" duration="2269000" />
+      <workItem from="1589842383301" duration="1764000" />
+      <workItem from="1589890682086" duration="14416000" />
+      <workItem from="1589907998907" duration="8433000" />
+      <workItem from="1589956871577" duration="642000" />
+      <workItem from="1589992599220" duration="4039000" />
+      <workItem from="1589999352246" duration="920000" />
+      <workItem from="1590002593304" duration="7337000" />
+      <workItem from="1590022177124" duration="31000" />
+      <workItem from="1590025199150" duration="1040000" />
+      <workItem from="1590026277588" duration="488000" />
+      <workItem from="1590026934225" duration="121000" />
+      <workItem from="1590027095598" duration="210000" />
+      <workItem from="1590027353347" duration="5403000" />
+      <workItem from="1590076004705" duration="2583000" />
+      <workItem from="1590254793212" duration="55000" />
+      <workItem from="1590256513706" duration="3790000" />
+      <workItem from="1590269407344" duration="3000" />
+      <workItem from="1590351115829" duration="5055000" />
+      <workItem from="1590371816714" duration="811000" />
+      <workItem from="1590429844500" duration="1395000" />
+      <workItem from="1590432508785" duration="5124000" />
+      <workItem from="1590505139610" duration="17703000" />
+      <workItem from="1590868964095" duration="16777000" />
+      <workItem from="1590946060524" duration="22000" />
+      <workItem from="1590946505278" duration="10829000" />
+      <workItem from="1590991362518" duration="3952000" />
+      <workItem from="1591201336281" duration="5982000" />
+      <workItem from="1591221919738" duration="2807000" />
+      <workItem from="1591296969585" duration="776000" />
+      <workItem from="1591307056618" duration="11580000" />
+      <workItem from="1591338680459" duration="2282000" />
+      <workItem from="1591366819344" duration="35000" />
+      <workItem from="1591373406288" duration="703000" />
+      <workItem from="1591381622414" duration="95000" />
+      <workItem from="1591381782781" duration="440000" />
+      <workItem from="1591382380121" duration="3450000" />
+      <workItem from="1591387183847" duration="1167000" />
+      <workItem from="1591405419651" duration="1776000" />
+      <workItem from="1591407345013" duration="266000" />
+      <workItem from="1591407660141" duration="7269000" />
+      <workItem from="1591462277866" duration="6005000" />
+      <workItem from="1591567413049" duration="3431000" />
+      <workItem from="1592844212531" duration="9362000" />
+      <workItem from="1593375634883" duration="1600000" />
+      <workItem from="1593544300068" duration="25000" />
+      <workItem from="1593566608581" duration="974000" />
+      <workItem from="1593575484569" duration="1181000" />
+      <workItem from="1593612587256" duration="18241000" />
+      <workItem from="1593724782193" duration="7688000" />
+      <workItem from="1593742339226" duration="2492000" />
     </task>
+    <task id="LOCAL-00001" summary="Whole lotta changes">
+      <created>1581312728382</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1581312728382</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
-  <component name="TestHistory">
-    <history-entry file="All_in_EnderPlugin_(2) - 2018.11.27 at 19h 23m 10s.xml">
-      <configuration name="All in EnderPlugin (2)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_EnderPlugin_(2) - 2019.10.11 at 18h 51m 22s.xml">
-      <configuration name="All in EnderPlugin (2)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_EnderPlugin_(2) - 2019.10.11 at 18h 51m 41s.xml">
-      <configuration name="All in EnderPlugin (2)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_EnderPlugin_(2) - 2019.10.11 at 18h 51m 46s.xml">
-      <configuration name="All in EnderPlugin (2)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_EnderPlugin_(2) - 2019.10.11 at 18h 52m 02s.xml">
-      <configuration name="All in EnderPlugin (2)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_EnderPlugin_(2) - 2019.10.11 at 18h 52m 09s.xml">
-      <configuration name="All in EnderPlugin (2)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_Features_in__EnderPlugin - 2019.10.11 at 18h 52m 49s.xml">
-      <configuration name="All Features in: EnderPlugin" configurationId="CucumberJavaRunConfigurationType" />
-    </history-entry>
-    <history-entry file="All_in_EnderPlugin_(1) - 2019.10.11 at 18h 53m 04s.xml">
-      <configuration name="All in EnderPlugin (1)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="C__Users_Jeremi_Desktop_Jawa_EnderPlugin_src_main_java_io_github_rookietec9_EnderPlugin_in_EnderPlugin - 2019.10.11 at 18h 54m 58s.xml">
-      <configuration name="C:\Users\Jeremi\Desktop\Jawa\EnderPlugin\src\main\java\io\github\rookietec9\EnderPlugin in EnderPlugin" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_Features_in__EnderPlugin - 2019.10.11 at 18h 56m 02s.xml">
-      <configuration name="All Features in: EnderPlugin" configurationId="CucumberJavaRunConfigurationType" />
-    </history-entry>
-  </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="775628000" />
-  </component>
-  <component name="TodoView" selected-index="2">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49851337" visible="true" weight="0.24840425" />
-      <window_info id="Structure" order="1" sideWeight="0.5005549" side_tool="true" weight="0.2393617" />
-      <window_info id="Designer" order="2" />
-      <window_info id="UI Designer" order="3" />
-      <window_info id="Favorites" order="4" sideWeight="0.5014866" side_tool="true" weight="0.26861703" />
-      <window_info anchor="bottom" id="Inspection Results" weight="0.32937366" />
-      <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="1" weight="0.32937366" />
-      <window_info anchor="bottom" id="Messages" order="2" weight="0.32937366" />
-      <window_info anchor="bottom" id="Terminal" order="3" weight="0.32937366" />
-      <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.5005319" side_tool="true" weight="0.32937366" />
-      <window_info anchor="bottom" id="Message" order="5" />
-      <window_info anchor="bottom" id="Find" order="6" weight="0.32937366" />
-      <window_info anchor="bottom" id="Run" order="7" sideWeight="0.4994681" weight="0.32937366" />
-      <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="11" weight="0.32937366" />
-      <window_info anchor="bottom" id="Maven Projects" order="12" weight="0.32937366" />
-      <window_info anchor="right" id="Palette" order="0" />
-      <window_info anchor="right" id="Palette&#9;" order="1" />
-      <window_info anchor="right" id="Database" order="2" />
-      <window_info anchor="right" id="Commander" order="3" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="4" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="5" weight="0.25" />
-    </layout>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Whole lotta changes" />
@@ -911,532 +1012,126 @@
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
+  <component name="WindowStateProjectService">
+    <state x="586" y="198" key="#Inspections" timestamp="1589462269392">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="586" y="198" key="#Inspections/0.0.1920.1040@0.0.1920.1040" timestamp="1589462269392" />
+    <state x="552" y="160" key="#Plugins" timestamp="1593641037114">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="160" key="#Plugins/0.0.1920.1040@0.0.1920.1040" timestamp="1593641037114" />
+    <state x="440" y="94" key="#Project_Structure" timestamp="1591405524691">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="440" y="94" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1591405524691" />
+    <state x="709" y="356" width="614" height="568" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog" timestamp="1589570223226">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="709" y="356" width="614" height="568" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589570223226" />
+    <state x="765" y="228" key="#com.intellij.ide.util.MemberChooser" timestamp="1593646042172">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="228" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1593646042172" />
+    <state x="431" y="446" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1593641929079">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="431" y="446" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1593641929079" />
+    <state x="708" y="392" width="519" height="269" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1589774657161">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="708" y="392" width="519" height="269" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1589774657161" />
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1589754054648">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589754054648" />
+    <state x="696" y="368" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1588948606527">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="696" y="368" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1588948606527" />
+    <state x="1031" y="364" key="FileChooserDialogImpl" timestamp="1591470566868">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1031" y="364" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1591470566868" />
+    <state width="1877" height="305" key="GridCell.Tab.0.bottom" timestamp="1593732724583">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="305" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1593732724583" />
+    <state width="1877" height="305" key="GridCell.Tab.0.center" timestamp="1593732724583">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="305" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1593732724583" />
+    <state width="1877" height="305" key="GridCell.Tab.0.left" timestamp="1593732724582">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="305" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1593732724582" />
+    <state width="1877" height="305" key="GridCell.Tab.0.right" timestamp="1593732724583">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="305" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1593732724583" />
+    <state x="759" y="246" width="940" height="675" key="Maven.ArtifactSearchDialog" timestamp="1591384603609">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="759" y="246" width="940" height="675" key="Maven.ArtifactSearchDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591384603609" />
+    <state x="625" y="279" key="NewModule_or_Project.wizard" timestamp="1590026222861">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="625" y="279" key="NewModule_or_Project.wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1590026222861" />
+    <state x="575" y="240" key="RollbackChangesDialog" timestamp="1593376453202">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="575" y="240" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1593376453202" />
+    <state x="464" y="115" width="1336" height="879" key="SettingsEditor" timestamp="1590950213030">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="464" y="115" width="1336" height="879" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1590950213030" />
+    <state x="681" y="261" width="690" height="524" key="StructurePopup" timestamp="1590010053558">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="681" y="261" width="690" height="524" key="StructurePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1590010053558" />
+    <state x="836" y="446" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1590029966875">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="836" y="446" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1040@0.0.1920.1040" timestamp="1590029966875" />
+    <state x="953" y="0" width="974" height="1047" key="dock-window-1" timestamp="1589430808949">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="953" y="0" width="974" height="1047" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1589430808949" />
+    <state x="690" y="283" key="extract.method.dialog" timestamp="1589133843968">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="283" key="extract.method.dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589133843968" />
+    <state x="639" y="260" width="642" height="534" key="find.popup" timestamp="1590034218387">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="639" y="260" width="642" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590034218387" />
+    <state x="342" y="140" key="new project wizard" timestamp="1591374106899">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="342" y="140" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1591374106899" />
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup" timestamp="1593715493015">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1593715493015" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1593726061752">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1593726061752" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/bukkit/craftbukkit/1.8.8-R0.1-SNAPSHOT/craftbukkit-1.8.8-R0.1-SNAPSHOT.jar!/net/minecraft/server/v1_8_R3/ItemStack.class</url>
+          <line>354</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/CTFBoard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="772">
-          <caret line="101" column="1" lean-forward="true" selection-start-line="101" selection-start-column="1" selection-end-line="101" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/lang/Runnable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/util/Arrays.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="1430" column="27" selection-start-line="1430" selection-start-column="27" selection-end-line="1430" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/util/Collections.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="140" column="14" lean-forward="true" selection-start-line="140" selection-start-column="14" selection-end-line="140" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/util/Date.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="61">
-          <caret line="976" column="21" lean-forward="true" selection-start-line="976" selection-start-column="21" selection-end-line="976" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.8.8-R0.1-SNAPSHOT/spigot-api-1.8.8-R0.1-SNAPSHOT-sources.jar!/org/bukkit/event/EventHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/hidenseek/FindEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="786">
-          <caret line="80" column="1" lean-forward="true" selection-start-line="80" selection-start-column="1" selection-end-line="80" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/games/PlayCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/main/MainDeath.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1232">
-          <caret line="111" selection-start-line="111" selection-end-line="111" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/WizardsBlades.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="24" column="122" selection-start-line="24" selection-start-column="122" selection-end-line="24" selection-end-column="122" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/advFuncs/BirthdayCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.8.8-R0.1-SNAPSHOT/spigot-api-1.8.8-R0.1-SNAPSHOT-sources.jar!/org/bukkit/entity/LivingEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="284" column="40" selection-start-line="284" selection-start-column="40" selection-end-line="284" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.8.8-R0.1-SNAPSHOT/spigot-api-1.8.8-R0.1-SNAPSHOT-sources.jar!/org/bukkit/potion/PotionEffect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/ParkourBoard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/SpleefBoard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="708">
-          <caret line="134" column="16" selection-start-line="134" selection-start-column="16" selection-end-line="134" selection-end-column="16" />
-          <folding>
-            <element signature="e#6468#6469#0" expanded="true" />
-            <element signature="e#6516#6517#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/javafx-src.zip!/javafx/util/Pair.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-80">
-          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/util/HashMap.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.8.8-R0.1-SNAPSHOT/spigot-api-1.8.8-R0.1-SNAPSHOT-sources.jar!/org/bukkit/scoreboard/Team.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="153" column="8" selection-start-line="153" selection-start-column="8" selection-end-line="153" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/lang/Math.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="771" column="29" selection-start-line="771" selection-start-column="29" selection-end-line="771" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/commands/basicFuncs/txtFuncs/VersionCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="27" column="39" lean-forward="true" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/spleef/JoinEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-68">
-          <caret line="117" selection-start-line="112" selection-end-line="117" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.8.8-R0.1-SNAPSHOT/spigot-api-1.8.8-R0.1-SNAPSHOT-sources.jar!/org/bukkit/scheduler/BukkitScheduler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="62" column="15" selection-start-line="62" selection-start-column="15" selection-end-line="62" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.8.8-R0.1-SNAPSHOT/spigot-api-1.8.8-R0.1-SNAPSHOT-sources.jar!/org/bukkit/block/BlockFace.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.8.8-R0.1-SNAPSHOT/spigot-api-1.8.8-R0.1-SNAPSHOT-sources.jar!/org/bukkit/material/Door.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.8.8-R0.1-SNAPSHOT/spigot-api-1.8.8-R0.1-SNAPSHOT-sources.jar!/org/bukkit/material/TrapDoor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/Board.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/hidenseek/JoinEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/EndExecutor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.8.8-R0.1-SNAPSHOT/spigot-api-1.8.8-R0.1-SNAPSHOT-sources.jar!/org/bukkit/scoreboard/NameTagVisibility.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/util/List.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="538" column="39" lean-forward="true" selection-start-line="538" selection-start-column="39" selection-end-line="538" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.8.8-R0.1-SNAPSHOT/spigot-api-1.8.8-R0.1-SNAPSHOT-sources.jar!/org/bukkit/block/Block.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="169" column="9" selection-start-line="169" selection-start-column="9" selection-end-line="169" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/murder/EscapeEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/parkour/Click.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/main/MainJoinEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/EnderPlugin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1264">
-          <caret line="143" column="68" selection-start-line="143" selection-start-column="68" selection-end-line="143" selection-end-column="68" />
-          <folding>
-            <element signature="method#registerStands#0;class#EnderPlugin#0" />
-            <element signature="method#newRegisterWorlds#0;class#EnderPlugin#0" />
-            <element signature="method#debug#0;class#EnderPlugin#0" />
-            <element signature="method#runUpdate#0;class#EnderPlugin#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/main/MainSwitchWorldEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/murder/JoinEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="method#bruv#0;class#JoinEvent#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1840">
-          <caret line="299" selection-start-line="299" selection-end-line="299" />
-          <folding>
-            <element signature="method#HOLLOW_MATERIALS#0;class#Utils#0" />
-            <element signature="method#capFirst#0;class#Utils#0" />
-            <element signature="method#upSlash#0;class#Utils#0" />
-            <element signature="method#convertToRoman#0;class#Utils#0" />
-            <element signature="method#getRandom#0;class#Utils#0" />
-            <element signature="class#BukkitTools#0;class#Utils#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/events/games/murder/DeathEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/MurderBoard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#updateTicks#0;class#MurderBoard#0" />
-            <element signature="method#updatePeople#0;class#MurderBoard#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/HubBoard.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/associates/Warp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/Langs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="768">
-          <caret line="52" column="1" lean-forward="true" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
-          <folding>
-            <element signature="e#422#423#0" expanded="true" />
-            <element signature="e#462#463#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/google/guava/guava/17.0/guava-17.0-sources.jar!/com/google/common/io/ByteStreams.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="52" column="19" selection-start-line="52" selection-start-column="19" selection-end-line="52" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/associates/Games.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="13" column="35" lean-forward="true" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
-          <folding>
-            <element signature="e#437#438#0" expanded="true" />
-            <element signature="e#520#521#0" expanded="true" />
-            <element signature="e#671#672#0" expanded="true" />
-            <element signature="e#740#741#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/Config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="80" column="29" selection-start-line="80" selection-start-column="29" selection-end-line="80" selection-end-column="29" />
-          <folding>
-            <element signature="method#reloadYaml#0;class#Config#0" />
-            <element signature="method#saveYaml#0;class#Config#0" />
-            <element signature="method#saveDefaultYaml#0;class#Config#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/associates/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="116" column="5" lean-forward="true" selection-start-line="116" selection-start-column="5" selection-end-line="116" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/associates/Lang.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
-          <folding>
-            <element signature="e#3475#3476#0" expanded="true" />
-            <element signature="e#3557#3558#0" expanded="true" />
-            <element signature="e#2316#2317#0" expanded="true" />
-            <element signature="e#2402#2403#0" expanded="true" />
-            <element signature="e#2457#2458#0" expanded="true" />
-            <element signature="e#2551#2552#0" expanded="true" />
-            <element signature="e#2587#2588#0" expanded="true" />
-            <element signature="e#2681#2682#0" expanded="true" />
-            <element signature="e#2727#2728#0" expanded="true" />
-            <element signature="e#2812#2813#0" expanded="true" />
-            <element signature="e#2917#2918#0" expanded="true" />
-            <element signature="e#2946#2947#0" expanded="true" />
-            <element signature="e#3027#3028#0" expanded="true" />
-            <element signature="e#3085#3086#0" expanded="true" />
-            <element signature="e#3203#3204#0" expanded="true" />
-            <element signature="e#3233#3234#0" expanded="true" />
-            <element signature="e#3383#3384#0" expanded="true" />
-            <element signature="e#3431#3432#0" expanded="true" />
-            <element signature="e#3561#3562#0" expanded="true" />
-            <element signature="e#3615#3616#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/API/configs/associates/Associate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/rookietec9/enderplugin/xboards/HideBoard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="52" column="107" selection-start-line="52" selection-start-column="107" selection-end-line="52" selection-end-column="107" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor>
-            <show-content>
-              <type id="artifact" />
-            </show-content>
-          </artifact-editor>
-          <last-edited>EnderPlugin-{project.version}:jar</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.5" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>No facets are configured</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>EnderPlugin</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.6" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>Maven: com.google.code.gson:gson:2.2.4</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ScopeChooserConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
   <component name="mavenExecuteGoalHistory">
     <option value="" />

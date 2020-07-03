@@ -3,7 +3,7 @@ Main:
   plugMsg: '&f[&4EnderPlugin v2.0&f]' 
   error: '&4Error: &c '
   consoleNotAllowed: 'Consoles cannot use this command.'
-  playerNotAllowed: 'Command blocks cannot use this command'
+  playerNotAllowed: 'Syntax blocks cannot use this command'
   blockNotAllowed: 'Players cannot use this command.'
   onlyUser: 'Only users can run this command.'
   failure: 'The command hit an error, please call the cops.'

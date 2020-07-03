@@ -1,11 +1,14 @@
 package io.github.rookietec9.enderplugin.events.games.booty;
 
-import io.github.rookietec9.enderplugin.API.Item;
-import io.github.rookietec9.enderplugin.API.SkullMaker;
-import io.github.rookietec9.enderplugin.API.Utils;
-import io.github.rookietec9.enderplugin.API.configs.associates.Games;
-import io.github.rookietec9.enderplugin.API.configs.associates.User;
-import io.github.rookietec9.enderplugin.xboards.BootyBoard;
+import io.github.rookietec9.enderplugin.Inventories;
+import io.github.rookietec9.enderplugin.scoreboards.BootyBoard;
+import io.github.rookietec9.enderplugin.utils.datamanagers.DataPlayer;
+import io.github.rookietec9.enderplugin.utils.datamanagers.Pair;
+import io.github.rookietec9.enderplugin.utils.methods.Java;
+import io.github.rookietec9.enderplugin.utils.methods.Minecraft;
+import io.github.rookietec9.enderplugin.utils.reference.Prefixes;
+import io.github.rookietec9.enderplugin.utils.reference.Teams;
+import io.github.rookietec9.enderplugin.utils.reference.Worlds;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,224 +18,190 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.potion.PotionEffect;
+
+import java.util.ArrayList;
+
+import static org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 /**
  * @author Jeremi
- * @version 14.8.2
+ * @version 22.8.0
  * @since 12.2.7
  */
-
 public class BootyTeam implements Listener {
 
-    private static Inventory mapChoose, teamChoose;
+    @SafeVarargs
+    public static void setBlocks(Location start, Location finish, Pair<Double, Block>... pattern) {
 
-    static {
-        mapChoose = Bukkit.createInventory(null, 45, "§b§lCHOOSE A MAP");
-        mapChoose.setItem(9, new Item("§fPLAIN", Material.QUARTZ_BLOCK).getItem());
-        mapChoose.setItem(11, new Item("§7CLASSIC", Material.STAINED_CLAY, (byte) 8).getItem());
-        mapChoose.setItem(13, new Item("§fFANCY", Material.STAINED_CLAY, (byte) 0).getItem());
-        mapChoose.setItem(15, new Item("§7GLASSY", Material.GLASS).getItem());
-        mapChoose.setItem(17, new Item("§dEASY", Material.STAINED_CLAY, (byte) 6).getItem());
+        ArrayList<Block> blocks = new ArrayList<>();
 
-        mapChoose.setItem(27, new Item("§6INSANE", Material.STAINED_CLAY, (byte) 1).getItem());
-        mapChoose.setItem(29, new Item("§bBUFFED", Material.DIAMOND_BLOCK).getItem());
-        mapChoose.setItem(31, new Item("§eOPEN", Material.STAINED_CLAY, (byte) 4).getItem());
-        mapChoose.setItem(33, new Item("§4SPOOKY", Material.WEB).getItem());
-        mapChoose.setItem(35, new Item("§aSLIMY", Material.SLIME_BLOCK).getItem());
+        for (Pair<Double, Block> pair : pattern) for (int i = 0; i < pair.getKey(); i++) blocks.add(pair.getValue());
 
-        teamChoose = Bukkit.createInventory(null, 27, "§3§lCHOOSE A TEAM");
-
-        teamChoose.setItem(10, new SkullMaker().withSkinUrl("http://textures.minecraft.net/texture/c47237437eef639441b92b217efdc8a72514a9567c6b6b81b553f4ef4ad1cae", "§c§lRED TEAM").build());
-        teamChoose.setItem(12, new SkullMaker().withSkinUrl("http://textures.minecraft.net/texture/cbdd969412df6e0acffbb7a73bfa34110eecc1f51d80ba0da25da439316bc", "§b§lBLUE TEAM").build());
-        teamChoose.setItem(14, new SkullMaker().withSkinUrl("http://textures.minecraft.net/texture/97c2d5eee84bba1d7e94f933a0a556ed7ea4e4fa65e8e9f56325813b", "§6§lYELLOW TEAM").build());
-        teamChoose.setItem(16, new SkullMaker().withSkinUrl("http://textures.minecraft.net/texture/78d58a7651fedae4c03efebc226c03fd791eb74a132babb974e8d838ac6882", "§2§lGREEN TEAM").build());
+        for (int i = start.getBlockX(); i <= finish.getBlockX(); i++)
+            for (int j = start.getBlockZ(); j <= finish.getBlockZ(); j++)
+                for (int k = start.getBlockY(); k <= finish.getBlockY(); k++) blocks.get(Java.getRandom(0, blocks.size() - 1)).affect(i, k, j);
     }
 
     @EventHandler
     public void run(PlayerInteractEvent event) {
         Player player = event.getPlayer();
-        if (!player.getWorld().getName().equalsIgnoreCase(Utils.Reference.Worlds.BOOTY)) return;
+        if (!player.getWorld().getName().equalsIgnoreCase(Worlds.BOOTY)) return;
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK && event.getClickedBlock().getType() == Material.STONE_BUTTON) {
-            if (event.getClickedBlock().getLocation().getBlockZ() == -22) player.openInventory(mapChoose);
-            if (event.getClickedBlock().getLocation().getBlockZ() == -25) player.openInventory(teamChoose);
+            if (event.getClickedBlock().getLocation().getBlockZ() == -22) player.openInventory(Inventories.BOOTY_MAP);
+            if (event.getClickedBlock().getLocation().getBlockZ() == -25) player.openInventory(Inventories.BOOTY_TEAM);
         }
     }
 
     @EventHandler
     public void run(PlayerMoveEvent event) {
-        if (!event.getPlayer().getWorld().getName().equalsIgnoreCase(Utils.Reference.Worlds.BOOTY) || event.getPlayer().getGameMode() != GameMode.ADVENTURE)
-            return;
+        if (!event.getPlayer().getWorld().getName().equalsIgnoreCase(Worlds.BOOTY) || event.getPlayer().getGameMode() != GameMode.ADVENTURE) return;
 
         if (event.getTo().getBlockX() != 27) return;
         if (event.getTo().getBlockZ() != -23 && event.getTo().getBlockZ() != -24) return;
 
         if (event.getTo().getBlock().getType() == Material.STONE_PLATE) {
-            if (Bukkit.getScoreboardManager().getMainScoreboard().getEntryTeam(event.getPlayer().getName()) == null)
-                return;
-            switch (Bukkit.getScoreboardManager().getMainScoreboard().getEntryTeam(event.getPlayer().getName()).getName()) {
-                case Utils.Reference.Teams.blueTeam: {
-                    updatePlayer(event.getPlayer(), "blue", false, null);
-                    return;
-                }
-                case Utils.Reference.Teams.greenTeam: {
-                    updatePlayer(event.getPlayer(), "green", false, null);
-                    return;
-                }
-                case Utils.Reference.Teams.redTeam: {
-                    updatePlayer(event.getPlayer(), "red", false, null);
-                    return;
-                }
-                case Utils.Reference.Teams.whiteTeam: {
-                    updatePlayer(event.getPlayer(), "yellow", false, null);
-                }
-            }
+            String teamName;
+            if (Teams.getTeam(event.getPlayer()) == null) teamName = getNewTeam();
+            else teamName = Teams.getTeam(event.getPlayer()).getName();
+
+            if (!Java.argWorks(teamName, Teams.blueTeam, Teams.greenTeam, Teams.redTeam, Teams.whiteTeam)) teamName = getNewTeam();
+
+            teamName = teamName.replace("team-", "").replace("white", "yellow");
+            updatePlayer(event.getPlayer(), teamName, false, ChatColor.valueOf(teamName.toUpperCase()));
         }
     }
 
     @EventHandler
     public void run(InventoryClickEvent event) {
-        if (event.getClickedInventory() == null) return;
-        if (event.getClickedInventory().getTitle() == null) return;
+       if (event.getClickedInventory() == null || event.getClickedInventory().getTitle() == null || !(event.getWhoClicked() instanceof Player)) return;
         if (event.getClickedInventory().getTitle().equalsIgnoreCase("§b§lCHOOSE A MAP")) {
             event.setCancelled(true);
-            if (!(event.getWhoClicked() instanceof Player)) return;
 
             Player player = (Player) event.getWhoClicked();
-
             switch (event.getSlot()) {
-                case 9: {
-                    setChunk(player, "quartz", "plain");
-                    return;
-                }
-                case 11: {
-                    setChunk(player, "80%air,20%gold", "classic");
-                    return;
-                }
-                case 13: {
-                    setChunk(player, "2%stained_clay:6,2%coalblock,85%air,9%quartz", "fancy");
-                    return;
-                }
-                case 15: {
-                    setChunk(player, "79.5%air,10%glass,5.5%iron,0.25%mycelium,1.75%diamond,3%sponge", "glassy");
-                    return;
-                }
-                case 17: {
-                    setChunk(player, "50%air,50%gold", "easy");
-                    return;
-                }
-                case 27: {
-                    setChunk(player, "79.5%air,5%quartz,15%wood,0.5%coalblock", "insane");
-                    return;
-                }
-                case 29: {
-                    setChunk(player, "6%quartz,1%diamond,1%dirt,2%iron,0.5%sponge,79.5%air", "buffed");
-                    return;
-                }
-                case 31: {
-                    setChunk(player, "95%air,2%iron,3%quartz", "open");
-                    return;
-                }
-                case 33: {
-                    setChunk(player, "85%air,5%iron,5%web,5%dirt", "spooky");
-                    return;
-                }
-                case 35: {
-                    setChunk(player, "79.5%air,10.5%slimeblock,5%ironblock,5%diamondblock", "slimy");
-                }
+                case 9 -> setChunk(player, "plain", new Pair<>(1000.0, new Block(Material.QUARTZ_BLOCK)));
+                case 11 -> setChunk(player, "classic", new Pair<>(800.0, new Block(Material.GOLD_BLOCK)), new Pair<>(200.0, new Block(Material.AIR)));
+                case 13 -> setChunk(player, "fancy", new Pair<>(30.0, new Block(Material.STAINED_CLAY, (byte) 6)), new Pair<>(10.0, new Block(Material.COAL_BLOCK)), new Pair<>(850.0, new Block(Material.AIR)), new Pair<>(110.0, new Block(Material.QUARTZ_BLOCK)));
+                case 15 -> setChunk(player, "glassy", new Pair<>(795.0, new Block(Material.AIR)), new Pair<>(100.0, new Block(Material.GLASS)), new Pair<>(55.0, new Block(Material.IRON_BLOCK)), new Pair<>(30.0, new Block(Material.SPONGE)), new Pair<>(4.0, new Block(Material.MYCEL)), new Pair<>(16.0, new Block(Material.DIAMOND_BLOCK)));
+                case 17 -> setChunk(player, "easy", new Pair<>(500.0, new Block(Material.AIR)), new Pair<>(500.0, new Block(Material.GOLD_BLOCK)));
+                case 27 -> setChunk(player, "insane", new Pair<>(795.0, new Block(Material.AIR)), new Pair<>(50.0, new Block(Material.QUARTZ_BLOCK)), new Pair<>(150.0, new Block(Material.WOOD)), new Pair<>(5.0, new Block(Material.COAL_BLOCK)));
+                case 29 -> setChunk(player, "buffed", new Pair<>(795.0, new Block(Material.AIR)), new Pair<>(5.0, new Block(Material.SPONGE)), new Pair<>(40.0, new Block(Material.QUARTZ)), new Pair<>(50.0, new Block(Material.DIAMOND_BLOCK)), new Pair<>(40.0, new Block(Material.DIRT)), new Pair<>(70.0, new Block(Material.IRON_BLOCK)));
+                case 31 -> setChunk(player, "open", new Pair<>(950.0, new Block(Material.AIR)), new Pair<>(20.0, new Block(Material.IRON_BLOCK)), new Pair<>(30.0, new Block(Material.QUARTZ_BLOCK)));
+                case 33 -> setChunk(player, "spooky", new Pair<>(850.0, new Block(Material.AIR)), new Pair<>(50.0, new Block(Material.WEB)), new Pair<>(50.0, new Block(Material.IRON_BLOCK)), new Pair<>(50.0, new Block(Material.DIRT)));
+                case 35 -> setChunk(player, "slimy", new Pair<>(795.0, new Block(Material.AIR)), new Pair<>(105.0, new Block(Material.SLIME_BLOCK)), new Pair<>(50.0, new Block(Material.IRON_BLOCK)), new Pair<>(50.0, new Block(Material.DIAMOND_BLOCK)));
             }
         }
 
         if (event.getClickedInventory().getTitle().equalsIgnoreCase("§3§lCHOOSE A TEAM")) {
             event.setCancelled(true);
-            if (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR) return;
-            if (!(event.getWhoClicked() instanceof Player)) return;
-            Player player = (Player) event.getWhoClicked();
-            switch (ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName())) {
-                case "RED TEAM": {
-                    updatePlayer(player, "red", true, ChatColor.RED);
-                    return;
-                }
-                case "BLUE TEAM": {
-                    updatePlayer(player, "blue", true, ChatColor.BLUE);
-                    return;
-                }
-                case "YELLOW TEAM": {
-                    updatePlayer(player, "yellow", true, ChatColor.YELLOW);
-                    return;
-                }
-                case "GREEN TEAM": {
-                    updatePlayer(player, "green", true, ChatColor.GREEN);
-                }
-            }
+            if (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR || !(event.getWhoClicked() instanceof Player)) return;
+            String team = event.getCurrentItem().getItemMeta().getDisplayName().replace(" TEAM", "");
+            updatePlayer((Player) event.getWhoClicked(), ChatColor.stripColor(team), true, ChatColor.valueOf(ChatColor.stripColor(team)));
         }
     }
 
     @EventHandler
     public void run(InventoryDragEvent event) {
-        if ((event.getInventory().getTitle().equalsIgnoreCase("§3§lCHOOSE A TEAM") || event.getInventory().getTitle().equalsIgnoreCase("§b§lCHOOSE A MAP"))
-                && event.getWhoClicked().getGameMode() == GameMode.ADVENTURE && event.getWhoClicked().getWorld().getName().equalsIgnoreCase(Utils.Reference.Worlds.BOOTY))
-            event.setCancelled(true);
+        if (Java.argWorks(event.getInventory().getTitle(), "§3§lCHOOSE A TEAM", "§b§lCHOOSE A MAP") && event.getWhoClicked().getGameMode() == GameMode.ADVENTURE && event.getWhoClicked().getWorld().getName().equalsIgnoreCase(Worlds.BOOTY)) event.setCancelled(true);
     }
 
-    private void setChunk(Player player, String setting, String mapType) {
-        player.performCommand("/pos1 44,17,-37");
-        player.performCommand("/pos2 71,7,-84");
-        player.performCommand("/set " + setting);
-
-        player.performCommand("/pos1 34,17,-47");
-        player.performCommand("/pos2 81,7,-74");
-        player.performCommand("/set " + setting);
-
-        player.performCommand("/deSel");
-
-        for (Player p : Bukkit.getWorld(Utils.Reference.Worlds.BOOTY).getPlayers()) {
-            BootyBoard bootyBoard = new BootyBoard(p);
-            bootyBoard.init();
-            bootyBoard.updateMap(mapType);
+    @SafeVarargs
+    private void setChunk(Player player, String mapType, Pair<Double, Block>... pattern) {
+        setBlocks(new Location(Bukkit.getWorld(Worlds.BOOTY), 34, 7, -74), new Location(Bukkit.getWorld(Worlds.BOOTY), 81, 17, -47), pattern);
+        setBlocks(new Location(Bukkit.getWorld(Worlds.BOOTY), 44, 7, -84), new Location(Bukkit.getWorld(Worlds.BOOTY), 71, 17, -37), pattern);
+        player.sendMessage(Prefixes.BOOTY + "Updated the map to " + Java.capFirst(mapType));
+        for (Player p : Bukkit.getWorld(Worlds.BOOTY).getPlayers()) {
+            DataPlayer.get(p).getBoard(BootyBoard.class).updateMap(mapType);
         }
     }
 
     private void updatePlayer(Player player, String team, boolean join, ChatColor chatColor) {
-        User u = new User(player).setGod(false).clear();
-        player.setGameMode(GameMode.ADVENTURE);
-        player.setHealth(20.0D);
-        player.setFireTicks(-20);
+        DataPlayer.getUser(player).reset(GameMode.ADVENTURE).
+                fromChestArmor(player.getWorld(), 29, Java.argWorks(team.toLowerCase(), "red", "green") ? 5 : 4, Java.argWorks(team.toLowerCase(), "red", "blue") ? -26 : -21);
 
-        for (PotionEffect p : player.getActivePotionEffects()) player.removePotionEffect(p.getType());
         switch (team.toLowerCase()) {
-            case "red": {
-                new User(player).fromChest(player.getWorld(), 29, 5, -26);
-                player.teleport(new Location(player.getWorld(), 81.5, 19, -36.5, 134.89F, -0.108F));
-                Bukkit.getScoreboardManager().getMainScoreboard().getTeam(Utils.Reference.Teams.redTeam).addEntry(player.getName());
-                if (join) for (Player player1 : Bukkit.getWorld(Utils.Reference.Worlds.BOOTY).getPlayers())
-                    player1.sendMessage("§f§LBO§3§lO§f§lTY §7> " + chatColor + player.getName() + "" + ChatColor.GRAY + " joined the " + chatColor + team.toLowerCase() + ChatColor.GRAY + " team.");
-                return;
-            }
-            case "blue": {
-                new User(player).fromChest(player.getWorld(), 29, 4, -26);
-                player.teleport(new Location(player.getWorld(), 81.5, 19, -83.5, 45.25F, -0.18F));
-                Bukkit.getScoreboardManager().getMainScoreboard().getTeam(Utils.Reference.Teams.blueTeam).addEntry(player.getName());
-                if (join) for (Player player1 : Bukkit.getWorld(Utils.Reference.Worlds.BOOTY).getPlayers())
-                    player1.sendMessage("§f§LBO§3§lO§f§lTY §7> " + chatColor + player.getName() + "" + ChatColor.GRAY + " joined the " + chatColor + team.toLowerCase() + ChatColor.GRAY + " team.");
-                return;
-            }
-            case "yellow": {
-                u.fromChest(player.getWorld(), 29, 4, -21);
-                player.teleport(new Location(player.getWorld(), 34.5, 19, -83.5, 314.82F, 0.18F));
-                Bukkit.getScoreboardManager().getMainScoreboard().getTeam(Utils.Reference.Teams.whiteTeam).addEntry(player.getName());
-                if (join) for (Player player1 : Bukkit.getWorld(Utils.Reference.Worlds.BOOTY).getPlayers())
-                    player1.sendMessage("§f§LBO§3§lO§f§lTY §7> " + chatColor + player.getName() + "" + ChatColor.GRAY + " joined the " + chatColor + team.toLowerCase() + ChatColor.GRAY + " team.");
-                return;
-            }
-            case "green": {
-                u.fromChest(player.getWorld(), 29, 5, -21);
-                player.teleport(new Location(player.getWorld(), 34.5, 19, -36.5, 224.68F, 0.99F));
-                Bukkit.getScoreboardManager().getMainScoreboard().getTeam(Utils.Reference.Teams.greenTeam).addEntry(player.getName());
-                if (join) for (Player player1 : Bukkit.getWorld(Utils.Reference.Worlds.BOOTY).getPlayers())
-                    player1.sendMessage("§f§LBO§3§lO§f§lTY §7> " + chatColor + player.getName() + "" + ChatColor.GRAY + " joined the " + chatColor + team.toLowerCase() + ChatColor.GRAY + " team.");
-            }
+            case "red" -> player.teleport(new Location(player.getWorld(), 81.5, 19, -36.5, 134.89F, -0.108F), TeleportCause.PLUGIN);
+            case "blue" -> player.teleport(new Location(player.getWorld(), 81.5, 19, -83.5, 45.25F, -0.18F), TeleportCause.PLUGIN);
+            case "yellow" -> player.teleport(new Location(player.getWorld(), 34.5, 19, -83.5, 314.82F, 0.18F), TeleportCause.PLUGIN);
+            case "green" -> player.teleport(new Location(player.getWorld(), 34.5, 19, -36.5, 224.68F, 0.99F), TeleportCause.PLUGIN);
+        }
+
+        Teams.add("team-" + team.toLowerCase().replace("yellow", "white"), player);
+        if (join) Minecraft.worldBroadcast(Worlds.BOOTY, Prefixes.BOOTY + chatColor + DataPlayer.getUser(player).getNickName() + ChatColor.GRAY + " joined the " + chatColor + team.toLowerCase() + ChatColor.GRAY + " team.");
+    }
+
+    private String getNewTeam() {
+        int redC = 0, bluC = 0, grnC = 0, whtC = 0;
+        for (Player p : Bukkit.getWorld(Worlds.BOOTY).getPlayers()) {
+            if (Teams.getTeam(p) != null)
+                switch (Teams.getTeam(p).getName()) {
+                    case Teams.blueTeam -> bluC++;
+                    case Teams.redTeam -> redC++;
+                    case Teams.whiteTeam -> whtC++;
+                    case Teams.greenTeam -> grnC++;
+                }
+        }
+
+        int sum = redC + bluC + grnC + whtC;
+
+        if (sum == 0) {
+            return switch (Java.getRandom(0, 3)) {
+                case 0 -> Teams.blueTeam;
+                case 1 -> Teams.redTeam;
+                case 2 -> Teams.whiteTeam;
+                case 3 -> Teams.greenTeam;
+                default -> "";
+            };
+        }
+
+        if (sum == 1) {
+            if (redC == 1) return Teams.whiteTeam;
+            if (bluC == 1) return Teams.greenTeam;
+            if (grnC == 1) return Teams.blueTeam;
+            if (whtC == 1) return Teams.redTeam;
+        }
+        if (sum == 2) {
+            if (redC == 2 || redC == 1 && whtC == 0) return Teams.whiteTeam;
+            if (bluC == 2 || bluC == 1 && grnC == 0) return Teams.greenTeam;
+            if (grnC == 2 || grnC == 1 && bluC == 0) return Teams.blueTeam;
+            if (whtC == 2 || whtC == 1 && redC == 0) return Teams.redTeam;
+
+            if (redC == 0) return Teams.redTeam;
+            if (bluC == 0) return Teams.blueTeam;
+            if (grnC == 0) return Teams.greenTeam;
+            if (whtC == 0) return Teams.whiteTeam;
+        }
+
+        if (sum == 3) {
+            if (redC == 3 || redC == 2 && whtC == 0) return Teams.whiteTeam;
+            if (bluC == 3 || bluC == 2 && grnC == 0) return Teams.greenTeam;
+            if (grnC == 3 || grnC == 2 && bluC == 0) return Teams.blueTeam;
+            if (whtC == 3 || whtC == 2 && redC == 0) return Teams.redTeam;
+
+            if (redC == 0) return Teams.redTeam;
+            if (bluC == 0) return Teams.blueTeam;
+            if (grnC == 0) return Teams.greenTeam;
+            if (whtC == 0) return Teams.whiteTeam;
+        }
+        return "";
+    }
+
+    public static class Block {
+        final Material m;
+        byte b;
+
+        public Block(Material m, byte b) {
+            this.m = m;
+            this.b = b;
+        }
+
+        public Block(Material m) {
+            this.m = m;
+        }
+
+        void affect(int x, int y, int z) {
+            Bukkit.getWorld(Worlds.BOOTY).getBlockAt(x, y, z).setType(m);
+            Bukkit.getWorld(Worlds.BOOTY).getBlockAt(x, y, z).setData(b);
         }
     }
 }

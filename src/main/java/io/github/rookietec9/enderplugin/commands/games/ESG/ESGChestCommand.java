@@ -1,46 +1,39 @@
 package io.github.rookietec9.enderplugin.commands.games.ESG;
 
-import io.github.rookietec9.enderplugin.API.EndExecutor;
-import io.github.rookietec9.enderplugin.API.Utils;
-import io.github.rookietec9.enderplugin.API.configs.Langs;
-import io.github.rookietec9.enderplugin.API.configs.associates.Lang;
+import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
+import io.github.rookietec9.enderplugin.utils.reference.Worlds;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Chest;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
+import static io.github.rookietec9.enderplugin.utils.reference.Syntax.MODE;
 
 /**
  * Fills up chests in the ESG map. Cut by 118
  *
  * @author Jeremi
- * @version 13.4.4
+ * @version 22.8.0
  * @since 5.4.8
+ * @deprecated Loot tables don't exist in pre-1.9 minecraft
  */
 public class ESGChestCommand implements EndExecutor {
 
+    private final double SLOT_CHANCE = 0.30;
+    private HashMap<Material, Double> mapList = new HashMap<>();
+
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Lang l = new Lang(Langs.fromSender(sender));
-        if (!(sender instanceof Player)) {
-            sender.sendMessage(l.getOnlyUserMsg());
-            return true;
-        }
+        if (!(sender instanceof Player)) return msg(sender, serverLang().getOnlyUserMsg());
         Player p = (Player) sender;
-        if (!p.getWorld().getName().equalsIgnoreCase(Utils.Reference.Worlds.ESG_FIGHT)) {
-            sender.sendMessage(l.getErrorMsg() + "Wrong world!");
-            return true;
-        }
-        if (args.length != 1) {
-            sender.sendMessage(getSyntax(command, l));
-            return true;
-        }
-        if (!args[0].equalsIgnoreCase("test") && !args[0].equalsIgnoreCase("load")) {
-            sender.sendMessage(getSyntax(command, l));
-            return true;
-        }
+
+        if (!p.getWorld().getName().equalsIgnoreCase(Worlds.ESG_FIGHT)) return msg(sender, serverLang().getErrorMsg() + "Wrong world!");
+        if (args.length != 1 || !args[0].equalsIgnoreCase("test") && !args[0].equalsIgnoreCase("load")) return msg(sender, getSyntax(label));
 
         Location chest01 = new Location(p.getWorld(), -16, (66), -178, 3, 0); //Corner of map, on a hill.				    3
         Location chest02 = new Location(p.getWorld(), -17, (65), -127, 1, 0); //Seen with Wither Heads, a big chest.	    1
@@ -76,50 +69,48 @@ public class ESGChestCommand implements EndExecutor {
         Location chest32 = new Location(p.getWorld(), -77, 65, -131, 1, 0);
         Location chest33 = new Location(p.getWorld(), -32, 65, -115, 1, 0);
 
-        Location[] locations = new Location[]{chest01, chest02, chest03, chest04, chest05, chest06, chest07, chest08, chest09, chest10, chest11, chest12, chest13, chest14, chest15, chest16, chest17,
-                chest18, chest19, chest20, chest21, chest22, chest23, chest24, chest25, chest26, chest27, chest28, chest29, chest30, chest31, chest32, chest33
-        };
+        Location[] locations = new Location[]{chest01, chest02, chest03, chest04, chest05, chest06, chest07, chest08, chest09, chest10, chest11, chest12, chest13, chest14, chest15, chest16, chest17, chest18, chest19, chest20, chest21, chest22, chest23, chest24, chest25, chest26, chest27, chest28, chest29, chest30, chest31, chest32, chest33};
 
         if (args[0].equalsIgnoreCase("Test")) {
             for (Location location : locations) {
                 location.getBlock().setType(Material.HARD_CLAY);
                 location.getBlock().setData((byte) 4);
             }
-            sender.sendMessage("§7[§fE§eS§fG§7] " + l.getTxtColor() + "Set chests 1-27 to §eYELLOW§f concrete blocks.");
-            sender.sendMessage("§7[§fE§eS§fG§7] " + l.getTxtColor() + "If no chests are visible on the map that is a sucess.");
+            sender.sendMessage("§7[§fE§eS§fG§7] " + serverLang().getTxtColor() + "Set chests 1-27 to §eYELLOW§f concrete blocks.");
+            sender.sendMessage("§7[§fE§eS§fG§7] " + serverLang().getTxtColor() + "If no chests are visible on the map that is a sucess.");
             return true;
         }
 
         if (args[0].equalsIgnoreCase("Load")) {
-            for (Location location : locations)
-                p.performCommand("setblock " + location.getBlockX() + " " + location.getBlockY() + " " + location.getBlockZ() + " minecraft:air");
+            for (Location location : locations) p.performCommand("setblock " + location.getBlockX() + " " + location.getBlockY() + " " + location.getBlockZ() + " minecraft:air");
             p.performCommand("minecraft:kill @e[type=Item]");
             //for (Location location : locations) p.performCommand("setblock " + location.getBlockX() + " " + location.getBlockY() + " " + location.getBlockZ() + " minecraft:chest" + location.getYaw() + " 0 {LootTable:\"chests/loot_table\"}");
-            sender.sendMessage("§7[§fE§eS§fG§7] " + l.getTxtColor() + "Set chests 1-27 to §eLOOT TABLE§f chests.");
-            sender.sendMessage("§7[§fE§eS§fG§7] " + l.getTxtColor() + "If a chest is empty it is not a sucess.");
+            sender.sendMessage("§7[§fE§eS§fG§7] " + serverLang().getTxtColor() + "Set chests 1-27 to §eLOOT TABLE§f chests.");
+            sender.sendMessage("§7[§fE§eS§fG§7] " + serverLang().getTxtColor() + "If a chest is empty it is not a sucess.");
             return true;
         }
         return true;
     }
 
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        List<String> l = new ArrayList<>();
-        if (args.length == 1) {
-            l.add("test");
-            l.add("load");
-            return l;
-        }
+        if (args.length == 1) return tabOption(args[0], "test", "load");
         return null;
     }
 
-    public String[] getSyntax(Command command, Lang l) {
-        return new String[]{
-                l.getSyntaxMsg() + l.getCmdExColor() + "/" + l.getLightColor() + command.getName().toLowerCase() + " " + l.getCmdExColor() + Utils.Reference.OPEN_MANDATORY_CHAR +
-                        l.getLightColor() + Utils.Reference.MODE + l.getCmdExColor() + Utils.Reference.CLOSE_MANDATORY_CHAR
-        };
+    public String getSyntax(String label) {
+        return helpLabel(label) + helpBr(MODE, true);
     }
 
-    public String commandName() {
-        return "esgchest";
+    public List<String> commandNames() {
+        return List.of("esgchest");
+    }
+
+    public void changeChest(Location location) {
+        if (!(location.getBlock().getState() instanceof Chest)) return;
+        Chest chest = (Chest) location.getBlock().getState();
+        for (int i = 0; i < chest.getBlockInventory().getContents().length; i++) {
+            if (SLOT_CHANCE >= Math.random()) {
+            }
+        }
     }
 }

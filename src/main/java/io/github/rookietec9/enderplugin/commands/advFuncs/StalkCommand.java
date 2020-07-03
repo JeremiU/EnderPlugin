@@ -1,224 +1,149 @@
 package io.github.rookietec9.enderplugin.commands.advFuncs;
 
-import io.github.rookietec9.enderplugin.API.EndExecutor;
-import io.github.rookietec9.enderplugin.API.Utils;
-import io.github.rookietec9.enderplugin.API.configs.Config;
-import io.github.rookietec9.enderplugin.API.configs.Langs;
-import io.github.rookietec9.enderplugin.API.configs.associates.Lang;
 import io.github.rookietec9.enderplugin.EnderPlugin;
+import io.github.rookietec9.enderplugin.configs.associates.User;
+import io.github.rookietec9.enderplugin.utils.datamanagers.DataPlayer;
+import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
+import io.github.rookietec9.enderplugin.utils.methods.Java;
+import io.github.rookietec9.enderplugin.utils.reference.DataType;
+import io.github.rookietec9.enderplugin.utils.reference.Prefixes;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.List;
-import java.util.UUID;
+
+import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
+import static io.github.rookietec9.enderplugin.utils.reference.Syntax.MODE;
+import static io.github.rookietec9.enderplugin.utils.reference.Syntax.USER;
 
 /**
  * Gets Data from a player.
  *
  * @author Jeremi
- * @version 13.4.4 // 11.6.0
+ * @version 22.8.0
  * @since 9.0.2
  */
 public class StalkCommand implements EndExecutor {
 
-    private final Config data = new Config(true, "", "data.yml", EnderPlugin.getInstance());
-
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Lang l = new Lang(Langs.fromSender(sender));
-        if (sender instanceof ConsoleCommandSender) {
-            if (args.length != 2) {
-                if (args.length == 1 && args[0].equalsIgnoreCase("help")) {
-                    sender.sendMessage(getSyntax(command, l));
-                    return true;
-                }
-                sender.sendMessage(getSyntax(command, l));
-                return true;
-            }
-            if (Bukkit.getPlayer(args[0]) == null) {
-                sender.sendMessage(l.getOfflineMsg());
-                return true;
-            }
-            Player p = Bukkit.getPlayer(args[0]);
-            if (!args[1].equalsIgnoreCase("1") && !args[1].equalsIgnoreCase("2")
-                    && !args[1].equalsIgnoreCase("3") && !args[1].equalsIgnoreCase("help")) {
-                sender.sendMessage(l.getErrorMsg() + "valid pages are from 1 - 3.");
-                return true;
-            }
+        int senderLvl = 10, targetLvl;
 
-            if (args[1].equalsIgnoreCase("1"))
-                for (int i = 0; i < page1(p, sender).length; i++)
-                    sender.sendMessage(page1(p, sender)[i].replace("null", "N/A"));
+        if (sender instanceof Player) senderLvl = DataPlayer.getUser((Player) sender).rankLevel();
+        if (args.length > 2 || !(sender instanceof Player) && args.length == 0) return msg(sender, getSyntax(label));
+        Player player = args.length == 0 ? (Player) sender : Bukkit.getPlayer(args[0]);
+        if (player == null) return msg(sender, serverLang().getOfflineMsg());
+        targetLvl = DataPlayer.getUser(player).rankLevel();
 
-            if (args[1].equalsIgnoreCase("2"))
-                for (int j = 0; j < page2(p, sender).length; j++)
-                    sender.sendMessage(page2(p, sender)[j].replace("null", "N/A"));
+        if (targetLvl == senderLvl && senderLvl < 3) return msg(sender, serverLang().getErrorMsg() + "Your rank is too low!");
 
-            if (args[1].equalsIgnoreCase("3"))
-                for (int k = 0; k < page3(p, sender).length; k++)
-                    sender.sendMessage(page3(p, sender)[k].replace("null", "N/A"));
-            return true;
-        } else {
-            if (!(sender instanceof Player)) {
-                sender.sendMessage(l.getOnlyUserMsg());
-                return true;
-            }
-            if (!sender.isOp() && data.getYaml().getBoolean("config.mustOp")) {
-                sender.sendMessage(l.getErrorMsg() + "You must be op!");
-                return true;
-            }
-        }
-        if (args.length != 2) {
-            sender.sendMessage(getSyntax(command, l));
-            return true;
+        byte mode = 0;
+
+        if (args.length == 2) {
+            if (!Java.argWorks(args[1], "bukkit", "gamedata", "userdata", "all")) return msg(sender, getSyntax(label));
+            mode = (byte) switch (args[1]) {
+                case "bukkit" -> 1;
+                case "gamedata" -> 2;
+                case "userdata" -> 3;
+                default -> 0;
+            };
         }
 
-        if (!data.getYaml().getBoolean("config.consoleOnly")) {
-            if (Bukkit.getPlayer(args[0]) == null) {
-                //sender.sendMessage(l.getNoPlayerMsg());
-                return true;
+        switch (mode) {
+            case 0 -> {
+                sendBukkit(sender, player);
+                EnderPlugin.scheduler().runSingleTask(() -> sendGame(sender, DataPlayer.get(player)), "INFO_COMMAND_" + sender.getName().toUpperCase(), 5);
+                EnderPlugin.scheduler().runSingleTask(() -> sendUser(sender, DataPlayer.getUser(player)), "INFO_COMMAND_" + sender.getName().toUpperCase(), 10);
             }
-            if (!canStalk(((Player) sender).getUniqueId(), Bukkit.getPlayer(args[0]).getUniqueId())) {
-                sender.sendMessage(l.getErrorMsg() + "You cannot stalk that player!");
-                return true;
-            }
-            Player p = Bukkit.getPlayer(args[0]);
-            if (!args[1].equalsIgnoreCase("1") && !args[1].equalsIgnoreCase("2") && !args[1].equalsIgnoreCase("3")
-                    && !args[1].equalsIgnoreCase("help")) {
-                sender.sendMessage(l.getErrorMsg() + "Valid pages are from 1 - 3.");
-            }
-            if (args[1].equalsIgnoreCase("help")) {
-                sender.sendMessage("Valid pages are from 1 - 3.");
-            }
-            if (args[1].equalsIgnoreCase("1"))
-                for (int i = 0; i < page1(p, sender).length; i++)
-                    sender.sendMessage(page1(p, sender)[i].replace("null", "N/A"));
-            if (args[1].equalsIgnoreCase("2"))
-                for (int j = 0; j < page2(p, sender).length; j++)
-                    sender.sendMessage(page2(p, sender)[j].replace("null", "N/A"));
-            if (args[1].equalsIgnoreCase("3"))
-                for (int k = 0; k < page3(p, sender).length; k++)
-                    sender.sendMessage(page3(p, sender)[k].replace("null", "N/A"));
+            case 1 -> sendBukkit(sender, player);
+            case 2 -> sendGame(sender, DataPlayer.get(player));
+            case 3 -> sendUser(sender, DataPlayer.getUser(player));
         }
         return true;
     }
 
-    /**
-     * Checks if the sender level is capable of stalking the target level.
-     *
-     * @param senderUUID sender's uuid
-     * @param targetUUID target's uuid
-     *                   <p>
-     *                   CHECKS FOR: 1: TARGET LEVEL IS HIGHER THEN SENDER 2: TARGET
-     *                   LEVEL IS EQUAL TO SENDER LEVEL 3: SENDER LEVEL IS A 0 (A BAN
-     *                   FROM GETTING LEVELS) 4: TARGET LEVEL IS A 6 (PREVENTS FROM
-     *                   OTHERS STALKING) returns false;
-     *                   <p>
-     *                   1: TARGET LEVEL IS 0 AND SENDER IS HIGHER THEN 0 2: TARGET
-     *                   LEVEL IS LOWER THEN SENDER LEVEL 3: TARGET UUID IS SENDER UUID
-     *                   AND TARGET LEVEL IS NOT 0 returns true;
-     * @return true if sender is capable of stalking.
-     * @author TheEnderCrafter9
-     */
-    private boolean canStalk(UUID senderUUID, UUID targetUUID) {
-        data.modifyYaml();
-        if (data.getYaml().getString("Players." + senderUUID.toString()) == null) {
-            data.getYaml().createSection("Players." + senderUUID.toString());
-            data.getYaml().set("Players." + senderUUID.toString(), data.getYaml().getInt("config.default"));
-            data.modifyYaml();
-        }
-        if (data.getYaml().getString("Players." + targetUUID.toString()) == null) {
-            data.getYaml().createSection("Players." + targetUUID.toString());
-            data.getYaml().set("Players." + targetUUID.toString(), data.getYaml().getInt("config.default"));
-            data.modifyYaml();
-        }
-        int sender = data.getYaml().getInt("Players." + senderUUID.toString());
-        int target = data.getYaml().getInt("Players." + targetUUID.toString());
-
-        if ((sender > target) && sender > data.getYaml().getInt("config.lowLVL") && target < data.getYaml().getInt("config.highLVL")
-                || (senderUUID == targetUUID && sender != data.getYaml().getInt("config.lowLVL")) || sender == target) {
-            EnderPlugin.getInstance().debug("[EC-ST] " + "Sender UUID : " + ChatColor.WHITE + senderUUID.toString());
-            EnderPlugin.getInstance().debug("[EC-ST] " + "Target UUID : " + ChatColor.WHITE + targetUUID.toString());
-            EnderPlugin.getInstance().debug("[EC-ST] " + "Sender lvl  : " + ChatColor.WHITE + sender);
-            EnderPlugin.getInstance().debug("[EC-ST] " + "Target lvl  : " + ChatColor.WHITE + target);
-            EnderPlugin.getInstance().debug("[EC-ST] " + "TRUE");
-            return true;
-        }
-        if ((sender < target && senderUUID != targetUUID) || sender == 0 || target == 6) {
-            EnderPlugin.getInstance().debug("[EC-ST] " + "Sender UUID : " + ChatColor.WHITE + senderUUID.toString());
-            EnderPlugin.getInstance().debug("[EC-ST] " + "Target UUID : " + ChatColor.WHITE + targetUUID.toString());
-            EnderPlugin.getInstance().debug("[EC-ST] " + "Sender lvl  : " + ChatColor.WHITE + sender);
-            EnderPlugin.getInstance().debug("[EC-ST] " + "Target lvl  : " + ChatColor.WHITE + target);
-            EnderPlugin.getInstance().debug("[EC-ST] " + "FALSE");
-            return false;
-        }
-        return false;
+    private void sendBukkit(CommandSender sender, Player target) {
+        sender.sendMessage(serverLang().getPlugMsg() + "Getting Bukkit Info for" + DataPlayer.getUser(target).getNickName());
+        sender.sendMessage(serverLang().getTxtColor() + "Display Name: " + serverLang().getLightColor() + target.getDisplayName());
+        sender.sendMessage(serverLang().getTxtColor() + "List Name: " + serverLang().getLightColor() + target.getPlayerListName());
+        sender.sendMessage(serverLang().getTxtColor() + "Health: " + serverLang().getLightColor() + target.getHealth() + "/" + target.getHealthScale());
+        sender.sendMessage(serverLang().getTxtColor() + "Gamemode: " + serverLang().getLightColor() + target.getGameMode().name());
+        sender.sendMessage(serverLang().getTxtColor() + "World: " + serverLang().getLightColor() + target.getWorld().getName());
+        sender.sendMessage(serverLang().getTxtColor() + "Location: " + serverLang().getLightColor() + target.getLocation().getBlockX() + " " + target.getLocation().getBlockY() + " " + target.getLocation().getBlockZ());
+        sender.sendMessage(serverLang().getTxtColor() + "Can Fly: " + serverLang().getLightColor() + target.getAllowFlight() + serverLang().getTxtColor() + " Is Flying: " + serverLang().getLightColor() + target.isFlying());
+        sender.sendMessage(serverLang().getTxtColor() + "Sleeping: " + serverLang().getLightColor() + target.isSleeping() + serverLang().getTxtColor() + " Is Sneaking: " + serverLang().getLightColor() + target.isSneaking() + serverLang().getTxtColor() + " Is Sprinting: " + serverLang().getLightColor() + target.isSprinting());
+        sender.sendMessage(serverLang().getTxtColor() + "Is Blocking: " + serverLang().getLightColor() + target.isBlocking());
+        sender.sendMessage(serverLang().getTxtColor() + "Is OP: " + serverLang().getLightColor() + target.isOp() + serverLang().getTxtColor() + " Is whitelisted: " + serverLang().getLightColor() + target.isWhitelisted());
+        sender.sendMessage(serverLang().getTxtColor() + "Flying Speed: " + serverLang().getLightColor() + target.getFlySpeed() + serverLang().getTxtColor() + " Walking Speed: " + serverLang().getLightColor() + target.getWalkSpeed());
+        sender.sendMessage(serverLang().getTxtColor() + "Item in hand: " + serverLang().getLightColor() + target.getItemInHand().getType());
+        sender.sendMessage(serverLang().getTxtColor() + "XP: " + serverLang().getLightColor() + target.getExp());
+        sender.sendMessage(serverLang().getTxtColor() + "Exhaustion: " + serverLang().getLightColor() + target.getExhaustion() + serverLang().getTxtColor() + " Food Level: " + serverLang().getLightColor() + target.getFoodLevel());
+        sender.sendMessage(serverLang().getTxtColor() + "Last Damage:" + serverLang().getLightColor() + target.getLastDamage() + serverLang().getTxtColor() + " Cause: " + serverLang().getLightColor() + (target.getLastDamageCause() != null ? target.getLastDamageCause().getCause() : "Unknown"));
     }
 
-    private String[] page1(Player player, CommandSender s) {
-        Lang l = new Lang(Langs.fromSender(s));
-        return new String[]{l.getDarkColor() + "Page: " + l.getLightColor() + "1 / 3",
-                l.getDarkColor() + "Is op: " + l.getLightColor() + player.isOp(),
-                l.getDarkColor() + "Is flying: " + l.getLightColor() + player.isFlying(),
-                l.getDarkColor() + "Is blocking: " + l.getLightColor() + player.isBlocking(),
-                l.getDarkColor() + "Is dead: " + l.getLightColor() + player.isDead(),
-                l.getDarkColor() + "Is riding: " + l.getLightColor() + player.isInsideVehicle(),
-                l.getDarkColor() + "Is sleeping: " + l.getLightColor() + player.isSleeping(),
-                l.getDarkColor() + "Is sneaking: " + l.getLightColor() + player.isSneaking(),
-                l.getDarkColor() + "Is sprinting: " + l.getLightColor() + player.isSprinting(),
-                l.getDarkColor() + "Can pickup items: " + l.getLightColor() + player.getCanPickupItems(),
-                "Type /stalk " + "{USERNAME}" + " 2 for more."};
+    private void sendGame(CommandSender sender, DataPlayer target) {
+        sender.sendMessage(serverLang().getPlugMsg() + "Getting " + Prefixes.BOOTY.replace(">", "") + " Info for " + DataPlayer.getUser(target.player).getNickName());
+        sender.sendMessage(serverLang().getTxtColor() + "Temp Kills: " + serverLang().getLightColor() + target.tempBootyKills);
+        sender.sendMessage(serverLang().getTxtColor() + "Temp Deaths: " + serverLang().getLightColor() + target.tempBootyDeaths);
+        sender.sendMessage(serverLang().getTxtColor() + "Total Kills: " + serverLang().getLightColor() + target.getInt(DataType.BOOTYKILLS));
+        sender.sendMessage(serverLang().getTxtColor() + "Total Deaths: " + serverLang().getLightColor() + target.getInt(DataType.BOOTYDEATHS));
+
+        sender.sendMessage(serverLang().getPlugMsg() + "Getting " + Prefixes.CTF.replace(">", "") + " Info for " + DataPlayer.getUser(target.player).getNickName());
+        sender.sendMessage(serverLang().getTxtColor() + "Temp Kit: " + serverLang().getLightColor() + target.tempCTFKit);
+        sender.sendMessage(serverLang().getTxtColor() + "Temp Kills: " + serverLang().getLightColor() + target.tempCTFKills);
+        sender.sendMessage(serverLang().getTxtColor() + "Temp Deaths: " + serverLang().getLightColor() + target.tempCTFDeaths);
+        sender.sendMessage(serverLang().getTxtColor() + "Total Wins: " + serverLang().getLightColor() + target.getInt(DataType.CTFWINS));
+        sender.sendMessage(serverLang().getTxtColor() + "Total Losses: " + serverLang().getLightColor() + target.getInt(DataType.CTFLOSSES));
+        sender.sendMessage(serverLang().getTxtColor() + "Total Points: " + serverLang().getLightColor() + target.getInt(DataType.CTFPOINTS));
+        sender.sendMessage(serverLang().getTxtColor() + "Total Captures: " + serverLang().getLightColor() + target.getInt(DataType.CTFCAPTURES));
+        sender.sendMessage(serverLang().getTxtColor() + "Total Kills: " + serverLang().getLightColor() + target.getInt(DataType.CTFKILLS));
+        sender.sendMessage(serverLang().getTxtColor() + "Total Deaths: " + serverLang().getLightColor() + target.getInt(DataType.CTFDEATHS));
+
+        sender.sendMessage(serverLang().getPlugMsg() + "Getting " + Prefixes.SPLEEF.replace(">", "") + " Info for " + DataPlayer.getUser(target.player).getNickName());
+        sender.sendMessage(serverLang().getTxtColor() + "Temp Blocks: " + serverLang().getLightColor() + target.tempSpleefBlocks);
+        sender.sendMessage(serverLang().getTxtColor() + "Total Wins: " + serverLang().getLightColor() + target.getInt(DataType.SPLEEFWINS));
+        sender.sendMessage(serverLang().getTxtColor() + "Total Losses: " + serverLang().getLightColor() + target.getInt(DataType.SPLEEFLOSSES));
+        sender.sendMessage(serverLang().getTxtColor() + "Total Blocks: " + serverLang().getLightColor() + target.getInt(DataType.SPLEEFBLOCKS));
+
+        sender.sendMessage(serverLang().getPlugMsg() + "Getting " + Prefixes.HUB.replace(">", "") + " Info for " + DataPlayer.getUser(target.player).getNickName());
+        sender.sendMessage(serverLang().getTxtColor() + "Chat Enabled: " + serverLang().getLightColor() + target.chatEnabled);
+        sender.sendMessage(serverLang().getTxtColor() + "PVP Enabled: " + serverLang().getLightColor() + target.pvpEnabled);
+        sender.sendMessage(serverLang().getTxtColor() + "Players Enabled: " + serverLang().getLightColor() + target.playersEnabled);
+
+        sender.sendMessage(serverLang().getPlugMsg() + "Getting " + Prefixes.WZRDS.replace(">", "") + " Info for " + DataPlayer.getUser(target.player).getNickName());
+        sender.sendMessage(serverLang().getTxtColor() + "Temp Streak: " + serverLang().getLightColor() + target.tempWizardStreak);
+        sender.sendMessage(serverLang().getTxtColor() + "Temp Kills: " + serverLang().getLightColor() + target.tempWizardKills);
+        sender.sendMessage(serverLang().getTxtColor() + "Temp Deaths: " + serverLang().getLightColor() + target.tempWizardDeaths);
+        sender.sendMessage(serverLang().getTxtColor() + "Temp Blade: " + serverLang().getLightColor() + target.tempWizardBlade);
+        sender.sendMessage(serverLang().getTxtColor() + "Total Kills: " + serverLang().getLightColor() + target.getInt(DataType.WIZARDKILLS));
+        sender.sendMessage(serverLang().getTxtColor() + "Total Deaths: " + serverLang().getLightColor() + target.getInt(DataType.WIZARDDEATHS));
+
+        sender.sendMessage(serverLang().getTxtColor() + "Murder Wins: " + serverLang().getLightColor() + target.getInt(DataType.MURDERWINS));
+        sender.sendMessage(serverLang().getTxtColor() + "Murder Name: " + serverLang().getLightColor() + target.getInt(DataType.MURDERLOSSES));
+
+        sender.sendMessage(serverLang().getTxtColor() + "Hide & Seek Wins: " + serverLang().getLightColor() + target.getInt(DataType.HOODWINS));
+        sender.sendMessage(serverLang().getTxtColor() + "Hide & Seek Losses: " + serverLang().getLightColor() + target.getInt(DataType.HOODLOSSES));
     }
 
-    private String[] page2(Player player, CommandSender s) {
-        Lang l = new Lang(Langs.fromSender(s));
-        return new String[]{l.getDarkColor() + "Page: " + l.getLightColor() + "2 / 3",
-                l.getDarkColor() + "Is holding: " + l.getLightColor() + player.getItemOnCursor().getType().toString(),
-                l.getDarkColor() + "Ip: " + l.getLightColor() + player.getAddress(),
-                l.getDarkColor() + "Nick: " + l.getLightColor() + player.getCustomName(),
-                l.getDarkColor() + "Total XP: " + l.getLightColor() + l.getLightColor() + player.getExp(),
-                l.getDarkColor() + "XP to level up:" + l.getLightColor() + player.getExpToLevel(),
-                l.getDarkColor() + "Xp level: " + l.getLightColor() + player.getLevel(),
-                l.getDarkColor() + "Eye height: " + l.getLightColor() + player.getEyeHeight(),
-                l.getDarkColor() + "Fallen: " + l.getLightColor() + player.getFallDistance(),
-                l.getDarkColor() + "Fly speed: " + l.getLightColor() + String.valueOf(player.getFlySpeed()).substring(0, 3),
-                l.getDarkColor() + "Hunger: " + l.getLightColor() + player.getFoodLevel() + "/20.0",
-                l.getDarkColor() + "Health: " + l.getLightColor() + (int) Math.round(player.getHealth()) + "/" + player.getHealthScale(),
-                l.getDarkColor() + "Walk speed: " + l.getLightColor() + String.valueOf(player.getWalkSpeed()).substring(0, 3),
-                "Type /stalk " + "{USERNAME}" + " 3 for more"};
-    }
-
-    private String[] page3(Player player, CommandSender s) {
-        Lang l = new Lang(Langs.fromSender(s));
-        return new String[]{l.getDarkColor() + "Page: " + l.getLightColor() + "3 / 3",
-                l.getDarkColor() + "World: " + l.getLightColor() + player.getWorld().getName(),
-                l.getDarkColor() + "Game Mode: " + l.getLightColor() + player.getGameMode(),
-                l.getDarkColor() + "UUID: " + l.getLightColor() + player.getUniqueId().toString(),
-                l.getDarkColor() + "Is whitelisted: " + l.getLightColor() + player.isWhitelisted(),
-                l.getDarkColor() + "Last killed by: " + l.getLightColor() + player.getKiller(),
-                l.getDarkColor() + "Is on ground: " + l.getLightColor() + player.isOnGround(),
-                l.getDarkColor() + "Location: " + l.getLightColor() + player.getLocation().getBlockX() + ", " + player.getLocation().getBlockY() + ", " + player.getLocation().getBlockZ(),
-                l.getDarkColor() + "World: " + l.getLightColor() + player.getLocation().getWorld().getName(),
-        };
+    private void sendUser(CommandSender sender, User target) {
+        sender.sendMessage(serverLang().getPlugMsg() + "Getting " + Prefixes.BOOTY.replace(">", "") + " Info for " + target.getTabName());
+        sender.sendMessage(serverLang().getTxtColor() + "Rank: " + serverLang().getLightColor() + target.rank());
+        sender.sendMessage(serverLang().getTxtColor() + "Rank Level: " + serverLang().getLightColor() + target.rankLevel());
+        sender.sendMessage(serverLang().getTxtColor() + "God Mode: " + serverLang().getLightColor() + target.getGod());
+        sender.sendMessage(serverLang().getTxtColor() + "Muted: " + serverLang().getLightColor() + target.isMuted());
     }
 
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        if (args.length == 2) return tabOption(args[0], "bukkit", "gamedata", "userdata", "all");
         return null;
     }
 
-    public String[] getSyntax(Command command, Lang l) {
-        return new String[]{
-                l.getSyntaxMsg() + l.getCmdExColor() + "/" + l.getLightColor() + command.getName().toLowerCase() + " " + l.getCmdExColor() +
-                        Utils.Reference.OPEN_MANDATORY_CHAR + l.getLightColor() + Utils.Reference.USER + l.getCmdExColor() + Utils.Reference.CLOSE_MANDATORY_CHAR + " " +
-                        Utils.Reference.OPEN_MANDATORY_CHAR + l.getLightColor() + "page" + Utils.Reference.CLOSE_MANDATORY_CHAR
-
-        };
+    public String getSyntax(String label) {
+        return helpLabel(label) + helpBr(USER, true) + " " + helpBr(MODE, false);
     }
 
-    public String commandName() {
-        return "stalk";
+    public List<String> commandNames() {
+        return List.of("info");
     }
 }
