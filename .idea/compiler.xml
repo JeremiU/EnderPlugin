@@ -9,8 +9,5 @@
         <module name="EnderPlugin" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="EnderPlugin" target="14" />
-    </bytecodeTargetLevel>
   </component>
 </project>
