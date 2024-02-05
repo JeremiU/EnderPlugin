@@ -9,7 +9,7 @@ import org.bukkit.Material;
 
 /**
  * @author Jeremi
- * @version 21.4.9
+ * @version 23.4.6
  * @since 7.1.5
  */
 public class ESGKit extends Associate {
@@ -65,7 +65,8 @@ public class ESGKit extends Associate {
         WOLF_TAMER("Wolf", -68, -125); //toS
 
         final String configName;
-        int x = 0, z = 0;
+        final int x;
+        final int z;
 
         Kits(String configName, int chestX, int chestZ) {
             this.configName = configName;

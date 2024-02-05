@@ -1,9 +1,8 @@
 package io.github.rookietec9.enderplugin.commands.advFuncs;
 
-import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
+import io.github.rookietec9.enderplugin.utils.datamanagers.endcommands.EndExecutor;
 import io.github.rookietec9.enderplugin.utils.methods.Minecraft;
 import org.apache.commons.lang.StringUtils;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -14,12 +13,12 @@ import org.bukkit.entity.Player;
 import java.util.List;
 
 import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
-import static io.github.rookietec9.enderplugin.utils.reference.Syntax.MODE;
-import static io.github.rookietec9.enderplugin.utils.reference.Syntax.MSG;
+import static io.github.rookietec9.enderplugin.Reference.MODE;
+import static io.github.rookietec9.enderplugin.Reference.MSG;
 
 /**
  * @author Jeremi
- * @version 22.8.0
+ * @version 25.5.4
  * @since 9.3.6
  */
 public class HologramCommand implements EndExecutor {
@@ -27,26 +26,29 @@ public class HologramCommand implements EndExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length <= 1) return msg(sender, getSyntax(label));
         if (!(sender instanceof Player)) return msg(sender, serverLang().getOnlyUserMsg());
+
         if (!args[0].equalsIgnoreCase("floor") && !args[0].equalsIgnoreCase("eyelevel")) return msg(sender, getSyntax(label));
-
-        boolean baby = args[0].equalsIgnoreCase("floor");
-        Player player = (Player) sender;
-        Location toSpawn = player.getLocation();
-        if (!baby) toSpawn.setY(toSpawn.getY() + 1);
-
-        ArmorStand armorStand = (ArmorStand) player.getWorld().spawnEntity(toSpawn, EntityType.ARMOR_STAND);
-        armorStand.setGravity(false);
-        armorStand.setSmall(baby);
-        armorStand.setMarker(true);
-        armorStand.setVisible(false);
-        armorStand.setCustomName(Minecraft.tacc(StringUtils.join(args, " ", 1, args.length)));
-        armorStand.setCustomNameVisible(true);
+        spawnHologram(StringUtils.join(args, " ", 1, args.length), args[0].equalsIgnoreCase("floor"), ((Player) sender).getLocation());
         return true;
     }
 
+    public static ArmorStand spawnHologram(String text, boolean floor, Location location) {
+        location = location.clone();
+        location.setY(location.getY() + (floor ? 0.5 : 1));
+
+        ArmorStand armorStand = (ArmorStand) location.getWorld().spawnEntity(location, EntityType.ARMOR_STAND);
+        armorStand.setGravity(false);
+        armorStand.setSmall(floor);
+        armorStand.setMarker(true);
+        armorStand.setVisible(false);
+        armorStand.setCustomName(Minecraft.tacc(text));
+        armorStand.setCustomNameVisible(true);
+
+        return armorStand;
+    }
+
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
-        if (args.length == 1) return tabOption(args[0], "floor", "eyelevel");
-        return null;
+        return args.length == 1 ? tabOption(args[0], "floor", "eyelevel") : null;
     }
 
     public String getSyntax(String label) {

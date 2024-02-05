@@ -1,9 +1,8 @@
 package io.github.rookietec9.enderplugin.commands.basicFuncs.txtFuncs;
 
 import com.google.common.collect.ImmutableList;
-import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
+import io.github.rookietec9.enderplugin.utils.datamanagers.endcommands.EndExecutor;
 import io.github.rookietec9.enderplugin.utils.methods.Java;
-import io.github.rookietec9.enderplugin.utils.methods.Minecraft;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;

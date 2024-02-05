@@ -13,7 +13,7 @@ import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
 
 /**
  * @author Jeremi
- * @version 22.8.0
+ * @version 22.9.5
  */
 public class MainTalkEvent implements Listener {
     @EventHandler
@@ -43,10 +43,9 @@ public class MainTalkEvent implements Listener {
 
         boolean flipColors = !message.startsWith("`");
         String prefix = DataPlayer.getUser(sender).getTabName() + ChatColor.GRAY + " > ";
-        String msg = (flipColors ?  Minecraft.tacc(message) : message);
+        String msg = (flipColors ? Minecraft.tacc(message) : message);
 
-        for (Player player : Bukkit.getOnlinePlayers()) if (DataPlayer.get(player).chatEnabled) player.sendMessage(prefix + msg.replace(player.getName(), ChatColor.DARK_GRAY + "§l" + player.getName() + "§7"));
-        for (Player player : Bukkit.getOnlinePlayers()) if (DataPlayer.get(player).chatEnabled) player.sendMessage(prefix + msg.replace(DataPlayer.getUser(player).getNickName(), ChatColor.DARK_GRAY + "§l" + DataPlayer.getUser(player).getNickName() + "§7"));
+        for (Player player : Bukkit.getOnlinePlayers()) if (DataPlayer.get(player).chatEnabled) player.sendMessage(prefix + msg.replace(player.getName(), ChatColor.DARK_GRAY + "§l" + player.getName() + "§7").replace(DataPlayer.getUser(player).getNickName(), ChatColor.DARK_GRAY + "§l" + DataPlayer.getUser(player).getNickName() + "§7"));
         System.out.print(ChatColor.stripColor(prefix + message));
     }
 }

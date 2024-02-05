@@ -1,7 +1,7 @@
 package io.github.rookietec9.enderplugin.commandgroups;
 
 import io.github.rookietec9.enderplugin.utils.datamanagers.DataPlayer;
-import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
+import io.github.rookietec9.enderplugin.utils.datamanagers.endcommands.EndExecutor;
 import io.github.rookietec9.enderplugin.utils.methods.Java;
 import io.github.rookietec9.enderplugin.utils.methods.SkullMaker;
 import org.bukkit.Bukkit;
@@ -13,11 +13,11 @@ import org.bukkit.inventory.ItemStack;
 import java.util.List;
 
 import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
-import static io.github.rookietec9.enderplugin.utils.reference.Syntax.MODE;
+import static io.github.rookietec9.enderplugin.Reference.MODE;
 
 /**
  * @author Jeremi
- * @version 22.8.0
+ * @version 25.2.0
  * @since 20.3.0
  */
 public class CrashCommands implements EndExecutor {

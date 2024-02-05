@@ -3,8 +3,6 @@ package io.github.rookietec9.enderplugin.events.inventoryclickers;
 import io.github.rookietec9.enderplugin.Inventories;
 import io.github.rookietec9.enderplugin.configs.associates.Spawn;
 import io.github.rookietec9.enderplugin.utils.methods.Java;
-import io.github.rookietec9.enderplugin.utils.reference.Prefixes;
-import io.github.rookietec9.enderplugin.utils.reference.Worlds;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -16,10 +14,11 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
 import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
+import static io.github.rookietec9.enderplugin.Reference.*;
 
 /**
  * @author Jeremi
- * @version 20.3.8
+ * @version 25.2.0
  */
 public class TeleporterClickEvent implements Listener {
 
@@ -41,21 +40,21 @@ public class TeleporterClickEvent implements Listener {
 
         Spawn spawn = null;
         if (event.getClickedInventory().getName().equalsIgnoreCase(Inventories.TELEPORTER_MAIN.getName())) {
-            switch (event.getSlot()) {
-                case 8 -> spawn = new Spawn(Worlds.HUB);
-                case 10 -> spawn = new Spawn(Worlds.HIDENSEEK);
-                case 11 -> spawn = new Spawn(Worlds.WIZARDS);
-                case 12 -> spawn = new Spawn(Worlds.OBSTACLE);
-                case 13 -> spawn = new Spawn(Worlds.SUMO);
-                case 14 -> spawn = new Spawn(Worlds.TNT_RUN);
-                case 15 -> spawn = new Spawn(Worlds.CTF);
-                case 19 -> spawn = new Spawn(Worlds.MURDER);
-                case 20 -> spawn = new Spawn(Worlds.KIT_PVP);
-                case 21 -> spawn = new Spawn(Worlds.PARKOUR);
-                case 22 -> spawn = new Spawn(Worlds.SPLEEF);
-                case 23 -> spawn = new Spawn(Worlds.HUNGER);
-                case 24 -> spawn = new Spawn(Worlds.BOOTY);
-            }
+            spawn = switch (event.getSlot()) {
+                case 8 -> new Spawn(HUB);
+                case 11 -> new Spawn(WIZARDS);
+                case 12 -> new Spawn(OBSTACLE);
+                case 13 -> new Spawn(SUMO);
+                case 14 -> new Spawn(TNT_RUN);
+                case 15 -> new Spawn(CTF);
+                case 19 -> new Spawn(MURDER);
+                case 20 -> new Spawn(KIT_PVP);
+                case 21 -> new Spawn(PARKOUR);
+                case 22 -> new Spawn(SPLEEF);
+                case 23 -> new Spawn(HUNGER);
+                case 24 -> new Spawn(BOOTY);
+                default -> null;
+            };
 
             if (spawn != null) event.getWhoClicked().teleport(spawn.location(), PlayerTeleportEvent.TeleportCause.PLUGIN);
             switch (event.getSlot()) {
@@ -64,31 +63,29 @@ public class TeleporterClickEvent implements Listener {
                     event.getWhoClicked().sendMessage(serverLang().getPlugMsg() + "We are currently not working on the arcade games, please come back later!");
                 }
                 case 35 -> event.getWhoClicked().openInventory(Inventories.TELEPORTER_ARCHIVED);
-                case 17 -> event.getWhoClicked().openInventory(Inventories.TELEPORTER_ESG);
+                case 10 -> event.getWhoClicked().openInventory(Inventories.TELEPORTER_ESG);
             }
         }
 
         if (event.getClickedInventory().getName().equalsIgnoreCase(Inventories.TELEPORTER_ARCHIVED.getName())) {
             switch (event.getSlot()) {
-                case 2 -> spawn = new Spawn(Worlds.OLD_ARROWS);
-                case 3 -> spawn = new Spawn(Worlds.OLD_RAIL_PVP);
-                case 4 -> spawn = new Spawn(Worlds.OLD_OBSTACLE);
-                case 5 -> spawn = new Spawn(Worlds.OLD_WIZARDS);
-                case 6 -> spawn = new Spawn(Worlds.OLD_SKYWARS);
+                case 2 -> spawn = new Spawn(OLD_ARROWS);
+                case 3 -> spawn = new Spawn(OLD_RAIL_PVP);
+                case 4 -> spawn = new Spawn(OLD_OBSTACLE);
+                case 5 -> spawn = new Spawn(OLD_WIZARDS);
             }
             if (spawn != null) event.getWhoClicked().teleport(spawn.location(), PlayerTeleportEvent.TeleportCause.PLUGIN);
         }
 
         if (event.getClickedInventory().getName().equalsIgnoreCase(Inventories.TELEPORTER_ESG.getName())) {
             switch (event.getSlot()) {
-                case 2 -> event.getWhoClicked().teleport(new Location(Bukkit.getWorld(Worlds.ESG_FIGHT), -62.5, 52, -132.5, 1.0f, 1.5f), PlayerTeleportEvent.TeleportCause.PLUGIN);
-                case 4 -> event.getWhoClicked().teleport(new Spawn(Worlds.ESG_FIGHT).location(), PlayerTeleportEvent.TeleportCause.PLUGIN);
+                case 2 -> event.getWhoClicked().teleport(new Location(Bukkit.getWorld(ESG_FIGHT), -62.5, 52, -132.5, 1.0f, 1.5f), PlayerTeleportEvent.TeleportCause.PLUGIN);
+                case 4 -> event.getWhoClicked().teleport(new Spawn(ESG_FIGHT).location(), PlayerTeleportEvent.TeleportCause.PLUGIN);
                 case 6 -> {
                     event.getWhoClicked().closeInventory();
-                    event.getWhoClicked().sendMessage(Prefixes.ESG + "We are currently not working on a new map, please come back later!");
+                    event.getWhoClicked().sendMessage(PREFIX_ESG + "We are currently not working on a new map, please come back later!");
                 }
             }
         }
     }
-
 }

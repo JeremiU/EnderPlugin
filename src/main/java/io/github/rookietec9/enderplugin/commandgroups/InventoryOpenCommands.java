@@ -1,6 +1,6 @@
 package io.github.rookietec9.enderplugin.commandgroups;
 
-import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
+import io.github.rookietec9.enderplugin.utils.datamanagers.endcommands.EndExecutor;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -10,11 +10,11 @@ import org.bukkit.event.inventory.InventoryType;
 import java.util.List;
 
 import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
-import static io.github.rookietec9.enderplugin.utils.reference.Syntax.MODE;
+import static io.github.rookietec9.enderplugin.Reference.MODE;
 
 /**
  * @author Jeremi
- * @version 22.8.0
+ * @version 25.7.3
  * @since 21.3.7
  */
 public class InventoryOpenCommands implements EndExecutor {
@@ -22,8 +22,7 @@ public class InventoryOpenCommands implements EndExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         label = label != null ? label : command.getName();
 
-        if (!(sender instanceof Player)) return msg(sender, serverLang().getOnlyUserMsg());
-        Player player = (Player) sender;
+        if (!(sender instanceof Player player)) return msg(sender, serverLang().getOnlyUserMsg());
 
         if (null != label) switch (label.toLowerCase()) {
             case "anvil" -> player.openInventory(Bukkit.createInventory(player, InventoryType.ANVIL));

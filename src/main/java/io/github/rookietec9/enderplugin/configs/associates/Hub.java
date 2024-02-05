@@ -1,15 +1,16 @@
 package io.github.rookietec9.enderplugin.configs.associates;
 
-import io.github.rookietec9.enderplugin.configs.Config;
 import io.github.rookietec9.enderplugin.EnderPlugin;
-import io.github.rookietec9.enderplugin.utils.reference.Worlds;
+import io.github.rookietec9.enderplugin.configs.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 
+import static io.github.rookietec9.enderplugin.Reference.HUB;
+
 /**
  * @author Jeremi
- * @version 17.7.4
+ * @version 25.2.0
  * @since 16.8.9
  */
 public class Hub extends Associate {
@@ -23,7 +24,7 @@ public class Hub extends Associate {
     }
 
     private World getWorld() {
-        return Bukkit.getWorld(getString("world", Worlds.HUB));
+        return Bukkit.getWorld(getString("world", HUB));
     }
 
     private double getX() {

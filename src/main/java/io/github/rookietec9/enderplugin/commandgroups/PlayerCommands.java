@@ -1,6 +1,6 @@
 package io.github.rookietec9.enderplugin.commandgroups;
 
-import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
+import io.github.rookietec9.enderplugin.utils.datamanagers.endcommands.EndExecutor;
 import io.github.rookietec9.enderplugin.events.main.MainDeathEvent;
 import io.github.rookietec9.enderplugin.utils.datamanagers.DataPlayer;
 import io.github.rookietec9.enderplugin.utils.methods.Java;
@@ -14,11 +14,11 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.List;
 
 import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
-import static io.github.rookietec9.enderplugin.utils.reference.Syntax.USER;
+import static io.github.rookietec9.enderplugin.Reference.USER;
 
 /**
  * @author Jeremi
- * @version 22.8.0
+ * @version 25.2.6
  * @since 21.4.5
  */
 public class PlayerCommands implements EndExecutor {
@@ -46,7 +46,7 @@ public class PlayerCommands implements EndExecutor {
                 for (PotionEffectType e : Minecraft.BAD_EFFECTS()) player.removePotionEffect(e);
             }
             case "clear" -> {
-                int i = DataPlayer.getUser(player).clearCount();
+                int i = DataPlayer.get(player).clearCount();
                 if (i == 0) return msg(sender, serverLang().getPlugMsg() + "Clear nothing.");
                 sender.sendMessage(serverLang().getPlugMsg() + "Removed " + i + " item" + (i == 1 ? "" : "s") + ".");
             }
@@ -54,7 +54,7 @@ public class PlayerCommands implements EndExecutor {
 
         String prefix = serverLang().getPlugMsg() + Java.capFirst(label) + (label.toLowerCase().endsWith("g") ? "g" : "") + "ed ";
         msg(sender, prefix + DataPlayer.getUser(player).getTabName() + serverLang().getTxtColor() + ".");
-        return sender.equals(player) || msg(player, prefix + (sender.equals(player) ? "yourself" : "by " + (sender instanceof Player ? DataPlayer.getUser(sender).getTabName() : "a non-player")) + ".");
+        return sender.equals(player) || msg(player, prefix + (sender.equals(player) ? "yourself" : "by " + (sender instanceof Player ? DataPlayer.getUser(((Player) sender)).getTabName() : "a non-player")) + ".");
     }
 
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {

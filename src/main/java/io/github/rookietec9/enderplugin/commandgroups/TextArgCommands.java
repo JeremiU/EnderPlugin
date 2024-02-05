@@ -2,10 +2,11 @@ package io.github.rookietec9.enderplugin.commandgroups;
 
 import io.github.rookietec9.enderplugin.events.main.MainTalkEvent;
 import io.github.rookietec9.enderplugin.utils.datamanagers.DataPlayer;
-import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
+import io.github.rookietec9.enderplugin.utils.datamanagers.endcommands.EndExecutor;
 import io.github.rookietec9.enderplugin.utils.methods.Minecraft;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -13,25 +14,21 @@ import org.bukkit.entity.Player;
 import java.util.List;
 
 import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
-import static io.github.rookietec9.enderplugin.utils.reference.Syntax.*;
+import static io.github.rookietec9.enderplugin.Reference.*;
 
 /**
  * @author Jeremi
- * @version 22.4.1
+ * @version 25.2.0
  * @since 21.4.5
- * <p>
- * Replaces AnonActionCommand, AnonCommand, FakeCommand, SudoCommand, and TitleCommand.
  */
 public class TextArgCommands implements EndExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         label = label != null ? label : command.getName();
-
-        if (args.length < 2 && !label.equalsIgnoreCase("kick")) return msg(sender);
+        if (args.length < 2 && !label.equalsIgnoreCase("kick")) return msg(sender, getSyntax(label));
 
         Player player = Bukkit.getPlayer(args[0]);
         if (player == null) return msg(sender, serverLang().getOfflineMsg());
-
         switch (label) {
             case "anonaction", "action" -> DataPlayer.get(player).sendActionMsg(Minecraft.tacc(StringUtils.join(args, " ", 1, args.length)));
             case "anon" -> {
@@ -40,7 +37,7 @@ public class TextArgCommands implements EndExecutor {
                 String toSend = Minecraft.tacc(StringUtils.join(args, ' ', (log) ? 1 : 2, args.length));
                 player.sendMessage(toSend);
             }
-            case "kick" -> player.kickPlayer((args.length == 1 && sender instanceof Player) ? DataPlayer.getUser(sender).getTabName() + serverLang().getTxtColor() + " had nothing else to do." : Minecraft.tacc(StringUtils.join(args, ' ', 1, args.length)));
+            case "kick" -> player.kickPlayer((args.length == 1 && sender instanceof Player) ? DataPlayer.getUser((OfflinePlayer) sender).getTabName() + serverLang().getTxtColor() + " had nothing else to do." : Minecraft.tacc(StringUtils.join(args, ' ', 1, args.length)));
             case "fake" -> MainTalkEvent.chat(player, StringUtils.join(args, " ", 1, args.length));
             case "sudo" -> player.performCommand(StringUtils.join(args, ' ', 1, args.length));
             case "title" -> {
@@ -74,6 +71,6 @@ public class TextArgCommands implements EndExecutor {
     }
 
     public List<String> commandNames() {
-        return List.of("action");
+        return List.of("action","anon","fake","kick","sudo","title");
     }
 }

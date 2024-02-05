@@ -1,19 +1,19 @@
 package io.github.rookietec9.enderplugin.scoreboards;
 
-import io.github.rookietec9.enderplugin.utils.reference.BoardNames;
-import io.github.rookietec9.enderplugin.utils.reference.Worlds;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import static io.github.rookietec9.enderplugin.Reference.*;
+
 /**
  * @author Jeremi
- * @since 19.3.6
+ * @since 25.2.0
  * @version 19.3.6
  */
 public class ESGBoard extends Board {
 
     public ESGBoard(Player player) {
-        super(player, Worlds.ESG_FIGHT, BoardNames.ESG, ChatColor.GOLD);
+        super(player, ESG_FIGHT, colorFormat(TITLE_ESG, ChatColor.GOLD), ChatColor.GOLD);
         putBreaks(12, 7);
         putData("Phase", "DONE", 11);
         putData("Time Left", formatTime(0), 10);

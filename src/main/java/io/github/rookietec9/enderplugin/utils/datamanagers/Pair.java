@@ -4,7 +4,7 @@ package io.github.rookietec9.enderplugin.utils.datamanagers;
  * @param <K> key
  * @param <V> value
  * @author Jeremi
- * @version 21.3.4
+ * @version 23.2.8
  * @since 19.7.8
  */
 public class Pair<K, V> {
@@ -26,6 +26,6 @@ public class Pair<K, V> {
     }
 
     public String toString() {
-        return "K " + key.toString() + " V " + value.toString();
+        return "[K " + key.toString() + " V " + value.toString() + "]";
     }
 }

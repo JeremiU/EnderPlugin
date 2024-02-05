@@ -1,19 +1,19 @@
 package io.github.rookietec9.enderplugin.scoreboards;
 
-import io.github.rookietec9.enderplugin.utils.reference.BoardNames;
-import io.github.rookietec9.enderplugin.utils.reference.Worlds;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import static io.github.rookietec9.enderplugin.Reference.*;
+
 /**
  * @author Jeremi
- * @since 19.3.7
+ * @since 25.2.0
  * @version 19.3.7
  */
 public class KitPVPBoard extends Board {
 
     public KitPVPBoard(Player player) {
-        super(player, Worlds.KIT_PVP, BoardNames.KIT_PVP, ChatColor.AQUA);
+        super(player, KIT_PVP, colorFormat(TITLE_KIT_PVP, ChatColor.AQUA), ChatColor.AQUA);
         putBreaks(13, 11, 7);
         putData("Kit", "NONE", 12);
         putHeader("THIS ROUND:", false, 10);

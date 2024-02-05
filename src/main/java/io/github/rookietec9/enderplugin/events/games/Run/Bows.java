@@ -10,19 +10,25 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.inventory.ItemStack;
 
+import static io.github.rookietec9.enderplugin.Reference.SWAG_RUN;
+
 /**
  * @author Jeremi
- * @version 11.6.4
+ * @version 25.6.5
  * @since 11.3.4
  */
 public class Bows implements Listener { //prob don't work
 
     @EventHandler
     public void run(EntityShootBowEvent event) {
+        if (!event.getEntity().getWorld().getName().equalsIgnoreCase(SWAG_RUN)) return;
+
         ItemStack itemStack = event.getBow();
         LivingEntity entity = event.getEntity();
         Location location = entity.getLocation().clone();
         location.setY(location.getY() + 2);
+
+        if (itemStack == null) return;
 
         if (!itemStack.getItemMeta().hasDisplayName()) return;
         if (ChatColor.stripColor(itemStack.getItemMeta().getDisplayName()).equalsIgnoreCase("Intimidator Bow")) {

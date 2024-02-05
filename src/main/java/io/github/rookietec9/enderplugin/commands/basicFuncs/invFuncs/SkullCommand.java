@@ -1,6 +1,6 @@
 package io.github.rookietec9.enderplugin.commands.basicFuncs.invFuncs;
 
-import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
+import io.github.rookietec9.enderplugin.utils.datamanagers.endcommands.EndExecutor;
 import io.github.rookietec9.enderplugin.utils.methods.SkullMaker;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -10,11 +10,11 @@ import org.bukkit.inventory.ItemStack;
 import java.util.List;
 
 import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
-import static io.github.rookietec9.enderplugin.utils.reference.Syntax.*;
+import static io.github.rookietec9.enderplugin.Reference.USER;
 
 /**
  * @author Jeremi
- * @version 22.8.0
+ * @version 25.2.0
  * @since 19.3.4
  */
 public class SkullCommand implements EndExecutor {

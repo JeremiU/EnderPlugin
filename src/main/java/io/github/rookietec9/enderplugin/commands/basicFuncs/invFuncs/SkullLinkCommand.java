@@ -1,7 +1,7 @@
 package io.github.rookietec9.enderplugin.commands.basicFuncs.invFuncs;
 
 import io.github.rookietec9.enderplugin.EnderPlugin;
-import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
+import io.github.rookietec9.enderplugin.utils.datamanagers.endcommands.EndExecutor;
 import io.github.rookietec9.enderplugin.utils.methods.Java;
 import io.github.rookietec9.enderplugin.utils.methods.SkullMaker;
 import org.bukkit.command.Command;

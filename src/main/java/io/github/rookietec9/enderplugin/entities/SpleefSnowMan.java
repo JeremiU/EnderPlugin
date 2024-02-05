@@ -10,12 +10,12 @@ import java.lang.reflect.Field;
 
 /**
  * @author Jeremi
- * @version 19.6.3
+ * @version 25.7.6
  * @since 17.8.5
  */
 public class SpleefSnowMan extends EntitySnowman implements CustomMob {
 
-    public static MobInfo mobInfo = new MobInfo(EntityType.SNOWMAN, "SPLEEF_SNOW_MAN", SpleefSnowMan.class);
+    public static final MobInfo mobInfo = new MobInfo(EntityType.SNOWMAN, "SPLEEF_SNOW_MAN", SpleefSnowMan.class);
 
     public SpleefSnowMan(World world) {
         super(((CraftWorld) world).getHandle());
@@ -48,7 +48,7 @@ public class SpleefSnowMan extends EntitySnowman implements CustomMob {
         return new SpleefSnowMan(world);
     }
 
-    public EntityCreature creature() {
+    public EntityInsentient mob() {
         return this;
     }
 

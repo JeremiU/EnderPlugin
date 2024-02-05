@@ -1,29 +1,26 @@
 package io.github.rookietec9.enderplugin.utils.methods;
 
 import io.github.rookietec9.enderplugin.EnderPlugin;
+import io.github.rookietec9.enderplugin.configs.DataType;
 import io.github.rookietec9.enderplugin.configs.associates.Spawn;
-import io.github.rookietec9.enderplugin.events.games.murder.JoinEvent;
-import io.github.rookietec9.enderplugin.scoreboards.HideBoard;
-import io.github.rookietec9.enderplugin.scoreboards.MurderBoard;
+import io.github.rookietec9.enderplugin.events.games.murder.MurderStartEvent;
+import io.github.rookietec9.enderplugin.scoreboards.murder.HideBoard;
+import io.github.rookietec9.enderplugin.scoreboards.murder.MurderBoard;
 import io.github.rookietec9.enderplugin.utils.datamanagers.DataPlayer;
-import io.github.rookietec9.enderplugin.utils.reference.DataType;
-import io.github.rookietec9.enderplugin.utils.reference.Prefixes;
-import io.github.rookietec9.enderplugin.utils.reference.Teams;
-import io.github.rookietec9.enderplugin.utils.reference.Worlds;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.player.PlayerTeleportEvent;
-import org.bukkit.scoreboard.Scoreboard;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+
+import static io.github.rookietec9.enderplugin.Reference.*;
+import static org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 /**
  * @author Jeremi
- * @version 22.8.0
+ * @version 25.7.3
  * @since 18.9.7
  */
 public class FinderBase {
@@ -35,8 +32,8 @@ public class FinderBase {
     private final boolean isMurder;
 
     public FinderBase(boolean isMurder) {
-        world = isMurder ? Worlds.MURDER : Worlds.HIDENSEEK;
-        prefix = isMurder ? Prefixes.MURDER : Prefixes.HIDENNSEEK;
+        world = MURDER;
+        prefix = isMurder ? PREFIX_MURDER : PREFIX_HIDENNSEEK;
         seeker = isMurder ? "murderer" : "seeker";
         this.isMurder = isMurder;
     }
@@ -59,8 +56,8 @@ public class FinderBase {
         }
 
         for (Player p : Bukkit.getWorld(world).getPlayers()) {
-            DataPlayer.getUser(p).reset();
-            p.teleport(new Spawn(world).location(), PlayerTeleportEvent.TeleportCause.PLUGIN);
+            DataPlayer.get(p).reset();
+            p.teleport(new Spawn(world).location(), TeleportCause.PLUGIN);
 
             if (isMurder) {
                 DataPlayer.get(p).getBoard(MurderBoard.class).names(false);
@@ -69,7 +66,7 @@ public class FinderBase {
                 DataPlayer.get(p).getBoard(MurderBoard.class).updateMode(false, false);
             } else {
                 DataPlayer.get(p).getBoard(HideBoard.class).names(false);
-                DataPlayer.get(p).getBoard(HideBoard.class).updateTicks(0);
+                DataPlayer.get(p).getBoard(HideBoard.class).updateTicks();
                 DataPlayer.get(p).getBoard(HideBoard.class).updatePeople(0);
                 DataPlayer.get(p).getBoard(HideBoard.class).updateSeeker("none");
                 DataPlayer.get(p).getBoard(HideBoard.class).updateMode(false, false);
@@ -85,11 +82,9 @@ public class FinderBase {
         String escapees = (isMurder ? "escapee" : "hider") + (escapedList.size() == 1 ? "" : "s") ;
         String escape = isMurder ? "escape" : "stay hidden";
 
-        String murdererName = Bukkit.getScoreboardManager().getMainScoreboard().getTeam(Teams.badTeam).getEntries().iterator().next();
-        Player murderer = Bukkit.getPlayer(murdererName);
+        Player murderer = Teams.getEntries(Teams.TEAM_NEGATIVE).get(0);
 
-        StringBuilder caughtString = new StringBuilder().append("§7");
-        StringBuilder escapeString = new StringBuilder().append("§7");
+        StringBuilder caughtString = new StringBuilder(ChatColor.GRAY + ""), escapeString = new StringBuilder(ChatColor.GRAY + "");
 
         for (int i = 0; i < escapedList.size(); i++) {
             escapeString.append(DataPlayer.getUser(escapedList.get(i)).getNickName());
@@ -107,7 +102,7 @@ public class FinderBase {
         DataType winsType = isMurder ? DataType.MURDERWINS : DataType.HOODWINS;
 
         if (escapedList.size() == 0) {
-            Minecraft.worldBroadcast(world, prefix + "The " + seeker + ", " + murdererName + " won the game.");
+            Minecraft.worldBroadcast(world, prefix + "The " + seeker + ", " + DataPlayer.getUser(murderer).getNickName() + " won the game.");
             DataPlayer.get(murderer).increment(winsType);
             for (Player player : caughtList) DataPlayer.get(player).increment(lossesType);
         }
@@ -118,16 +113,16 @@ public class FinderBase {
         }
 
         if (caughtList.size() != 0 && escapedList.size() != 0) {
-            Minecraft.worldBroadcast(Worlds.MURDER, Prefixes.MURDER + "Not everyone managed to " + escape + "!");
-            Minecraft.worldBroadcast(Worlds.MURDER, Prefixes.MURDER + escapees + ": " + escapeString.toString());
-            Minecraft.worldBroadcast(Worlds.MURDER, Prefixes.MURDER + "Players caught: " + caughtString.toString());
+            Minecraft.worldBroadcast(MURDER, PREFIX_MURDER + "Not everyone managed to " + escape + "!");
+            Minecraft.worldBroadcast(MURDER, PREFIX_MURDER + escapees + ": " + escapeString.toString());
+            Minecraft.worldBroadcast(MURDER, PREFIX_MURDER + "Players caught: " + caughtString.toString());
 
             for (Player player : caughtList) DataPlayer.get(player).increment(lossesType);
             for (Player player : escapedList) DataPlayer.get(player).increment(winsType);
             DataPlayer.get(murderer).increment(lossesType);
         }
 
-        if (escapedList.size() != 0) Minecraft.worldBroadcast(world, prefix + murdererName + "was the" + seeker + ".");
+        if (escapedList.size() != 0) Minecraft.worldBroadcast(world, prefix + DataPlayer.getUser(murderer).getNickName() + " was the " + seeker + ".");
 
         if (isMurder) {
             DataPlayer.prisonEscapeList = new ArrayList<>();
@@ -136,45 +131,42 @@ public class FinderBase {
             DataPlayer.hoodEscapeList = new ArrayList<>();
             DataPlayer.hoodCaughtList = new ArrayList<>();
         }
+        Bukkit.getWorld(world).getPlayers().forEach(p -> DataPlayer.get(p).finishGame());
     }
 
-    public void catchPlayer(EntityDamageByEntityEvent event) {
+    public void catchPlayer(Player dead, Player killer) {
+        DataPlayer.get(dead).finishGame();
 
-        Player found = (Player) event.getEntity();
-        Player seeker = (Player) event.getDamager();
-        Scoreboard board = Bukkit.getScoreboardManager().getMainScoreboard();
+        if (!Teams.contains(Teams.TEAM_POSITIVE, dead) || !Teams.contains(Teams.TEAM_NEGATIVE, killer)) return;
 
-        if (!Teams.contains(Teams.goodTeam, found) || !Teams.contains(Teams.badTeam, seeker)) return;
-
-        Teams.remove(Teams.goodTeam, found);
-        if (isMurder) DataPlayer.prisonCaughtList.add(found);
+        Teams.remove(Teams.TEAM_POSITIVE, dead);
+        if (isMurder) DataPlayer.prisonCaughtList.add(dead);
         else {
-            DataPlayer.hoodEscapeList.remove(found);
-            DataPlayer.hoodCaughtList.add(found);
+            DataPlayer.hoodEscapeList.remove(dead);
+            DataPlayer.hoodCaughtList.add(dead);
         }
 
-        found.teleport(new Spawn(world).location(), PlayerTeleportEvent.TeleportCause.PLUGIN);
+        dead.teleport(new Spawn(world).location(), TeleportCause.PLUGIN);
 
-            for (String s : board.getTeam(Teams.goodTeam).getEntries()) {
-            Player p = Bukkit.getPlayer(s);
+            for (Player p : Teams.getEntries(Teams.TEAM_POSITIVE)) {
 
             if (isMurder) p.getWorld().playSound(p.getLocation(), Sound.CREEPER_HISS, 1, 1);
-            p.sendMessage(isMurder ? Prefixes.MURDER + "One of your mates just got caught lacking!" : Prefixes.HIDENNSEEK + DataPlayer.getUser(found).getNickName() + " was found!");
-            if (isMurder) DataPlayer.get(p).getBoard(MurderBoard.class).updatePeople(Teams.getTeam(Teams.goodTeam).getSize());
+            p.sendMessage(isMurder ? PREFIX_MURDER + "One of your mates just got caught lacking!" : PREFIX_HIDENNSEEK + DataPlayer.getUser(dead).getNickName() + " was found!");
+            if (isMurder) DataPlayer.get(p).getBoard(MurderBoard.class).updatePeople(Teams.getTeam(Teams.TEAM_POSITIVE).getSize());
             else DataPlayer.get(p).getBoard(HideBoard.class).updatePeople(DataPlayer.hoodEscapeList.size());
         }
 
-        if (isMurder) JoinEvent.giveWeapon();
+        if (isMurder) MurderStartEvent.giveWeapon();
 
-        if (Bukkit.getScoreboardManager().getMainScoreboard().getTeam(Teams.goodTeam).getSize() == 0) {
+        if (Teams.getEntries(Teams.TEAM_POSITIVE).size() == 0) {
             if (isMurder) EnderPlugin.murderBase.reset();
             else EnderPlugin.hoodBase.reset();
             return;
         }
 
         for (Player p : Bukkit.getWorld(world).getPlayers()) {
-            if (isMurder) DataPlayer.get(p).getBoard(MurderBoard.class).updatePeople(Teams.getTeam(Teams.goodTeam).getSize());
-            else DataPlayer.get(p).getBoard(HideBoard.class).updatePeople(Teams.getTeam(Teams.goodTeam).getSize() + Teams.getTeam(Teams.badTeam).getSize());
+            if (isMurder) DataPlayer.get(p).getBoard(MurderBoard.class).updatePeople(Teams.getTeam(Teams.TEAM_POSITIVE).getSize());
+            else DataPlayer.get(p).getBoard(HideBoard.class).updatePeople(Teams.getTeam(Teams.TEAM_POSITIVE).getSize() + Teams.getTeam(Teams.TEAM_NEGATIVE).getSize());
         }
     }
 }

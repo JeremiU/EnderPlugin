@@ -1,6 +1,6 @@
 package io.github.rookietec9.enderplugin.utils.datamanagers;
 
-import io.github.rookietec9.enderplugin.utils.reference.Teams;
+import io.github.rookietec9.enderplugin.utils.methods.Teams;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftCreature;
@@ -16,7 +16,7 @@ import java.util.Set;
 
 /**
  * @author Jeremi
- * @version 22.8.0
+ * @version 24.3.6
  * @since 19.9.9
  */
 public class TargetMapper {
@@ -89,9 +89,6 @@ public class TargetMapper {
                 target = player;
             }
 
-        if (target == null) {
-            return null;
-        }
         return target;
     }
 

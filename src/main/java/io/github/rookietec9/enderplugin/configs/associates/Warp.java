@@ -1,7 +1,7 @@
 package io.github.rookietec9.enderplugin.configs.associates;
 
-import io.github.rookietec9.enderplugin.configs.Config;
 import io.github.rookietec9.enderplugin.EnderPlugin;
+import io.github.rookietec9.enderplugin.configs.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -12,10 +12,11 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * @version 17.7.4
+ * @author Jeremi
+ * @version 25.7.3
  */
 public class Warp extends Associate {
-    private static final File files = new File(EnderPlugin.getInstance().getDataFolder().getPath() + File.separator + "Warp");
+    private static final File files = new File(EnderPlugin.getInstance().getDataFolder().getPath(), "Warp");
     private final String name;
 
     public Warp(String name) {
@@ -25,13 +26,18 @@ public class Warp extends Associate {
     }
 
     public static boolean exists(String name) {
-        return new File(EnderPlugin.getInstance().getDataFolder().getPath() + File.separator + "Warp" + File.separator + name + ".yml").exists();
+        return new File(EnderPlugin.getInstance().getDataFolder().getPath() + File.separator + "Warp", name + ".yml").exists();
     }
 
     public static List<String> getWarps() {
         List<String> warps = new ArrayList<>();
         for (File f : Objects.requireNonNull(files.listFiles())) warps.add(f.getName().replace(".yml", ""));
         return warps;
+    }
+
+    public static boolean delete(String warpName) {
+        File file = new File(files, warpName + ".yml");
+        return file.delete();
     }
 
     public String getName() {
@@ -74,16 +80,16 @@ public class Warp extends Associate {
         return getFloat("yaw", 0);
     }
 
-    public void setYaw(long l) {
-        set("yaw", l);
+    public void setYaw(float f) {
+        set("yaw", f);
     }
 
     private float getPitch() {
         return getFloat("pitch", 0);
     }
 
-    public void setPitch(long l) {
-        set("pitch", l);
+    public void setPitch(float f) {
+        set("pitch", f);
     }
 
     public Location location() {return new Location(getWorld(), getX(), getY(), getZ(), getYaw(), getPitch());}

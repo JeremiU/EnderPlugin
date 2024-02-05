@@ -2,7 +2,9 @@ package io.github.rookietec9.enderplugin.utils.methods;
 
 import io.github.rookietec9.enderplugin.EnderPlugin;
 import io.github.rookietec9.enderplugin.entities.CustomMob;
+import io.github.rookietec9.enderplugin.utils.datamanagers.PartySystem;
 import net.minecraft.server.v1_8_R3.EntityCreature;
+import net.minecraft.server.v1_8_R3.EntityInsentient;
 import org.bukkit.*;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
@@ -10,77 +12,39 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.*;
 
+import static io.github.rookietec9.enderplugin.Inventories.*;
+import static io.github.rookietec9.enderplugin.utils.datamanagers.PartySystem.PartyTeam;
+
 /**
  * @author Jeremi
- * @version 22.4.1
+ * @version 25.7.3
  */
 public interface Minecraft {
 
     static List<String> getVersions() {
-        List<String> list = new ArrayList<>();
-        list.addAll(Arrays.asList("Pre", "Classic", "Indev", "Infdev", "Seecret", "Survtest", "Alpha", "Beta", "Gamma", "Delta", "Epsilon", "Zeta", "Eta", "Theta", "Iota", "Kappa", "Lambda", "Mu", "Nu", "Xi", "Omicron", "Pi", "Rho", "Sigma", "Tau", "Upsilon", "Phi", "Chi", "Psi", "Omega"));
-        return list;
+        return Arrays.asList("Pre", "Classic", "Indev", "Infdev", "Seecret", "Survtest", "Alpha", "Beta", "Gamma", "Delta", "Epsilon", "Zeta", "Eta", "Theta", "Iota", "Kappa", "Lambda", "Mu", "Nu", "Xi", "Omicron", "Pi", "Rho", "Sigma", "Tau", "Upsilon", "Phi", "Chi", "Psi", "Omega");
     }
 
     static Set<Material> HOLLOW_MATERIALS() {
-        Set<Material> HOLLOW_MATERIALS = new HashSet<>();
-        HOLLOW_MATERIALS.add(Material.AIR);
-        HOLLOW_MATERIALS.add(Material.SAPLING);
-        HOLLOW_MATERIALS.add(Material.POWERED_RAIL);
-        HOLLOW_MATERIALS.add(Material.DETECTOR_RAIL);
-        HOLLOW_MATERIALS.add(Material.LONG_GRASS);
-        HOLLOW_MATERIALS.add(Material.DEAD_BUSH);
-        HOLLOW_MATERIALS.add(Material.YELLOW_FLOWER);
-        HOLLOW_MATERIALS.add(Material.RED_ROSE);
-        HOLLOW_MATERIALS.add(Material.BROWN_MUSHROOM);
-        HOLLOW_MATERIALS.add(Material.RED_MUSHROOM);
-        HOLLOW_MATERIALS.add(Material.TORCH);
-        HOLLOW_MATERIALS.add(Material.REDSTONE_WIRE);
-        HOLLOW_MATERIALS.add(Material.SEEDS);
-        HOLLOW_MATERIALS.add(Material.SIGN_POST);
-        HOLLOW_MATERIALS.add(Material.WOODEN_DOOR);
-        HOLLOW_MATERIALS.add(Material.LADDER);
-        HOLLOW_MATERIALS.add(Material.RAILS);
-        HOLLOW_MATERIALS.add(Material.WALL_SIGN);
-        HOLLOW_MATERIALS.add(Material.LEVER);
-        HOLLOW_MATERIALS.add(Material.STONE_PLATE);
-        HOLLOW_MATERIALS.add(Material.IRON_DOOR_BLOCK);
-        HOLLOW_MATERIALS.add(Material.WOOD_PLATE);
-        HOLLOW_MATERIALS.add(Material.REDSTONE_TORCH_OFF);
-        HOLLOW_MATERIALS.add(Material.REDSTONE_TORCH_ON);
-        HOLLOW_MATERIALS.add(Material.STONE_BUTTON);
-        HOLLOW_MATERIALS.add(Material.SNOW);
-        HOLLOW_MATERIALS.add(Material.SUGAR_CANE_BLOCK);
-        HOLLOW_MATERIALS.add(Material.DIODE_BLOCK_OFF);
-        HOLLOW_MATERIALS.add(Material.DIODE_BLOCK_ON);
-        HOLLOW_MATERIALS.add(Material.PUMPKIN_STEM);
-        HOLLOW_MATERIALS.add(Material.MELON_STEM);
-        HOLLOW_MATERIALS.add(Material.VINE);
-        HOLLOW_MATERIALS.add(Material.FENCE_GATE);
-        HOLLOW_MATERIALS.add(Material.WATER_LILY);
-        HOLLOW_MATERIALS.add(Material.NETHER_WARTS);
-        HOLLOW_MATERIALS.add(Material.CARPET);
-
-        return HOLLOW_MATERIALS;
+        return new HashSet<>(Arrays.asList(Material.AIR, Material.SAPLING, Material.POWERED_RAIL, Material.DETECTOR_RAIL,
+                Material.LONG_GRASS, Material.DEAD_BUSH, Material.YELLOW_FLOWER, Material.RED_ROSE, Material.BROWN_MUSHROOM, Material.RED_MUSHROOM, Material.TORCH,
+                Material.REDSTONE_WIRE, Material.SEEDS, Material.SIGN_POST, Material.WOODEN_DOOR, Material.LADDER, Material.RAILS, Material.WALL_SIGN, Material.LEVER,
+                Material.STONE_PLATE, Material.IRON_DOOR_BLOCK, Material.WOOD_PLATE, Material.REDSTONE_TORCH_OFF, Material.REDSTONE_TORCH_ON, Material.STONE_BUTTON,
+                Material.SNOW, Material.SUGAR_CANE_BLOCK, Material.DIODE_BLOCK_OFF, Material.DIODE_BLOCK_ON, Material.PUMPKIN_STEM, Material.MELON_STEM, Material.VINE,
+                Material.FENCE_GATE, Material.WATER_LILY,  Material.NETHER_WARTS, Material.CARPET
+        ));
     }
 
     static Set<PotionEffectType> BAD_EFFECTS() {
-        Set<PotionEffectType> BAD_EFFECTS = new HashSet<>();
-        BAD_EFFECTS.add(PotionEffectType.BLINDNESS);
-        BAD_EFFECTS.add(PotionEffectType.CONFUSION);
-        BAD_EFFECTS.add(PotionEffectType.HARM);
-        BAD_EFFECTS.add(PotionEffectType.HUNGER);
-        BAD_EFFECTS.add(PotionEffectType.POISON);
-        BAD_EFFECTS.add(PotionEffectType.SLOW);
-        BAD_EFFECTS.add(PotionEffectType.SLOW_DIGGING);
-        BAD_EFFECTS.add(PotionEffectType.WEAKNESS);
-        BAD_EFFECTS.add(PotionEffectType.WITHER);
-        return BAD_EFFECTS;
+        return new HashSet<>(Arrays.asList(PotionEffectType.BLINDNESS, PotionEffectType.CONFUSION,  PotionEffectType.HARM, PotionEffectType.HUNGER,
+                PotionEffectType.POISON, PotionEffectType.SLOW, PotionEffectType.SLOW_DIGGING, PotionEffectType.WEAKNESS, PotionEffectType.WITHER));
     }
 
     static String getMatName(Material material) {
@@ -147,12 +111,10 @@ public interface Minecraft {
     }
 
     static LivingEntity spawn(CustomMob mob, Location location) {
-
-        EntityCreature creature = mob.spawn(location.getWorld()).creature();
+        EntityInsentient creature = mob.spawn(location.getWorld()).mob();
         creature.setLocation(location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch());
         ((CraftLivingEntity) creature.getBukkitEntity()).setRemoveWhenFarAway(false);
-        ((CraftWorld) location.getWorld()).addEntity(creature, CreatureSpawnEvent.SpawnReason.CUSTOM);
-
+        ((CraftWorld)location.getWorld()).addEntity(creature, CreatureSpawnEvent.SpawnReason.CUSTOM);
         return (LivingEntity) creature.getBukkitEntity();
     }
 
@@ -165,8 +127,10 @@ public interface Minecraft {
             case DARK_GRAY, GRAY -> Color.GRAY;
             case DARK_GREEN, GREEN -> Color.GREEN;
             case DARK_PURPLE, LIGHT_PURPLE -> Color.PURPLE;
-            case DARK_RED, RED -> Color.RED;
-            case GOLD, YELLOW -> Color.YELLOW;
+            case RED -> Color.RED;
+            case DARK_RED -> Color.fromRGB(120,0,0);
+            case YELLOW -> Color.YELLOW;
+            case GOLD -> Color.fromRGB(255,223,0);
             case WHITE -> Color.WHITE;
             default -> null;
         };
@@ -186,9 +150,57 @@ public interface Minecraft {
         };
     }
 
+    static ChatColor teamColor(String string, boolean whiteToYellow) {
+        if (string.toLowerCase().contains("red")) return ChatColor.RED;
+        if (string.toLowerCase().contains("blue")) return ChatColor.BLUE;
+        if (string.toLowerCase().contains("green")) return ChatColor.GREEN;
+        if (string.toLowerCase().contains("bad")) return ChatColor.DARK_RED;
+        if (string.toLowerCase().contains("good")) return ChatColor.GOLD;
+        if (string.toLowerCase().contains("yellow") || string.toLowerCase().contains("white")) {
+            return whiteToYellow ? ChatColor.YELLOW : ChatColor.WHITE;
+        }
+        return ChatColor.GRAY;
+    }
+
     static String tacc(String message) {
         return ChatColor.translateAlternateColorCodes('&', message).replace("&r", "&7").replace("&R", "&7");
     }
 
+    static void startGame(InventoryClickEvent event, Inventory inventory, String prefix, Runnable global, Runnable parties, Runnable party, PartyTeam... validTeams) {
+        if (!inventory.getName().equalsIgnoreCase(event.getInventory().getName())) return;
+
+        event.setCancelled(true);
+        Player player = (Player) event.getWhoClicked();
+        player.closeInventory();
+
+        if (!PartySystem.check(player, prefix, event.getSlot(), validTeams)) return;
+
+        switch (event.getSlot()) {
+            case START_GLOBAL -> global.run();
+            case START_PARTIES_RANDOM, START_PARTIES_TEAMS -> parties.run();
+            case START_PARTY_TEAM, START_PARTY_RANDOM -> party.run();
+        }
+    }
+
     enum VerType {CYCLE, NUM, JARNAME, NUM_NO_DOTS}
+
+    static void addWorld(String worldName) {
+        editWorld(worldName, true);
+    }
+
+    static void removeWorld(String worldName) {
+        editWorld(worldName, false);
+    }
+
+    private static void editWorld(String worldName, boolean add) {
+        List<String> list = getWorlds();
+        if (add) list.add(worldName); else list.remove(worldName);
+        EnderPlugin.getInstance().getConfig().set("worlds", list);
+        EnderPlugin.getInstance().saveConfig();
+        EnderPlugin.getInstance().reloadConfig();
+    }
+
+    static List<String> getWorlds() {
+        return EnderPlugin.getInstance().getConfig().getStringList("worlds");
+    }
 }

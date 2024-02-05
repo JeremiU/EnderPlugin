@@ -8,9 +8,11 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.*;
 
+import java.util.HashMap;
+
 /**
  * @author Jeremi
- * @version 21.3.4
+ * @version 25.2.7
  * @since 16.8.9
  */
 public class Board {
@@ -25,9 +27,11 @@ public class Board {
     private GameMode defaultGameMode = GameMode.ADVENTURE;
     private int breakAmount;
 
-    Board(Player player, String worldName, String name, ChatColor color) {
+    private final HashMap<String, String> valuesMap = new HashMap<>();
+
+    protected Board(Player player, String worldName, String name, ChatColor color) {
         this.player = player;
-        this.world = Bukkit.getWorld(worldName);
+        this.world = worldName != null ? Bukkit.getWorld(worldName) : null;
         this.color = color;
         this.name = name;
 
@@ -38,12 +42,12 @@ public class Board {
         objective.setDisplayName(name);
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         objective.getScore(color + "ENDCRAFT SERVER").setScore(2);
-        objective.getScore(ChatColor.WHITE + DataPlayer.getUniversalIP()).setScore(1);
+        objective.getScore(ChatColor.WHITE + DataPlayer.SERVER_IP).setScore(1);
         putBreaks(3);
         if (player.getWorld().getName().equalsIgnoreCase(worldName)) player.setScoreboard(scoreboard);
     }
 
-    Board(Player player, String worldName, String name, ChatColor color, GameMode defaultGameMode) {
+    protected Board(Player player, String worldName, String name, ChatColor color, GameMode defaultGameMode) {
         this(player, worldName, name, color);
         this.defaultGameMode = defaultGameMode;
     }
@@ -55,8 +59,8 @@ public class Board {
 
         String formattedTime = "";
 
-        if (minutes >= 60) formattedTime += chatColor + "" + toVal(hours) + semiColor + ":";
-        formattedTime += chatColor + "" + minutes + semiColor + ":" + chatColor + toVal(seconds);
+        if (hours >= 1) formattedTime += chatColor + "" + toVal(hours) + semiColor + ":";
+        formattedTime += chatColor + "" + toVal(minutes) + semiColor + ":" + chatColor + toVal(seconds);
 
         return formattedTime;
     }
@@ -80,7 +84,7 @@ public class Board {
         return name;
     }
 
-    void putBreaks(int... lines) {
+    protected void putBreaks(int... lines) {
         for (int i : lines) {
             if (breakAmount > breaks.length - 1) return;
             objective.getScore(breaks[breakAmount]).setScore(i);
@@ -88,47 +92,44 @@ public class Board {
         }
     }
 
-    void putData(String field, String data, int line) {
+    protected void putData(String field, String data, int line) {
+        valuesMap.put(field, color + field + ChatColor.WHITE + ": " + data);
         objective.getScore(color + field + ChatColor.WHITE + ": " + data).setScore(line);
     }
 
-    void putHeader(String field, boolean useColor, int line) {
-        objective.getScore((useColor ? color : ChatColor.WHITE) + field).setScore(line);
+    protected void putHeader(String text, boolean useColor, int line, String ... key) {
+        if (key.length == 1) valuesMap.put(key[0], (useColor ? color : ChatColor.WHITE) + text);
+        objective.getScore((useColor ? color : ChatColor.WHITE) + text).setScore(line);
     }
 
     public void updateData(String field, String newData) {
-        String toReset = "";
-        int line = -1;
+        String toReset = valuesMap.get(field);
+        int line = objective.getScore(valuesMap.get(field)).getScore();
 
-        for (String string : scoreboard.getEntries()) {
-            if (string.toLowerCase().contains(field.toLowerCase())) {
-                toReset = string;
-                line = objective.getScore(string).getScore();
-            }
-        }
         scoreboard.resetScores(toReset);
         objective.getScore(color + field + ChatColor.WHITE + ": " + newData).setScore(line);
+        valuesMap.put(field, color + field + ChatColor.WHITE + ": " + newData);
     }
 
-    void updateHeader(String newHeader, boolean useColor, String... oldHeaders) {
-        int line = -1;
-        for (String oldHeader : oldHeaders) {
-            for (String string : scoreboard.getEntries()) {
-                if (string.toLowerCase().contains(oldHeader.toLowerCase())) {
-                    line = objective.getScore(string).getScore();
-                    scoreboard.resetScores(string);
-                }
-            }
-        }
-        objective.getScore((useColor ? color : ChatColor.WHITE) + newHeader).setScore(line);
+    protected void updateHeader(String key, String text, boolean useColor) {
+        if (key == null) return;
+        String toReset = valuesMap.get(key);
+        int line = objective.getScore(valuesMap.get(key)).getScore();
+        scoreboard.resetScores(toReset);
+        objective.getScore((useColor ? color : ChatColor.WHITE) + text).setScore(line);
+        valuesMap.put(key, (useColor ? color : ChatColor.WHITE) + text);
     }
 
-    String formatTime(int ticks) {
+    protected String formatTime(int ticks) {
         return Board.formatTime(ticks, color, ChatColor.WHITE);
     }
 
     public void init() {
         player.setScoreboard(scoreboard);
+    }
+
+    public void changeTitle(String title) {
+        objective.setDisplayName(title);
     }
 
     public World getWorld() {
@@ -144,7 +145,7 @@ public class Board {
 
         if (team == null) team = player.getScoreboard().registerNewTeam("all");
 
-        for (Player p : world.getPlayers()) team.addEntry(p.getName());
+        for (Player p : player.getWorld().getPlayers()) team.addEntry(p.getName());
         team.setNameTagVisibility(hide ? NameTagVisibility.NEVER : NameTagVisibility.ALWAYS);
     }
 }

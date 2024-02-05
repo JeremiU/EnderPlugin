@@ -1,10 +1,10 @@
 package io.github.rookietec9.enderplugin.commands.games.ESG;
 
-import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
+import io.github.rookietec9.enderplugin.utils.datamanagers.endcommands.EndExecutor;
 import io.github.rookietec9.enderplugin.configs.esg.ESGKit;
 import io.github.rookietec9.enderplugin.configs.esg.ESGPlayer;
 import io.github.rookietec9.enderplugin.Inventories;
-import io.github.rookietec9.enderplugin.utils.datamanagers.Item;
+import io.github.rookietec9.enderplugin.utils.datamanagers.ItemWrapper;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -17,7 +17,7 @@ import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
 
 /**
  * @author Jeremi
- * @version 22.8.0
+ * @version 24.3.6
  * @since 7.1.9
  */
 public class ESGCommand implements EndExecutor {
@@ -36,9 +36,9 @@ public class ESGCommand implements EndExecutor {
             if (i < ESGKit.Kits.values().length && esg.getKitLevel(ESGKit.Kits.values()[i]) == 0) {
                 personalizedInventory.getItem(i).setType(Material.BARRIER);
                 personalizedInventory.getItem(i).setAmount(1);
-                Item item = Item.fromItemStack(personalizedInventory.getItem(i));
-                item.setLore("","§4Not unlocked yet!");
-                personalizedInventory.setItem(i, item.toItemStack());
+                ItemWrapper<?> itemWrapper = ItemWrapper.fromItemStack(personalizedInventory.getItem(i));
+                itemWrapper.setLore("","§4Not unlocked yet!");
+                personalizedInventory.setItem(i, itemWrapper.toItemStack());
             }
         }
         player.openInventory(personalizedInventory);

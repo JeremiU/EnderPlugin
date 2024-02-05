@@ -1,8 +1,10 @@
 package io.github.rookietec9.enderplugin.utils.methods;
 
+import java.util.List;
+
 /**
  * @author Jeremi
- * @version 22.4.3
+ * @version 25.7.3
  */
 public class Java {
 
@@ -12,27 +14,21 @@ public class Java {
         int getLevenDistance = 0;
         char[] firstArray = firstString.toCharArray();
         char[] secondArray = secondString.toCharArray();
-        if (firstArray == secondArray) {
-            return 0;
-        }
+        if (firstArray == secondArray) return 0;
         if (firstArray.length == secondArray.length) for (int i = 0; i < firstArray.length; i++) if (firstArray[i] != secondArray[i]) getLevenDistance++;
 
         if (firstArray.length != secondArray.length) {
             getLevenDistance = secondArray.length - firstArray.length;
             if (firstArray.length < secondArray.length) {
                 secondArray = String.valueOf(secondArray).substring(0, firstArray.length).toCharArray();
-                if (firstArray.length == secondArray.length) {
-                    for (int i = 0; i < firstArray.length; i++) {
-                        if (firstArray[i] != secondArray[i]) {
-                            getLevenDistance++;
-                        }
+                for (int i = 0; i < firstArray.length; i++) {
+                    if (firstArray[i] != secondArray[i]) {
+                        getLevenDistance++;
                     }
                 }
             } else {
                 firstArray = String.valueOf(firstArray).substring(0, secondArray.length).toCharArray();
-                if (firstArray.length == secondArray.length) {
-                    for (int i = 0; i < firstArray.length; i++) if (firstArray[i] != secondArray[i]) getLevenDistance++;
-                }
+                for (int i = 0; i < firstArray.length; i++) if (firstArray[i] != secondArray[i]) getLevenDistance++;
             }
         }
         return getLevenDistance;
@@ -40,6 +36,11 @@ public class Java {
 
     public static boolean isInRange(int compare, int min, int max) {
         return (compare <= Math.max(max, min)) && (Math.min(max, min) <= compare);
+    }
+
+    public static boolean areInRange(int min, int max, int... compare) {
+        for (int c : compare) if (!isInRange(c, min, max)) return false;
+        return true;
     }
 
     public static boolean isInRange(float compare, float min, float max) {
@@ -64,7 +65,7 @@ public class Java {
         String[] ret = s.replace("_", " ").split(" ");
         StringBuilder str = new StringBuilder();
         for (String s1 : ret) str.append(capFirst(s1)).append(" ");
-        return str.toString().substring(0, str.toString().length() - " ".length());
+        return str.substring(0, str.toString().length() - " ".length());
     }
 
     public static String convertToRoman(int num) {
@@ -118,8 +119,39 @@ public class Java {
         return (int) ((int) (Math.random() * (max + 1.0D - min)) + min);
     }
 
+    public static int getNegRandom(double min, double max) {
+        int rand = getRandom(min,max);
+        return getRandom(0,1) == 1 ? rand : -rand;
+    }
+
     public static boolean argWorks(String arg, String... possibleArgs) {
         for (String s : possibleArgs) if (arg.equalsIgnoreCase(s)) return true;
         return false;
+    }
+
+    public static String number(int number) {
+        return number + switch (number) {
+            case 1 -> "st";
+            case 2 -> "nd";
+            case 3 -> "rd";
+            default -> "th";
+        };
+    }
+
+    public static <T> T getRandomRemove(List<T> list) {
+        return list.remove((int) (Math.random() * list.size()));
+    }
+
+    public static boolean containsIgnoreCase(String compare, String... comparisons) {
+        for (String comparison : comparisons) if (compare.toLowerCase().contains(comparison.toLowerCase())) return true;
+        return false;
+    }
+
+    /**
+     * Checks whether ALL comparison strings are in the compare string
+     */
+    public static boolean containsAllIgnoreCase(String compare, String... comparisons) {
+        for (String comparison : comparisons) if (!compare.toLowerCase().contains(comparison.toLowerCase())) return false;
+        return comparisons.length > 0;
     }
 }

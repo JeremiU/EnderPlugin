@@ -1,8 +1,7 @@
 package io.github.rookietec9.enderplugin.commands.basicFuncs.playerFuncs;
 
-import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
 import io.github.rookietec9.enderplugin.utils.datamanagers.DataPlayer;
-import io.github.rookietec9.enderplugin.utils.methods.Minecraft;
+import io.github.rookietec9.enderplugin.utils.datamanagers.endcommands.EndExecutor;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -11,13 +10,13 @@ import org.bukkit.entity.Player;
 import java.util.List;
 
 import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
-import static io.github.rookietec9.enderplugin.utils.reference.Syntax.USER;
+import static io.github.rookietec9.enderplugin.Reference.USER;
 
 /**
  * Get the location of either yourself or another player.
  *
  * @author Jeremi
- * @version 22.8.0
+ * @version 25.2.0
  * @since 4.1.4
  */
 public class LocCommand implements EndExecutor {

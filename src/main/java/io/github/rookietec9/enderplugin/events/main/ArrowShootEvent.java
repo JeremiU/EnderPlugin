@@ -12,7 +12,7 @@ import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
 
 /**
  * @author Jeremi
- * @version 22.8.0
+ * @version 23.8.3
  * @since 9.0.7
  */
 public class ArrowShootEvent implements Listener {
@@ -26,7 +26,6 @@ public class ArrowShootEvent implements Listener {
         Player shooter = (Player) shotArrow.getShooter();
 
         if (attacked.getHealth() - event.getFinalDamage() < 1) {
-            System.out.println("a");
             shooter.sendMessage(serverLang().getTxtColor() + "You killed " + serverLang().getDarkColor() + DataPlayer.getUser((Player) event.getEntity()).getNickName() + serverLang().getTxtColor() + ".");
             event.setCancelled(true);
             MainDeathEvent.fullCheck(attacked, shooter);

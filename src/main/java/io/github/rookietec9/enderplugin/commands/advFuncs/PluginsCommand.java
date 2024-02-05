@@ -1,7 +1,6 @@
 package io.github.rookietec9.enderplugin.commands.advFuncs;
 
-import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
-import io.github.rookietec9.enderplugin.utils.methods.Minecraft;
+import io.github.rookietec9.enderplugin.utils.datamanagers.endcommands.EndExecutor;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

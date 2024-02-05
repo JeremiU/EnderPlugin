@@ -1,8 +1,7 @@
 package io.github.rookietec9.enderplugin.commands.basicFuncs.playerFuncs;
 
-import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
+import io.github.rookietec9.enderplugin.utils.datamanagers.endcommands.EndExecutor;
 import io.github.rookietec9.enderplugin.utils.datamanagers.DataPlayer;
-import io.github.rookietec9.enderplugin.utils.methods.Minecraft;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -12,13 +11,13 @@ import org.bukkit.potion.PotionEffect;
 import java.util.List;
 
 import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
-import static io.github.rookietec9.enderplugin.utils.reference.Syntax.USER;
+import static io.github.rookietec9.enderplugin.Reference.USER;
 
 /**
  * Lists all effects on a certain player including the duration, ID, and Amplifier (level).
  *
  * @author Jeremi
- * @version 22.8.0
+ * @version 25.2.0
  * @since 2.1.3
  */
 public class EffectsListCommand implements EndExecutor {

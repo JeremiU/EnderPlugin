@@ -12,31 +12,21 @@ import java.util.ArrayList;
 
 /**
  * @author Jeremi
- * @version 21.4.9
+ * @version 24.3.6
  * @since 21.2.2
  */
 public class WorldInventory extends Associate {
-    private final Player player;
 
     public WorldInventory(Player player) {
         super(new Config(false, "Inventories", player.getUniqueId().toString() + ".yml", EnderPlugin.getInstance()));
-        this.player = player;
     }
 
     public ArrayList<ItemStack> inventoryContents(World world) {
         return (ArrayList<ItemStack>) super.getPath(world.getName() + ".inventory", new ArrayList<ItemStack>());
     }
 
-    public ArrayList<ItemStack> inventoryContents(String worldName) {
-        return inventoryContents(Bukkit.getWorld(worldName));
-    }
-
     public ArrayList<ItemStack> armorContents(World world) {
         return (ArrayList<ItemStack>) super.getPath(world.getName() + ".armor", new ArrayList<ItemStack>());
-    }
-
-    public ArrayList<ItemStack> armorContents(String worldName) {
-        return armorContents(Bukkit.getWorld(worldName));
     }
 
     public void setInventory(PlayerInventory inventory, World world) {

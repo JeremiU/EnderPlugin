@@ -3,19 +3,18 @@ package io.github.rookietec9.enderplugin.entities;
 import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_8_R3.util.UnsafeList;
 import org.bukkit.entity.EntityType;
 
 import java.lang.reflect.Field;
 
 /**
  * @author Jeremi
- * @version 20.0.5
+ * @version 25.7.6
  * @since 19.6.3
  */
 public class ESGBlaze extends EntityBlaze implements CustomMob {
 
-    public static MobInfo mobInfo = new MobInfo(EntityType.BLAZE, "ESG_BLAZE", ESGBlaze.class);
+    public static final MobInfo mobInfo = new MobInfo(EntityType.BLAZE, "ESG_BLAZE", ESGBlaze.class);
 
     public ESGBlaze(World world) {
         super(((CraftWorld) world).getHandle());
@@ -54,7 +53,7 @@ public class ESGBlaze extends EntityBlaze implements CustomMob {
         return new ESGBlaze(world);
     }
 
-    public EntityCreature creature() {
+    public EntityInsentient mob() {
         return this;
     }
 

@@ -2,15 +2,15 @@ package io.github.rookietec9.enderplugin.events.main;
 
 import io.github.rookietec9.enderplugin.configs.associates.WorldInventory;
 import io.github.rookietec9.enderplugin.utils.datamanagers.DataPlayer;
-import io.github.rookietec9.enderplugin.utils.reference.Worlds;
-import org.bukkit.GameMode;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 
+import static io.github.rookietec9.enderplugin.Reference.HUB;
+
 /**
  * @author Jeremi
- * @version 22.2.3
+ * @version 25.2.6
  * @since 21.2.1
  */
 public class WorldInventoryEvent implements Listener {
@@ -20,12 +20,12 @@ public class WorldInventoryEvent implements Listener {
         WorldInventory invConfig = new WorldInventory(event.getPlayer());
         invConfig.setInventory(event.getPlayer().getInventory(), event.getFrom());
 
-        if (event.getPlayer().getWorld().getName().equalsIgnoreCase(Worlds.HUB)) {
-            DataPlayer.getUser(event.getPlayer()).hubNoTp();
+        if (event.getPlayer().getWorld().getName().equalsIgnoreCase(HUB)) {
+            DataPlayer.get(event.getPlayer()).hubNoTp();
             return;
         } else event.getPlayer().setAllowFlight(false);
 
-        DataPlayer.getUser(event.getPlayer()).clear();
+        DataPlayer.get(event.getPlayer()).clear();
 
         for (int i = 0; i < invConfig.inventoryContents(event.getPlayer().getWorld()).size(); i++) {
             if (invConfig.inventoryContents(event.getPlayer().getWorld()).get(i) == null) continue;

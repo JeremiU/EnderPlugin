@@ -1,6 +1,6 @@
 name: EnderPlugin
 main: io.github.rookietec9.enderplugin.EnderPlugin
-version: Rho22.8.7
+version: Upsilon25.7.5
 prefix: EP
 commands:
   #START COMMAND GROUPS
@@ -17,7 +17,7 @@ commands:
     description: Open up an anvil
   craft:
     aliases: ['workbench']
-    description: Open up a crafting table
+    description: Open up a crafting tabl
   enderchest:
     aliases: ['ec']
     description: Open up the ender chest
@@ -35,7 +35,6 @@ commands:
     aliases: ['name']
     description: Rename an item
   setcount:
-    aliases: ['paint','telly']
     description: Change an item's count
   telly:
     aliases: ['games']
@@ -76,6 +75,8 @@ commands:
     description: Change a player's nickname
   rank:
     description: Change a player's rank
+  skin:
+    description: Change your skin
   speed:
     description: Change a player's speed
   unmute:
@@ -93,8 +94,6 @@ commands:
     description: Teleport every player to you
   tphere:
     description: Teleport a specific player to you
-  wtp:
-    description: Teleport to a world
   #--END TELEPORT COMMANDS
   #--START TEXT-ARG COMMANDS
   action:
@@ -131,14 +130,38 @@ commands:
     description: Get a player's server ping
   scheduler:
     description: Get a list of scheduled tasks
+  uptime:
+    description: Get the server's uptime
   version:
     aliases: ['plugver']
     description: Get the plugin's version
   yt:
     description: Access our old youtube channel
   #--END TEXT COMMANDS
+  #--START WORLD COMMANDS
+  wsp:
+    aliases: [ setworldspawn, enderworldsp ]
+    description: Set a world spawn
+  wcreate:
+    aliases: [ worldcreate, enderworldcreate ]
+    description: Create a world
+  wtp:
+    description: Teleport to a world
+  wdelete:
+    description: Delete a world
+  #--END WORLD COMMANDS
+  #--START WARP COMMANDS
+  warp:
+    aliases: [ enderwarp ]
+    description: Warp to a place
+  warpc:
+    aliases: [ warpCreate, enderwarpcreate ]
+    description: Create a warp
+  warpd:
+    aliases: [ warpdelete, enderwarpdelete ]
+    description: Delete a warp
+  #--END WARP COMMANDS
   #END COMMAND GROUPS
-
   #START ADVANCED FUNCTIONS
   back:
     aliases: [enderback]
@@ -167,9 +190,6 @@ commands:
   update:
     aliases: [enderupdate]
     description: Update the plugin
-  warp:
-    aliases: [enderWarp]
-    description: Warp to a place
   #END ADVANCED FUNCTIONS
 
   #START BASIC FUNCTIONS
@@ -200,9 +220,6 @@ commands:
   uuid:
     aliases: [EnderUUID]
     description: Grab someone's UUID
-  wsp:
-    aliases: [setworldspawn, enderworldsp]
-    description: Set a world spawn
   #--END PLAYER FUNCTIONS
   #--START TEXT FUNCTIONS
   chatclear:
@@ -224,4 +241,10 @@ commands:
   selectblade:
     aliases: [enderselectblade]
     description: Get a wizard blade
+  esgchest:
+    aliases: [setchests]
+    description: Fill up chests for ESG
+  obstphoto:
+    aliases: [obs]
+    description: Fill up a pattern from a photo
   #END GAME FUNCTIONS

@@ -1,11 +1,10 @@
 package io.github.rookietec9.enderplugin.commands.games.ESG;
 
-import io.github.rookietec9.enderplugin.utils.datamanagers.ChestExt;
-import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
 import io.github.rookietec9.enderplugin.configs.esg.ESGKit;
+import io.github.rookietec9.enderplugin.utils.datamanagers.ChestExt;
 import io.github.rookietec9.enderplugin.utils.datamanagers.DataPlayer;
+import io.github.rookietec9.enderplugin.utils.datamanagers.endcommands.EndExecutor;
 import io.github.rookietec9.enderplugin.utils.methods.Java;
-import io.github.rookietec9.enderplugin.utils.reference.Worlds;
 import org.bukkit.Bukkit;
 import org.bukkit.block.Chest;
 import org.bukkit.command.Command;
@@ -15,11 +14,12 @@ import org.bukkit.entity.Player;
 import java.util.List;
 
 import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
-import static io.github.rookietec9.enderplugin.utils.reference.Syntax.MODE;
+import static io.github.rookietec9.enderplugin.Reference.ESG_FIGHT;
+import static io.github.rookietec9.enderplugin.Reference.MODE;
 
 /**
  * @author Jeremi
- * @version 22.8.0
+ * @version 25.2.6
  * @since 1.5.9
  */
 public class GetKitCommand implements EndExecutor {
@@ -48,9 +48,9 @@ public class GetKitCommand implements EndExecutor {
 
     private boolean getKit(Player p, int level, ESGKit.Kits esgKit, boolean silent) {
         int y = 61 - ((10 - level) * 2);
-        if ((Bukkit.getWorld(Worlds.ESG_FIGHT).getBlockAt(esgKit.getX(), y, esgKit.getZ()).getState() instanceof Chest)) {
+        if ((Bukkit.getWorld(ESG_FIGHT).getBlockAt(esgKit.getX(), y, esgKit.getZ()).getState() instanceof Chest)) {
             new ChestExt((Chest) Bukkit.getWorld("SurvivalGames").getBlockAt(esgKit.getX(), y, esgKit.getZ()).getState()).setName(new ESGKit(esgKit).getColor() + "§l" + Java.upSlash(esgKit.toString()) + "" + " §f[" + new ESGKit(esgKit).getColor() + "§l" + Java.convertToRoman(level) + "§f]");
-            DataPlayer.getUser(p).fromChest(Bukkit.getWorld("SurvivalGames"), esgKit.getX(), y, esgKit.getZ());
+            DataPlayer.get(p).fromChest(Bukkit.getWorld("SurvivalGames"), esgKit.getX(), y, esgKit.getZ());
             p.updateInventory();
         } else return msg(p, serverLang().getErrorMsg() + "the BlockState is not a chest.");
         if (!silent) return msg(p, serverLang().getPlugMsg() + "Gave you " + new ESGKit(esgKit).getColor() + Java.upSlash(esgKit.toString()) + serverLang().getTxtColor() + " " + level);

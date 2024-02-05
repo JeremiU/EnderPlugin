@@ -15,27 +15,22 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 /**
  * @author Jeremi
- * @version 20.8.4
+ * @version 25.7.6
  * @since 19.8.3
  */
-public class TargetRedirectEvent implements Listener {
-    EntityType type;
-
-    public TargetRedirectEvent(EntityType type) {
-        this.type = type;
-    }
+public record TargetRedirectEvent(EntityType type) implements Listener {
 
     @EventHandler
     public void run(EntityTargetEvent event) {
+        System.out.println("Test");
 
         if (event.getEntity().getType() != type || event.getTarget() == null || !(event.getTarget() instanceof Player) || !(event.getEntity() instanceof LivingEntity)) return;
 
         if (event.getReason() != EntityTargetEvent.TargetReason.CUSTOM) {
             event.setCancelled(true);
             TargetMapper.getTMP((LivingEntity) event.getEntity()).setTarget(TargetMapper.getTMP((LivingEntity) event.getEntity()).closestTarget());
-        } else System.out.println(event.getReason());
-        if (event.getTarget() instanceof Player) {
-            Player player = (Player) event.getTarget();
+        }
+        if (event.getTarget() instanceof Player player) {
             if (player.getGameMode() == GameMode.CREATIVE || player.getGameMode() == GameMode.SPECTATOR) {
                 event.setCancelled(true);
                 event.setTarget(null);

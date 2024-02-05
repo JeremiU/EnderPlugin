@@ -1,8 +1,7 @@
 package io.github.rookietec9.enderplugin.commands.basicFuncs.txtFuncs;
 
-import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
+import io.github.rookietec9.enderplugin.utils.datamanagers.endcommands.EndExecutor;
 import io.github.rookietec9.enderplugin.utils.datamanagers.DataPlayer;
-import io.github.rookietec9.enderplugin.utils.methods.Minecraft;
 import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -12,13 +11,13 @@ import org.bukkit.entity.Player;
 import java.util.List;
 
 import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
-import static io.github.rookietec9.enderplugin.utils.reference.Syntax.USER;
+import static io.github.rookietec9.enderplugin.Reference.USER;
 
 /**
  * Clear the chat by sending every player a ton of empty messages.
  *
  * @author Jeremi
- * @version 22.8.0
+ * @version 25.2.0
  * @since 1.1.3
  *
  */

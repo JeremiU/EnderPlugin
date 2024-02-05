@@ -1,22 +1,22 @@
 package io.github.rookietec9.enderplugin.scoreboards;
 
 import io.github.rookietec9.enderplugin.utils.datamanagers.DataPlayer;
-import io.github.rookietec9.enderplugin.utils.reference.BoardNames;
-import io.github.rookietec9.enderplugin.utils.reference.DataType;
-import io.github.rookietec9.enderplugin.utils.reference.Worlds;
+import io.github.rookietec9.enderplugin.configs.DataType;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
+import static io.github.rookietec9.enderplugin.Reference.*;
+
 /**
  * @author Jeremi
- * @version 21.3.4
+ * @version 25.2.0
  * @since 14.8.3
  */
 public class SpleefBoard extends Board {
 
     public SpleefBoard(Player player) {
-        super(player, Worlds.SPLEEF, BoardNames.SPLEEF, ChatColor.BLUE, GameMode.SURVIVAL);
+        super(player, SPLEEF, colorFormat(TITLE_SPLEEF, ChatColor.BLUE), ChatColor.BLUE, GameMode.SURVIVAL);
         putBreaks(14, 11, 8);
         putData("Time Elapsed", formatTime(DataPlayer.spleefSec), 13);
         putData("Players Left", DataPlayer.spleefLeft.size() + "", 12);

@@ -1,7 +1,7 @@
 package io.github.rookietec9.enderplugin.commands.basicFuncs.invFuncs;
 
-import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
-import io.github.rookietec9.enderplugin.utils.datamanagers.Item;
+import io.github.rookietec9.enderplugin.utils.datamanagers.endcommands.EndExecutor;
+import io.github.rookietec9.enderplugin.utils.datamanagers.ItemWrapper;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -14,7 +14,7 @@ import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
  * Sets the item in a player's hand to the helmet slot.
  *
  * @author Jeremi
- * @version 22.8.0
+ * @version 24.3.6
  * @since 4.6.2
  */
 public class HatCommand implements EndExecutor {
@@ -24,8 +24,8 @@ public class HatCommand implements EndExecutor {
 
         Player p = (Player) sender;
 
-        Item helmet = Item.fromItemStack(p.getInventory().getHelmet());
-        Item inHand = Item.fromItemStack(p.getInventory().getItem(p.getInventory().getHeldItemSlot()));
+        ItemWrapper<?> helmet = ItemWrapper.fromItemStack(p.getInventory().getHelmet());
+        ItemWrapper<?> inHand = ItemWrapper.fromItemStack(p.getInventory().getItem(p.getInventory().getHeldItemSlot()));
         if (inHand.isEmpty()) return msg(sender, serverLang().getErrorMsg() + "Please hold something.");
 
         p.getInventory().setHelmet(inHand.toItemStack());

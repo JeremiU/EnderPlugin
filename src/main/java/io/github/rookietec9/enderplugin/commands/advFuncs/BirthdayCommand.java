@@ -1,6 +1,6 @@
 package io.github.rookietec9.enderplugin.commands.advFuncs;
 
-import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
+import io.github.rookietec9.enderplugin.utils.datamanagers.endcommands.EndExecutor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
@@ -9,13 +9,13 @@ import java.time.Period;
 import java.util.List;
 
 import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
-import static io.github.rookietec9.enderplugin.utils.reference.Syntax.MODE;
+import static io.github.rookietec9.enderplugin.Reference.MODE;
 
 /**
  * Calculate the age of the server or plugin, or get the birthday.
  *
  * @author Jeremi
- * @version 22.8.0
+ * @version 25.6.1
  * @since 4.0.4
  */
 public class BirthdayCommand implements EndExecutor {
@@ -27,7 +27,7 @@ public class BirthdayCommand implements EndExecutor {
         Period pdS = Period.between(serverDate, LocalDate.now());
         Period pdP = Period.between(pluginDate, LocalDate.now());
         if (args.length != 1) return msg(sender, getSyntax(label));
-
+        
         return switch (args[0].toLowerCase()) {
             case "print" -> msg(sender, serverLang().getPlugMsg() + "This server was created February 25th, 2016.", serverLang().getPlugMsg() + "This plugin was created April 1th, 2016.");
             case "server", "server-age" -> msg(sender, serverLang().getPlugMsg() + "The server is " + formatPeriod(pdS) + "old.");
@@ -37,8 +37,7 @@ public class BirthdayCommand implements EndExecutor {
     }
 
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        if (args.length == 1) return tabOption(args[0], "Print", "Sever", "Plugin");
-        return null;
+        return (args.length == 1) ? tabOption(args[0], "Print", "Server", "Plugin") : null;
     }
 
     private String formatPeriod(Period period) {

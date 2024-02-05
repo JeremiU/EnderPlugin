@@ -1,8 +1,7 @@
 package io.github.rookietec9.enderplugin.commands.advFuncs;
 
 import io.github.rookietec9.enderplugin.EnderPlugin;
-import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
-import io.github.rookietec9.enderplugin.utils.methods.Minecraft;
+import io.github.rookietec9.enderplugin.utils.datamanagers.endcommands.EndExecutor;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.BlockCommandSender;
@@ -20,7 +19,7 @@ import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
  * Makes a countdown for an amount of seconds.
  *
  * @author Jeremi
- * @version 22.8.0
+ * @version 25.7.5
  * @since 1.0.7
  */
 public class CountCommand implements EndExecutor {
@@ -49,7 +48,7 @@ public class CountCommand implements EndExecutor {
                 else p.sendMessage("GO!");
             }
             set();
-        }, "COUNT_COMMAND", 0, 1, maxTicks + 1);
+        }, "COUNT_COMMAND", 0, 1, maxTicks + 1, serverLang().getPlugMsg());
         return true;
     }
 
@@ -68,8 +67,7 @@ public class CountCommand implements EndExecutor {
     }
 
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        if (args.length == 1) return tabOption(args[0], "5", "10", "15", "25", "30", "45", "60", "90", "120", "180");
-        return null;
+        return args.length == 1 ? tabOption(args[0], "5", "10", "15", "25", "30", "45", "60", "90", "120", "180") : null;
     }
 
     public String getSyntax(String label) {
@@ -77,6 +75,6 @@ public class CountCommand implements EndExecutor {
     }
 
     public List<String> commandNames() {
-        return List.of("countDown");
+        return List.of("countdown", "endercount");
     }
 }

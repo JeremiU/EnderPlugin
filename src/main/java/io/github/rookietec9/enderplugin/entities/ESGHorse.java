@@ -10,11 +10,12 @@ import java.lang.reflect.Field;
 
 /**
  * @author Jeremi
- * @version 20.1.6
+ * @version 25.7.6
+ * @since ?
  */
 public class ESGHorse extends EntityHorse implements CustomMob {
 
-    public static MobInfo mobInfo = new MobInfo(EntityType.HORSE, "ESG_HORSE", ESGHorse.class);
+    public static final MobInfo mobInfo = new MobInfo(EntityType.HORSE, "ESG_HORSE", ESGHorse.class);
 
     public ESGHorse(World world) {
         super(((CraftWorld) world).getHandle());
@@ -50,7 +51,7 @@ public class ESGHorse extends EntityHorse implements CustomMob {
         return new ESGHorse(world);
     }
 
-    public EntityCreature creature() {
+    public EntityInsentient mob() {
         return this;
     }
 

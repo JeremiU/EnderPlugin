@@ -3,33 +3,38 @@ package io.github.rookietec9.enderplugin.events.games.ctf;
 import io.github.rookietec9.enderplugin.EnderPlugin;
 import io.github.rookietec9.enderplugin.scoreboards.CTFBoard;
 import io.github.rookietec9.enderplugin.utils.datamanagers.DataPlayer;
-import io.github.rookietec9.enderplugin.utils.datamanagers.Item;
+import io.github.rookietec9.enderplugin.utils.datamanagers.ItemWrapper;
+import io.github.rookietec9.enderplugin.utils.datamanagers.PartySystem;
+import io.github.rookietec9.enderplugin.utils.methods.Java;
 import io.github.rookietec9.enderplugin.utils.methods.Minecraft;
-import io.github.rookietec9.enderplugin.utils.reference.Prefixes;
-import io.github.rookietec9.enderplugin.utils.reference.Teams;
-import io.github.rookietec9.enderplugin.utils.reference.Worlds;
+import io.github.rookietec9.enderplugin.utils.methods.Teams;
 import org.bukkit.*;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerTeleportEvent;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static io.github.rookietec9.enderplugin.Inventories.*;
+import static io.github.rookietec9.enderplugin.Reference.CTF;
+import static io.github.rookietec9.enderplugin.Reference.PREFIX_CTF;
+import static org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 /**
  * @author Jeremi
- * @version 22.8.0
+ * @version 25.4.3
  * @since 20.6.1
  */
 public class CTFJoinEvent implements Listener {
 
     public static void giveKit(Player player) {
-        DataPlayer.getUser(player).reset();
-
-        ChatColor chatColor = Teams.contains(Teams.blueTeam, player) ? ChatColor.BLUE : ChatColor.RED;
-        Color color = Teams.contains(Teams.blueTeam, player) ? Color.BLUE : Color.RED;
+        DataPlayer.get(player).startGame(GameMode.ADVENTURE);
+        ChatColor chatColor = Teams.contains(Teams.TEAM_BLUE, player) ? ChatColor.BLUE : ChatColor.RED;
+        Color color = Teams.contains(Teams.TEAM_BLUE, player) ? Color.BLUE : Color.RED;
 
         int x = -108, y, z;
 
@@ -40,15 +45,15 @@ public class CTFJoinEvent implements Listener {
 
         for (int i = 0; i < 8; i++) {
             if (chest.getBlockInventory().getItem(i) == null) continue;
-            Item<?> item = Item.fromItemStack(chest.getBlockInventory().getItem(i));
-            if (item.isEmpty()) continue;
-            item.setName(chatColor + Minecraft.getMatName(item.getType()));
-            player.getInventory().setItem(i, item.toItemStack());
+            ItemWrapper<?> itemWrapper = ItemWrapper.fromItemStack(chest.getBlockInventory().getItem(i));
+            if (itemWrapper.isEmpty()) continue;
+            itemWrapper.setName(chatColor + Minecraft.getMatName(itemWrapper.getType()));
+            player.getInventory().setItem(i, itemWrapper.toItemStack());
         }
 
-        Item<?> chestplate = chest.getBlockInventory().getItem(25) != null ? Item.fromItemStack(chest.getBlockInventory().getItem(25)) : null;
-        Item<?> leggings = chest.getBlockInventory().getItem(24) != null ? Item.fromItemStack(chest.getBlockInventory().getItem(24)) : null;
-        Item<?> boots = chest.getBlockInventory().getItem(23) != null ? Item.fromItemStack(chest.getBlockInventory().getItem(23)) : null;
+        ItemWrapper<?> chestplate = chest.getBlockInventory().getItem(25) != null ? ItemWrapper.fromItemStack(chest.getBlockInventory().getItem(25)) : null;
+        ItemWrapper<?> leggings = chest.getBlockInventory().getItem(24) != null ? ItemWrapper.fromItemStack(chest.getBlockInventory().getItem(24)) : null;
+        ItemWrapper<?> boots = chest.getBlockInventory().getItem(23) != null ? ItemWrapper.fromItemStack(chest.getBlockInventory().getItem(23)) : null;
 
         if (chestplate != null && !chestplate.isEmpty()) {
             chestplate.setColor(color);
@@ -68,64 +73,68 @@ public class CTFJoinEvent implements Listener {
             player.getInventory().setBoots(boots.toItemStack());
         }
 
-        player.teleport(homeLoc(Teams.contains(Teams.blueTeam, player)), PlayerTeleportEvent.TeleportCause.PLUGIN);
+        player.teleport(homeLoc(Teams.contains(Teams.TEAM_BLUE, player)), TeleportCause.PLUGIN);
     }
 
     public static Location homeLoc(boolean isBlue) {
-        return isBlue ? new Location(Bukkit.getWorld(Worlds.CTF), -76.5, 8, 13.5, -90.03F, 0.719F) : new Location(Bukkit.getWorld(Worlds.CTF), -19.5, 8, 13.5, -270F, 0.719F);
+        return isBlue ? new Location(Bukkit.getWorld(CTF), -76.5, 8, 13.5, -90.03F, 0.719F) : new Location(Bukkit.getWorld(CTF), -19.5, 8, 13.5, -270F, 0.719F);
     }
 
     @EventHandler
     public void run(PlayerMoveEvent event) {
-        if (!event.getPlayer().getWorld().getName().equalsIgnoreCase(Worlds.CTF) || event.getPlayer().getGameMode() != GameMode.ADVENTURE) return;
+        if (!event.getPlayer().getWorld().getName().equalsIgnoreCase(CTF) || event.getPlayer().getGameMode() != GameMode.ADVENTURE || EnderPlugin.scheduler().isRunning("CTF_PLATE_WAIT")) return;
 
-        //-96,4,-9
         if (event.getTo().getBlockX() != -96 || event.getTo().getBlockY() != 4 || event.getTo().getBlockZ() != -9) return;
 
         if (event.getTo().getBlock().getType() == Material.WOOD_PLATE) {
-            if (EnderPlugin.scheduler().isRunning("CTF_PLATE_WAIT")) return;
             if (EnderPlugin.scheduler().isRunning("CTF_GAME")) {
-                event.getPlayer().sendMessage(Prefixes.CTF + "Wait for the match to finish!");
-                EnderPlugin.scheduler().runMarker("CTF_PLATE_WAIT", 1.5);
-                return;
+                event.getPlayer().sendMessage(PREFIX_CTF + "Wait for the match to finish!");
+                EnderPlugin.scheduler().runMarker("CTF_PLATE_WAIT", 1.5, PREFIX_CTF);
             }
         }
-
-        if (teams()) {
-            for (Player player : Bukkit.getWorld(Worlds.CTF).getPlayers()) {
-                boolean isBlue = Teams.contains(Teams.blueTeam, player);
-                Minecraft.worldBroadcast(Worlds.CTF, Prefixes.CTF + DataPlayer.getUser(player).getNickName() + " joined the " + (isBlue ? "blue" : "red") + " team.");
-                giveKit(player);
-            }
-            EnderPlugin.scheduler().runSingleTask(() -> {
-                for (Player player1 : Bukkit.getWorld(Worlds.CTF).getPlayers())
-                    DataPlayer.get(player1).sendActionMsg(ChatColor.YELLOW + "" + ChatColor.BOLD + "DEFEND YOUR FLAG WHILE STEALING THE OPPONENTS!");
-            }, "CTF_BROADCAST", 5);
-            EnderPlugin.scheduler().runSingleTask(CTFChestCheck :: win, "CTF_TIME_RUN_OUT", 600);
-        } else if (!EnderPlugin.scheduler().isRunning("CTF_PLATE_WAIT")) {
-            event.getPlayer().sendMessage(Prefixes.CTF + "You need at least two players!");
-            EnderPlugin.scheduler().runMarker("CTF_PLATE_WAIT", 1.5);
-        }
+        event.getPlayer().openInventory(START_CTF);
+        EnderPlugin.scheduler().runMarker("CTF_PLATE_WAIT", 1.5, PREFIX_CTF);
     }
 
-    private boolean teams() {
-        int playersSize = Bukkit.getWorld(Worlds.CTF).getPlayers().size();
-        List<Player> playerList = Bukkit.getWorld(Worlds.CTF).getPlayers();
+    @EventHandler
+    public void run(InventoryClickEvent event) {
+        World w = event.getWhoClicked().getWorld();
+        Player player = (Player) event.getWhoClicked();
+        Minecraft.startGame(event, START_CTF, PREFIX_CTF, ()-> start(true, w.getPlayers()), ()-> start(event.getSlot() == START_PARTIES_RANDOM,
+                PartySystem.getPartiersInWorld(w.getName()), PartySystem.getPartiesInWorldToArray(w.getName())), () -> start(event.getSlot() == START_PARTY_RANDOM, PartySystem.getPartiersInWorld(w.getName()), PartySystem.getFromPlayer(player)), PartySystem.PartyTeam.BLUE, PartySystem.PartyTeam.RED);
+    }
 
-        if (playersSize < 2) return false;
+    private void start(boolean randomTeams, List<Player> playerList, PartySystem... partySystems) {
+        teams(randomTeams, playerList, partySystems);
+
+        EnderPlugin.scheduler().runRepeatingTask(() -> {
+            DataPlayer.ctfSec++;
+            for (Player player : Bukkit.getWorld(CTF).getPlayers()) DataPlayer.get(player).getBoard(CTFBoard.class).updateTicks();
+        }, "CTF_GAME", 0, 1, PREFIX_CTF);
+        EnderPlugin.scheduler().runSingleTask(() -> {
+            for (Player player1 : Bukkit.getWorld(CTF).getPlayers()) {
+                DataPlayer.get(player1).sendActionMsg(ChatColor.YELLOW + "" + ChatColor.BOLD + "DEFEND YOUR FLAG WHILE STEALING THE OPPONENTS!");
+            }
+        }, "CTF_BROADCAST", 5, PREFIX_CTF);
+        EnderPlugin.scheduler().runSingleTask(CTFFlagEvent :: win, "CTF_TIME_RUN_OUT", 600, PREFIX_CTF);
+    }
+
+    private void teams(boolean randomTeams, List<Player> playerList, PartySystem... partySystems) {
+        List<Player> playerList1 = new ArrayList<>(playerList);
 
         int counter = 0;
 
-        for (Player player : playerList) {
-            Teams.add(counter % 2 == 0 ? Teams.blueTeam : Teams.redTeam, player);
-            player.teleport(homeLoc(counter % 2 == 0), PlayerTeleportEvent.TeleportCause.PLUGIN);
-            counter++;
+        if (randomTeams) while (playerList.size() != 0) {
+            Player player = Java.getRandomRemove(playerList);
+            Teams.add(counter % 2 == 0 ? Teams.TEAM_BLUE : Teams.TEAM_RED, player);
+            player.teleport(homeLoc(counter++ % 2 == 0), TeleportCause.PLUGIN);
         }
+        else for (PartySystem partySystem : partySystems) {
+            Teams.addAll(Teams.TEAM_RED, partySystem.getPlayersFromTeam(PartySystem.PartyTeam.RED));
+            Teams.addAll(Teams.TEAM_BLUE, partySystem.getPlayersFromTeam(PartySystem.PartyTeam.BLUE));
+        }
+
+        for (Player player : playerList1) giveKit(player);
         DataPlayer.ctfSec = 0;
-        EnderPlugin.scheduler().runRepeatingTask(() -> {
-            DataPlayer.ctfSec++;
-            for (Player player : Bukkit.getWorld(Worlds.CTF).getPlayers()) DataPlayer.get(player).getBoard(CTFBoard.class).updateTicks();
-        }, "CTF_GAME", 0, 1);
-        return true;
     }
 }

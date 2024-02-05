@@ -2,11 +2,10 @@ package io.github.rookietec9.enderplugin.configs.associates;
 
 import io.github.rookietec9.enderplugin.configs.Config;
 import io.github.rookietec9.enderplugin.utils.methods.Minecraft;
-import org.bukkit.ChatColor;
 
 /**
  * @author Jeremi
- * @version 22.4.1
+ * @version 23.0.0
  */
 public class Associate {
     private final Config config;
@@ -29,9 +28,7 @@ public class Associate {
 
     public Object getPath(String path, Object defaultObj) {
         config.reloadYaml();
-        if (null == config.getYaml().get(path)) {
-            set(path, defaultObj);
-        }
+        if (null == config.getYaml().get(path) && null != defaultObj) set(path, defaultObj);
         return config.getYaml().get(path);
     }
 
@@ -60,7 +57,7 @@ public class Associate {
     }
 
     public String getString(String path, Object defaultObject) {
-        return getPath(path, defaultObject.toString()).toString();
+        return getPath(path, defaultObject).toString();
     }
 
     public int getInteger(String path, Object defaultObject) {

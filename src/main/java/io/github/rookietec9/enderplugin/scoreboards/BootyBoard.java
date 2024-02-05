@@ -1,51 +1,43 @@
 package io.github.rookietec9.enderplugin.scoreboards;
 
+import io.github.rookietec9.enderplugin.configs.associates.User;
 import io.github.rookietec9.enderplugin.utils.datamanagers.DataPlayer;
 import io.github.rookietec9.enderplugin.utils.methods.Java;
-import io.github.rookietec9.enderplugin.utils.reference.BoardNames;
-import io.github.rookietec9.enderplugin.utils.reference.DataType;
-import io.github.rookietec9.enderplugin.utils.reference.Worlds;
+import io.github.rookietec9.enderplugin.configs.DataType;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import static io.github.rookietec9.enderplugin.Reference.*;
+
 /**
  * @author Jeremi
- * @version 22.2.9
+ * @version 25.2.0
  * @since 13.1.7
  */
 public class BootyBoard extends Board {
 
     public BootyBoard(Player player) {
-        super(player, Worlds.BOOTY, BoardNames.BOOTY, ChatColor.DARK_AQUA);
-        putBreaks(14, 11, 7);
-        putHeader("Map: ", true, 13);
-        putHeader(Java.capFirst(DataPlayer.bootyType()), false, 12);
-        putHeader("THIS ROUND: ", false, 10);
-        putHeader("OVERALL: ", false, 6);
+        super(player, BOOTY, colorFormat(DataPlayer.getUser(player).isOG() ? TITLE_BOOTY : TITLE_ALT_BOOTY, ChatColor.DARK_AQUA), ChatColor.DARK_AQUA);
+        putBreaks(11, 9, 7);
 
-        putData("Kills§b§b", DataPlayer.get(player).tempBootyKills + "", 9);
-        putData("Kills§a§b", DataPlayer.get(player).getInt(DataType.BOOTYKILLS) + "", 5);
-        putData("Deaths§b§b", DataPlayer.get(player).tempBootyDeaths + "", 8);
-        putData("Deaths§a§b", DataPlayer.get(player).getInt(DataType.BOOTYDEATHS) + "", 4);
-    }
+        putData("Map", Java.capFirst(DataPlayer.bootyType()), 10);
 
-    public void updateTempKills(int kills) {
-        DataPlayer.get(player).tempBootyKills = kills;
-        updateData("Kills§b§b", kills + "");
-    }
+        putData("Kill Streak", DataPlayer.get(player).tempBootyStreak + "", 8);
 
-    public void updateTempDeaths(int deaths) {
-        DataPlayer.get(player).tempBootyDeaths = deaths;
-        updateData("Deaths§b§b", deaths + "");
+        putData("Kills", DataPlayer.get(player).getInt(DataType.BOOTYKILLS) + "", 6);
+        putData("Deaths", DataPlayer.get(player).getInt(DataType.BOOTYDEATHS) + "", 5);
+        putData("K/D", String.format("%.2f", (DataPlayer.get(player).getInt(DataType.BOOTYDEATHS) > 0 ? DataPlayer.get(player).getInt(DataType.BOOTYKILLS) / (double) DataPlayer.get(player).getInt(DataType.BOOTYDEATHS) : DataPlayer.get(player).getInt(DataType.BOOTYKILLS))) + "", 4);
     }
 
     public void reloadKillsAndDeaths() {
-        updateData("Kills§a§b", DataPlayer.get(player).getInt(DataType.BOOTYKILLS) + "");
-        updateData("Deaths§a§b", DataPlayer.get(player).getInt(DataType.BOOTYDEATHS) + "");
+        updateData("Kills", DataPlayer.get(player).getInt(DataType.BOOTYKILLS) + "");
+        updateData("Deaths", DataPlayer.get(player).getInt(DataType.BOOTYDEATHS) + "");
+        updateData("Kill Streak", DataPlayer.get(player).tempBootyStreak + "");
+        updateData("K/D",String.format("%.2f", (DataPlayer.get(player).getInt(DataType.BOOTYDEATHS) > 0 ? DataPlayer.get(player).getInt(DataType.BOOTYKILLS) / (double) DataPlayer.get(player).getInt(DataType.BOOTYDEATHS) : DataPlayer.get(player).getInt(DataType.BOOTYKILLS))) + "");
     }
 
     public void updateMap(String map) {
         DataPlayer.setBootyType(map);
-        updateHeader(DataPlayer.bootyType(), false, "fancy", "insane", "buffed", "open", "slimy", "spooky", "glassy", "classic", "easy", "plain");
+        updateData("Map", DataPlayer.bootyType());
     }
 }

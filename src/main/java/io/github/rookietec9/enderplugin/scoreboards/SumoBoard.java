@@ -1,19 +1,19 @@
 package io.github.rookietec9.enderplugin.scoreboards;
 
-import io.github.rookietec9.enderplugin.utils.reference.BoardNames;
-import io.github.rookietec9.enderplugin.utils.reference.Worlds;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import static io.github.rookietec9.enderplugin.Reference.*;
+
 /**
  * @author Jeremi
- * @since 19.3.7
+ * @since 25.2.0
  * @version 19.3.7
  */
 public class SumoBoard extends Board {
 
     public SumoBoard(Player player) {
-        super(player, Worlds.SUMO, BoardNames.SUMO, ChatColor.AQUA);
+        super(player, SUMO, colorFormat(TITLE_SUMO, ChatColor.AQUA), ChatColor.AQUA);
         putBreaks(14, 11, 8);
         putData("Time Elapsed", formatTime(0), 13);
         putData("Players Left", 0 + "", 12);

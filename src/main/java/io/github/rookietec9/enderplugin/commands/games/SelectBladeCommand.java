@@ -1,23 +1,24 @@
 package io.github.rookietec9.enderplugin.commands.games;
 
-import io.github.rookietec9.enderplugin.configs.associates.Blades;
+import io.github.rookietec9.enderplugin.utils.datamanagers.Blades;
 import io.github.rookietec9.enderplugin.events.inventoryclickers.WizardClickEvent;
-import io.github.rookietec9.enderplugin.utils.datamanagers.EndExecutor;
+import io.github.rookietec9.enderplugin.utils.datamanagers.endcommands.EndExecutor;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static io.github.rookietec9.enderplugin.EnderPlugin.serverLang;
-import static io.github.rookietec9.enderplugin.utils.reference.Syntax.USER;
+import static io.github.rookietec9.enderplugin.Reference.USER;
 
 
 /**
  * @author Jeremi
- * @version 22.8.0
+ * @version 25.5.4
  * @since 11.6.6
  */
 public class SelectBladeCommand implements EndExecutor {
@@ -36,11 +37,8 @@ public class SelectBladeCommand implements EndExecutor {
 
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         List<String> list = new ArrayList<>();
-        for (Blades blade : Blades.blades) {
-            list.add(blade.getName());
-        }
-        if (args.length == 1) return tabOption(args[0], list);
-        return null;
+        Arrays.stream(Blades.blades).forEach(x -> list.add(x.getName()));
+        return args.length == 1 ? tabOption(args[0], list) : null;
     }
 
     public String getSyntax(String label) {

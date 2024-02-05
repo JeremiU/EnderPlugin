@@ -1,30 +1,27 @@
 package io.github.rookietec9.enderplugin.scoreboards;
 
-import io.github.rookietec9.enderplugin.utils.reference.BoardNames;
-import io.github.rookietec9.enderplugin.utils.reference.Worlds;
+import io.github.rookietec9.enderplugin.utils.datamanagers.DataPlayer;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import static io.github.rookietec9.enderplugin.Reference.PARKOUR;
+import static io.github.rookietec9.enderplugin.Reference.PARKOUR_COLOR;
+
 /**
  * @author Jeremi
- * @version 18.5.8
+ * @version 25.2.6
  * @since 13.4.4
  */
 public class ParkourBoard extends Board {
 
     public ParkourBoard(Player player) {
-        super(player, Worlds.PARKOUR, BoardNames.PARKOUR, ChatColor.DARK_GRAY);
-        putBreaks(8, 5);
-        putData("Level", "N/A", 7);
-        putData("Block", "N/A", 6);
-        putData("Attempts", "N/A", 4);
+        super(player, PARKOUR, PARKOUR_COLOR(DataPlayer.get(player).tempParkourLevel) + "§lPARKOUR", ChatColor.WHITE);
+        putBreaks(5);
+        putData("Level", DataPlayer.get(player).tempParkourLevel + "", 4);
     }
 
-    public void updateLevel(String level) {
-        updateData("Level", level);
-    }
-
-    public void updateBlock(String block) {
-        updateData("Block", block);
+    public void updateLevel() {
+        updateData("Level", DataPlayer.get(player).tempParkourLevel + "");
+        changeTitle(PARKOUR_COLOR(DataPlayer.get(player).tempParkourLevel) + "§lPARKOUR");
     }
 }
